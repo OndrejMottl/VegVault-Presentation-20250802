@@ -114,6 +114,22 @@ fonts_definition <-
     paste0(
       ".text-font-body { font-family: $mainFont; }\n",
       ".text-font-heading { font-family: $headingFont; }\n"
+    ),
+    paste0(
+      "/* Debug font loading - this will help us see if the font is loaded */\n",
+      "@supports (font-family: \"", fonts$heading, "\") {\n",
+      "  .debug-font-loaded::before {\n",
+      "    content: \"", fonts$heading, " font is supported\";\n",
+      "    display: block;\n",
+      "    font-size: 12px;\n",
+      "    color: green;\n",
+      "  }\n",
+      "}\n\n",
+      "/* Force font loading for debugging */\n",
+      ".force-press-start {\n",
+      "  font-family: \"", fonts$heading, "\", monospace !important;\n",
+      "  font-display: swap;\n",
+      "}\n"
     )
   )
 
@@ -473,7 +489,7 @@ Fot this presentation, default color palette is:.
 #| label: color-palette
 #| width: 700
 #| fig-align: 'center'
-knitr::include_graphics("color_palette.png")
+knitr::include_graphics("VegVault_palette.png")
 ```
 
 You can change the color palette by updating the `colors.json` file in the root of your project.

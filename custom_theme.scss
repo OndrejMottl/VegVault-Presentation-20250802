@@ -192,22 +192,6 @@ h4,
   font-family: $headingFont !important;
 }
 
-/* Debug font loading - this will help us see if the font is loaded */
-@supports (font-family: "Press Start 2P") {
-  .debug-font-loaded::before {
-    content: "Press Start 2P font is supported";
-    display: block;
-    font-size: 12px;
-    color: green;
-  }
-}
-
-/* Force font loading for debugging */
-.force-press-start {
-  font-family: "Press Start 2P", monospace !important;
-  font-display: swap;
-}
-
 /* List styling */
 ul {
   padding-left: 0;
