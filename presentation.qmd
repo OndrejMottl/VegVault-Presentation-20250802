@@ -12,6 +12,7 @@ format:
     code-link: false
     embed-resources: true
     center-title-slide: false
+    include-in-header: "fonts-include.html"
 ---
 
 ```{r}
@@ -108,18 +109,8 @@ fonts <-
 
 fonts_definition <-
   c(
-    paste0(
-      "@import url(https://fonts.googleapis.com/css?family=",
-      stringr::str_replace_all(fonts$body, " ", "+"),
-      ");\n"
-    ),
-    paste0(
-      "@import url(https://fonts.googleapis.com/css?family=",
-      stringr::str_replace_all(fonts$heading, " ", "+"),
-      ");\n"
-    ),
-    paste0('$mainFont: "', fonts$body, '", sans-serif !default;\n'),
-    paste0('$headingFont: "', fonts$heading, '", sans-serif !default;\n'),
+    paste0('$mainFont: "', fonts$body, '", "Arial", sans-serif !default;\n'),
+    paste0('$headingFont: "', fonts$heading, '", "Courier New", monospace !default;\n'),
     paste0(
       ".text-font-body { font-family: $mainFont; }\n",
       ".text-font-heading { font-family: $headingFont; }\n"
@@ -316,8 +307,8 @@ ggplot(
   geom_point(
     mapping = aes(color = am),
   ) +
-  geom_smooth(formula = y ~ x, method = "loess", color = colors$`persian-green`) +
-  ggplot2::scale_color_gradient(low = colors$`harvest-gold`, high = colors$`byzantium`) 
+  geom_smooth(formula = y ~ x, method = "loess", color = colors$beigeLight) +
+  ggplot2::scale_color_gradient(low = colors$purpleDark, high = colors$greenLight) 
 ```
 
 ::: footer
@@ -424,8 +415,8 @@ ggplot(
   geom_point(
     mapping = aes(color = am),
   ) +
-  geom_smooth(formula = y ~ x, method = "loess", color = colors$`persian-green`) +
-  ggplot2::scale_color_gradient(low = colors$`harvest-gold`, high = colors$`byzantium`) 
+  geom_smooth(formula = y ~ x, method = "loess", color = colors$beigeLight) +
+  ggplot2::scale_color_gradient(low = colors$purpleDark, high = colors$greenLight) 
 ```
 
 ### Data
