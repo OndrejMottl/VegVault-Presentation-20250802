@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Test different import methods -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        .test1 { font-family: 'Press Start 2P', cursive; }
+        .test2 { font-family: "Press Start 2P", monospace; }
+        .test3 { font-family: "Press Start 2P", sans-serif; }
+        .normal { font-family: Arial, sans-serif; }
+        
+        div { margin: 20px 0; padding: 10px; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+    <div class="normal">Normal Arial font for comparison</div>
+    <div class="test1">Press Start 2P with cursive fallback</div>
+    <div class="test2">Press Start 2P with monospace fallback</div>
+    <div class="test3">Press Start 2P with sans-serif fallback</div>
+</body>
+</html>
