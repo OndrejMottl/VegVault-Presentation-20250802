@@ -12,6 +12,7 @@ format:
     code-link: false
     embed-resources: true
     center-title-slide: false
+    include-in-header: "fonts-include.html"
 ---
 
 ```{r}
@@ -108,21 +109,27 @@ fonts <-
 
 fonts_definition <-
   c(
-    paste0(
-      "@import url(https://fonts.googleapis.com/css?family=",
-      stringr::str_replace_all(fonts$body, " ", "+"),
-      ");\n"
-    ),
-    paste0(
-      "@import url(https://fonts.googleapis.com/css?family=",
-      stringr::str_replace_all(fonts$heading, " ", "+"),
-      ");\n"
-    ),
-    paste0('$mainFont: "', fonts$body, '", sans-serif !default;\n'),
-    paste0('$headingFont: "', fonts$heading, '", sans-serif !default;\n'),
+    paste0('$mainFont: "', fonts$body, '", "Arial", sans-serif !default;\n'),
+    paste0('$headingFont: "', fonts$heading, '", "Courier New", monospace !default;\n'),
     paste0(
       ".text-font-body { font-family: $mainFont; }\n",
       ".text-font-heading { font-family: $headingFont; }\n"
+    ),
+    paste0(
+      "/* Debug font loading - this will help us see if the font is loaded */\n",
+      "@supports (font-family: \"", fonts$heading, "\") {\n",
+      "  .debug-font-loaded::before {\n",
+      "    content: \"", fonts$heading, " font is supported\";\n",
+      "    display: block;\n",
+      "    font-size: 12px;\n",
+      "    color: green;\n",
+      "  }\n",
+      "}\n\n",
+      "/* Force font loading for debugging */\n",
+      ".force-press-start {\n",
+      "  font-family: \"", fonts$heading, "\", monospace !important;\n",
+      "  font-display: swap;\n",
+      "}\n"
     )
   )
 
@@ -316,8 +323,8 @@ ggplot(
   geom_point(
     mapping = aes(color = am),
   ) +
-  geom_smooth(formula = y ~ x, method = "loess", color = colors$`persian-green`) +
-  ggplot2::scale_color_gradient(low = colors$`harvest-gold`, high = colors$`byzantium`) 
+  geom_smooth(formula = y ~ x, method = "loess", color = colors$beigeLight) +
+  ggplot2::scale_color_gradient(low = colors$purpleDark, high = colors$greenLight) 
 ```
 
 ::: footer
@@ -424,8 +431,8 @@ ggplot(
   geom_point(
     mapping = aes(color = am),
   ) +
-  geom_smooth(formula = y ~ x, method = "loess", color = colors$`persian-green`) +
-  ggplot2::scale_color_gradient(low = colors$`harvest-gold`, high = colors$`byzantium`) 
+  geom_smooth(formula = y ~ x, method = "loess", color = colors$beigeLight) +
+  ggplot2::scale_color_gradient(low = colors$purpleDark, high = colors$greenLight) 
 ```
 
 ### Data
@@ -482,7 +489,7 @@ Fot this presentation, default color palette is:.
 #| label: color-palette
 #| width: 700
 #| fig-align: 'center'
-knitr::include_graphics("color_palette.png")
+knitr::include_graphics("VegVault_palette.png")
 ```
 
 You can change the color palette by updating the `colors.json` file in the root of your project.

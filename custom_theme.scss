@@ -10,7 +10,7 @@ $largeMargin: 20px;
 @import "_colors";
 
 $body-color: $black;
-$backgroundColor: $white;
+$backgroundColor: $beigeLight;
 
 // Typography
 
@@ -23,9 +23,9 @@ $body-line-height: 1.5;
 $headingMargin: 0;
 $headingLineHeight: 1.2;
 $headingLetterSpacing: normal;
-$headingFontWeight: 700;
+//$headingFontWeight: 700;
 $headingFontWeight: normal;
-$headingColor: $byzantium;
+$headingColor: $white;
 
 $heading1Size: 3.77em;
 $heading1TextShadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
@@ -68,9 +68,10 @@ pre,
 .reveal pre,
 code,
 .reveal code {
-  background-color: lighten($grey, 30%);
+  background-color: darken($backgroundColor, 10%) !important;
   color: $black;
   border-radius: 5px;
+  line-height: 1;
 }
 
 pre,
@@ -100,7 +101,7 @@ code a,
   text-decoration: underline;
 
   &:hover {
-    color: $persian-green;
+    color: $greenDark;
     background-color: $black;
   }
 }
@@ -108,12 +109,12 @@ code a,
 a,
 .reveal a,
 .reveal .footer a {
-  color: $persian-green;
+  color: $greenDark;
   text-decoration: underline !important;
 
   &:hover {
     color: $black !important;
-    background-color: $persian-green !important;
+    background-color: $greenDark !important;
   }
 }
 
@@ -124,8 +125,9 @@ a,
 }
 
 /* Headings */
-h1 {
-  font-family: $headingFont;
+h1,
+.reveal h1 {
+  font-family: $headingFont !important;
   font-size: $heading1Size;
   line-height: $headingLineHeight;
   letter-spacing: $headingLetterSpacing;
@@ -136,8 +138,9 @@ h1 {
   text-align: center;
 }
 
-h2 {
-  font-family: $headingFont;
+h2,
+.reveal h2 {
+  font-family: $headingFont !important;
   font-size: $heading2Size;
   line-height: $headingLineHeight;
   letter-spacing: $headingLetterSpacing;
@@ -148,8 +151,9 @@ h2 {
   text-align: center;
 }
 
-h3 {
-  font-family: $headingFont;
+h3,
+.reveal h3 {
+  font-family: $headingFont !important;
   font-size: $heading3Size;
   line-height: $headingLineHeight;
   letter-spacing: $headingLetterSpacing;
@@ -159,8 +163,9 @@ h3 {
   color: $body-color;
 }
 
-h4 {
-  font-family: $headingFont;
+h4,
+.reveal h4 {
+  font-family: $headingFont !important;
   font-size: $heading4Size;
   line-height: $headingLineHeight;
   letter-spacing: $headingLetterSpacing;
@@ -170,7 +175,24 @@ h4 {
   color: $body-color;
 }
 
- 
+/* Additional Reveal.js specific heading font rules */
+.reveal .slides section .fragment h1,
+.reveal .slides section .fragment h2,
+.reveal .slides section .fragment h3,
+.reveal .slides section .fragment h4,
+.reveal .slides section h1,
+.reveal .slides section h2,
+.reveal .slides section h3,
+.reveal .slides section h4 {
+  font-family: $headingFont !important;
+}
+
+/* Ensure heading classes also use the correct font */
+.text-font-heading,
+.reveal .text-font-heading {
+  font-family: $headingFont !important;
+}
+
 /* List styling */
 ul {
   padding-left: 0;
@@ -267,6 +289,10 @@ ul ul {
   top: 25%;
   -ms-transform: translateY(-25%);
   transform: translateY(-25%);
+}
+
+.text-cast-shadow {
+  text-shadow: 3px 4px 5px $black;
 }
 
 /* Slide content layout */

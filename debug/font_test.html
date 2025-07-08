@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Renogate:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .test-heading {
+            font-family: "Press Start 2P", monospace;
+            font-size: 24px;
+            margin: 20px 0;
+        }
+        .test-body {
+            font-family: "Renogate", sans-serif;
+            font-size: 18px;
+            margin: 20px 0;
+        }
+        .fallback-heading {
+            font-family: "NonExistentFont", "Press Start 2P", monospace;
+            font-size: 24px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="test-heading">Press Start 2P Font Test</h1>
+    <p class="test-body">This is Renogate font for body text.</p>
+    <h2 class="fallback-heading">Fallback Test (should still be Press Start 2P)</h2>
+    
+    <div style="margin-top: 40px;">
+        <h3>Font Loading Status:</h3>
+        <p id="font-status">Checking...</p>
+    </div>
+
+    <script>
+        // Check if fonts are loaded
+        document.fonts.ready.then(function() {
+            const pressStartLoaded = document.fonts.check('16px "Press Start 2P"');
+            const renogateLoaded = document.fonts.check('16px "Renogate"');
+            
+            document.getElementById('font-status').innerHTML = 
+                'Press Start 2P: ' + (pressStartLoaded ? '✅ Loaded' : '❌ Not loaded') + '<br>' +
+                'Renogate: ' + (renogateLoaded ? '✅ Loaded' : '❌ Not loaded');
+        });
+    </script>
+</body>
+</html>
