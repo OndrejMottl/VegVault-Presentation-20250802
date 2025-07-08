@@ -10,7 +10,7 @@ $largeMargin: 20px;
 @import "_colors";
 
 $body-color: $black;
-$backgroundColor: $brownDark;
+$backgroundColor: $beigeLight;
 
 // Typography
 
@@ -68,9 +68,10 @@ pre,
 .reveal pre,
 code,
 .reveal code {
-  background-color: lighten($grey, 30%);
+  background-color: darken($backgroundColor, 10%) !important;
   color: $black;
   border-radius: 5px;
+  line-height: 1;
 }
 
 pre,
@@ -100,7 +101,7 @@ code a,
   text-decoration: underline;
 
   &:hover {
-    color: $greenLight;
+    color: $greenDark;
     background-color: $black;
   }
 }
@@ -108,12 +109,12 @@ code a,
 a,
 .reveal a,
 .reveal .footer a {
-  color: $greenLight;
+  color: $greenDark;
   text-decoration: underline !important;
 
   &:hover {
     color: $black !important;
-    background-color: $greenLight !important;
+    background-color: $greenDark !important;
   }
 }
 
@@ -288,6 +289,10 @@ ul ul {
   top: 25%;
   -ms-transform: translateY(-25%);
   transform: translateY(-25%);
+}
+
+.text-cast-shadow {
+  text-shadow: 3px 4px 5px $black;
 }
 
 /* Slide content layout */
