@@ -26,7 +26,33 @@
 
 ---
 
-## 4. What is VegVault? *(2:30–3:30)*
+## 4. Imagine a Project: *Functional Stability in the Rocky Mountains* *(2:30–4:00)*
+
+- Research question: *"Did vegetation in the Rocky Mountains maintain functional stability from the Last Glacial Maximum to the present?"*
+- What data would we need?
+  - Fossil pollen and modern plot-based vegetation data
+  - Functional trait data (e.g., plant height, SLA, wood density)
+  - Past and present climate data
+- Challenges:
+  - Data come from different sources and formats
+  - Varying taxonomies and sampling methods
+  - Complex filtering by time, space, and traits
+  - Integrating abiotic and trait dimensions requires extensive coding and data wrangling
+
+---
+
+## 5. Solving It with VegVault *(4:00–5:00)*
+
+- Imagine answering this question with just a few lines of code
+- Use `{vaultkeepr}` to:
+  - Access vegetation, trait, and climate data simultaneously
+  - Filter by time range, spatial boundaries, and taxa
+  - Harmonise taxonomy and retrieve community-weighted traits
+- Minimal code, maximum reproducibility
+
+---
+
+## 6. What is VegVault? *(5:00–6:00)*
 
 - A global SQLite database integrating plot-based paleo- and neo-vegetation data
 - Links to functional traits, soil characteristics, and climate variables
@@ -35,7 +61,7 @@
 
 ---
 
-## 5. Key Innovations *(3:30–4:00)*
+## 7. Key Innovations *(6:00–6:30)*
 
 - Paleo and contemporary data integrated across time
 - Plot-based vegetation data (not just species occurrences)
@@ -44,7 +70,7 @@
 
 ---
 
-## 6. Data & Technical Backbone *(4:00–5:00)*
+## 8. Data & Technical Backbone *(6:30–7:00)*
 
 - Data sources: Neotoma, BIEN, sPlotOpen, TRY, CHELSA, WoSIS
 - Taxonomic harmonisation via GBIF backbone using `{taxospace}`
@@ -53,7 +79,7 @@
 
 ---
 
-## 7. Access & Usability *(5:00–5:30)*
+## 9. Access & Usability *(7:00–7:30)*
 
 - R package `{vaultkeepr}` provides a user-friendly interface
 - No SQL knowledge required; tidyverse-compatible workflows
@@ -62,25 +88,18 @@
 
 ---
 
-## 8. Example 1: *Picea* Distribution *(5:30–6:30)*
+## 10. Other Potential Applications *(7:30–8:30)
 
-- Goal: Analyse the distribution of genus *Picea* across North America (0–15 ka BP)
-- Combines fossil and contemporary vegetation plot data
-- Filters by spatial extent and temporal range
-- Taxa harmonised at the genus level using `{vaultkeepr}`
+Some examples to highlight VegVault’s flexibility for vegetation science, palaeoecology, and macroecology
 
----
-
-## 9. Example 2: CWM Trait Dynamics *(6:30–8:00)*
-
-- Objective: Reconstruct community-weighted mean (CWM) of plant height
-- Region: Central and South America; Period: 6–12 ka BP
-- Combines trait data with fossil pollen records
-- Application: functional biogeography and long-term ecosystem dynamics
+- Identifying trait–environment mismatches under past and future climate change
+- Analyzing biome transitions through functional and taxonomic dissimilarity
+- Reconstructing long-term community assembly based using JSDM
+- Quantifying ecological novelty of vegetation through space–time comparisons
 
 ---
 
-## 10. Summary & Invitation *(8:00–9:00)*
+## 11. Summary & Invitation *(8:30–9:00)*
 
 - VegVault bridges temporal and disciplinary gaps in vegetation science
 - Enables robust ecological synthesis and forecasting
@@ -89,7 +108,7 @@
 
 ---
 
-## 11. Final Slide: Contact & Resources *(9:00–9:30)*
+## 12. Final Slide: Contact & Resources *(9:00–9:30)*
 
 - Website, ORCID, GitHub, Lab page
 - Include QR codes and short URLs for quick access
@@ -97,8 +116,9 @@
 
 ---
 
-## Buffer Time & Optional Slides *(\~3 minutes for Q&A)*
+## Buffer Time & Optional Slides *(~3 minutes for Q&A)*
 
 - Optionally include one or more backup slides:
   - Full VegVault schema overview
+  - SPROuT and SSoQE overview
 
