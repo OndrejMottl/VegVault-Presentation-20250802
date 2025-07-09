@@ -58,6 +58,14 @@ include_local_figure <- function(data_source) {
     error = TRUE
   )
 }
+
+
+# Background images for slides
+gb_bg_light <- 
+  'background-image="Materials/poster_export/gb_ds.png" background-opacity="0.20"'
+
+gb_bg_medium <- 
+  'background-image="Materials/poster_export/gb_ds.png" background-opacity="0.50"'
 ```
 
 
@@ -158,7 +166,7 @@ IAVS, Colorado, USA
 2025-08-02
 
 
-# 🎥Intro {.text-center background-image="Materials/poster_export/gb_ds.png" background-opacity="0.50"}
+# 🎥Intro {.text-center `r gb_bg_medium`}
 
 <br>
 
@@ -188,7 +196,7 @@ There are **many** biodiversity databases
 What if we could integrate vegetation, climate, traits, and time into one coherent system? 🤔
 :::
 
-## 🧙Player 1 {background-image="Materials/poster_export/gb_ds.png" background-opacity="0.20"}
+## 🧙Player 1 {`r gb_bg_light`}
 
 :::: {.columns}
 
@@ -238,18 +246,43 @@ include_local_figure("QR/qr_linktree.png")
 
 ::::
 
-## 🕹️Level0: The Quest
+## 🕹️Level0: The Quest {`r gb_bg_light`}
 
-- *Mission:* "Did vegetation in the Rocky Mountains maintain functional stability from the LGM to the present?"
-- Requirements:
-  - Fossil pollen and modern vegetation plots  
-  - Functional traits (e.g. height, SLA, wood density)  
-  - Climate data from past and present
-- Obstacles:
-  - Scattered formats, inconsistent taxonomies, climate rasters  
-  - Multiple tools, steep learning curves, and limited reproducibility
+<br>
 
-## 🔓The Shortcut
+::: {.blockquote .text-center .text-italic}
+
+Did vegetation in the Rocky Mountains maintain **functional stability** from the **LGM to the present**?
+
+:::
+
+<br>
+
+:::: {.columns}
+
+::: {.column width="55%" .fragment .incremental}
+
+### 🎯Data Needs
+
+  - Fossil pollen and contemporary [vegetation plots]{.text-background-black .text-color-beigeLight .text-bold}  
+  - Functional [traits]{.text-background-blueLight .text-color-beigeLight .text-bold} (e.g. height, SLA, wood density)  
+  - [Climate]{.text-background-brownLight .text-color-beigeLight .text-bold} data (past and contemporary)
+
+:::
+
+::: {.column width="45%" .fragment .incremental}
+
+### 🚧Obstacles
+
+  - ❌Several data sources (formats, tools),
+  - ❌Taxonomies mismatch across datasets
+  - ❌Limited reproducibility
+
+:::
+::::
+
+
+## 🔓The Shortcut {`r gb_bg_light`}
 
 - Imagine answering this question with just a few lines of code  
 - Use `{vaultkeepr}` to:
@@ -258,34 +291,34 @@ include_local_figure("QR/qr_linktree.png")
   - Harmonise taxonomy and calculate community-weighted traits
 - Minimal code, maximum reproducibility
 
-## 🆙LevelUp: VegVault
+## 🆙LevelUp: VegVault {`r gb_bg_light`}
 
 - A global SQLite database integrating plot-based paleo- and neo-vegetation data  
 - Links to functional traits, soil properties, and climate variables  
 - Built for millennial-scale ecological analyses  
 - Fully open-source and reproducible infrastructure
 
-## 🗃️The Source Code
+## 🗃️The Source Code {`r gb_bg_light`}
 
 - Data sources: Neotoma, BIEN, sPlotOpen, TRY, CHELSA, WoSIS  
 - Taxonomic harmonisation via GBIF and `{taxospace}`  
 - Abiotic data mapped to spatio-temporal grids  
 - Modular, version-controlled pipelines with metadata
 
-## 💎Key Innovations
+## 💎Key Innovations {`r gb_bg_light`}
 
 - Temporal integration of paleo and contemporary data  
 - Plot-based vegetation records (not just species occurrences)  
 - Sample-specific climate and soil context  
 - Standardised taxonomy and harmonised trait domains
 
-## 🛠️Controls
+## 🛠️Controls {`r gb_bg_light`}
 
 - Access via `{vaultkeepr}` R package  
 - SQL-free, tidyverse-compatible interface  
 - Fully reproducible workflows via GitHub and Zenodo
 
-## 💡Side Quests
+## 💡Side Quests {`r gb_bg_light`}
 
 - Additional use cases:
   - Explore biome transitions and trait shifts  
@@ -294,19 +327,19 @@ include_local_figure("QR/qr_linktree.png")
   - Reconstruct long-term diversity patterns  
   - Investigate trait-based community assembly
 
-## 🏆Summary
+## 🏆Summary {`r gb_bg_light`}
 
 - VegVault = open, robust, time-spanning vegetation research platform  
 - Designed for reproducible, interdisciplinary ecological synthesis  
 - *Join the quest – the tools are ready, and the map is open!*
 
-## 📜Credits
+## 📜Credits {`r gb_bg_light`}
 
 - Website, ORCID, GitHub, and Lab links  
 - QR codes and short URLs for quick access  
 - Acknowledgements to collaborators, funders, and data providers
 
-## 🎯Bonus Stage
+## 🎯Bonus Stage {`r gb_bg_light`}
 
 - Optional backup slides:
   - VegVault database schema
