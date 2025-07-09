@@ -237,3 +237,77 @@ include_local_figure("QR/qr_linktree.png")
 :::
 
 ::::
+
+## 🕹️Level0: The Quest
+
+- *Mission:* "Did vegetation in the Rocky Mountains maintain functional stability from the LGM to the present?"
+- Requirements:
+  - Fossil pollen and modern vegetation plots  
+  - Functional traits (e.g. height, SLA, wood density)  
+  - Climate data from past and present
+- Obstacles:
+  - Scattered formats, inconsistent taxonomies, climate rasters  
+  - Multiple tools, steep learning curves, and limited reproducibility
+
+## 🔓The Shortcut
+
+- Imagine answering this question with just a few lines of code  
+- Use `{vaultkeepr}` to:
+  - Access vegetation, trait, and climate data simultaneously  
+  - Filter by time range, spatial boundaries, and taxa  
+  - Harmonise taxonomy and calculate community-weighted traits
+- Minimal code, maximum reproducibility
+
+## 🆙LevelUp: VegVault
+
+- A global SQLite database integrating plot-based paleo- and neo-vegetation data  
+- Links to functional traits, soil properties, and climate variables  
+- Built for millennial-scale ecological analyses  
+- Fully open-source and reproducible infrastructure
+
+## 🗃️The Source Code
+
+- Data sources: Neotoma, BIEN, sPlotOpen, TRY, CHELSA, WoSIS  
+- Taxonomic harmonisation via GBIF and `{taxospace}`  
+- Abiotic data mapped to spatio-temporal grids  
+- Modular, version-controlled pipelines with metadata
+
+## 💎Key Innovations
+
+- Temporal integration of paleo and contemporary data  
+- Plot-based vegetation records (not just species occurrences)  
+- Sample-specific climate and soil context  
+- Standardised taxonomy and harmonised trait domains
+
+## 🛠️Controls
+
+- Access via `{vaultkeepr}` R package  
+- SQL-free, tidyverse-compatible interface  
+- Fully reproducible workflows via GitHub and Zenodo
+
+## 💡Side Quests
+
+- Additional use cases:
+  - Explore biome transitions and trait shifts  
+  - Test trait–environment relationships across time  
+  - Quantify ecological novelty and functional turnover  
+  - Reconstruct long-term diversity patterns  
+  - Investigate trait-based community assembly
+
+## 🏆Summary
+
+- VegVault = open, robust, time-spanning vegetation research platform  
+- Designed for reproducible, interdisciplinary ecological synthesis  
+- *Join the quest – the tools are ready, and the map is open!*
+
+## 📜Credits
+
+- Website, ORCID, GitHub, and Lab links  
+- QR codes and short URLs for quick access  
+- Acknowledgements to collaborators, funders, and data providers
+
+## 🎯Bonus Stage
+
+- Optional backup slides:
+  - VegVault database schema
+
