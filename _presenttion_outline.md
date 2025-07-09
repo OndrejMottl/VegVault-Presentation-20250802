@@ -1,124 +1,118 @@
-# **VegVault: 15-Minute Scientific Talk Outline**
+# **VegVault: 15-Minute Scientific Talk Outline – Retro Game Style**
 
-## 1. Title Slide *(Displayed, not spoken)*
+## 🎮 Press START to Begin *(Title Slide – displayed only)*
 
-- **Title:** *VegVault: Linking Past and Present Vegetation Data for Global Change Research*
-- **Presenter:** Ondřej Mottl, Charles University, Quantitative Ecology Lab
-- **Date**, DOI, GitHub, and project website
-
----
-
-## 2. Opening Hook: *"Ecology across millennia – still disconnected?"* *(0:15–1:30)*
-
-- Most ecological models rely exclusively on contemporary data
-- Yet ecosystems have evolved over millennia
-- Vegetation data are fragmented across disciplines and repositories
-- *What if we could integrate vegetation, climate, traits, and time into one coherent system?*
+- **Player:** Ondřej Mottl  
+- **Location:** Conference venue and date
 
 ---
 
-## 3. About Me *(1:30–2:30)*
+## 🎥 Intro *(0:15–1:30)*
 
-- Assistant Professor at the Laboratory of Quantitative Ecology
-- Focus areas: macroecology, palaeoecology, climate change, and large-scale data integration
-- Advocate for Open Science and reproducibility in ecology
-- Contact via personal webpage, GitHub, ORCID
-
----
-
-## 4. Imagine a Project: *Functional Stability in the Rocky Mountains* *(2:30–4:00)*
-
-- Research question: *"Did vegetation in the Rocky Mountains maintain functional stability from the Last Glacial Maximum to the present?"*
-- What data would we need?
-  - Fossil pollen and modern plot-based vegetation data
-  - Functional trait data (e.g., plant height, SLA, wood density)
-  - Past and present climate data
-- Challenges:
-  - Data come from different sources and formats
-  - Varying taxonomies and sampling methods
-  - Complex filtering by time, space, and traits
-  - Integrating abiotic and trait dimensions requires extensive coding and data wrangling
+- Ecological models mostly rely on contemporary data  
+- Yet ecosystems have evolved over thousands of years  
+- Vegetation data are often fragmented, siloed, and temporally shallow  
+- *Can we link past and present, traits and climate, into one coherent level?*
 
 ---
 
-## 5. Solving It with VegVault *(4:00–5:00)*
+## 🧙 Player 1 *(1:30–2:30)*
 
-- Imagine answering this question with just a few lines of code
+- Assistant Professor at Charles University  
+- Head of the Laboratory of Quantitative Ecology  
+- Advocate of Open Science and reproducibility  
+- Contact via website, GitHub, ORCID
+
+---
+
+## 🕹️ Level 0: The Quest *(2:30–4:00)*
+
+- *Mission:* "Did vegetation in the Rocky Mountains maintain functional stability from the LGM to the present?"
+- Requirements:
+  - Fossil pollen and modern vegetation plots  
+  - Functional traits (e.g. height, SLA, wood density)  
+  - Climate data from past and present
+- Obstacles:
+  - Scattered formats, inconsistent taxonomies, climate rasters  
+  - Multiple tools, steep learning curves, and limited reproducibility
+
+---
+
+## 🔓 Unlock the Shortcut *(4:00–5:00)*
+
+- Imagine answering this question with just a few lines of code  
 - Use `{vaultkeepr}` to:
-  - Access vegetation, trait, and climate data simultaneously
-  - Filter by time range, spatial boundaries, and taxa
-  - Harmonise taxonomy and retrieve community-weighted traits
+  - Access vegetation, trait, and climate data simultaneously  
+  - Filter by time range, spatial boundaries, and taxa  
+  - Harmonise taxonomy and calculate community-weighted traits
 - Minimal code, maximum reproducibility
 
 ---
 
-## 6. What is VegVault? *(5:00–6:00)*
+## 🆙 Level Up with VegVault *(5:00–6:00)*
 
-- A global SQLite database integrating plot-based paleo- and neo-vegetation data
-- Links to functional traits, soil characteristics, and climate variables
-- Built to support millennial-scale ecological analyses
+- A global SQLite database integrating plot-based paleo- and neo-vegetation data  
+- Links to functional traits, soil properties, and climate variables  
+- Built for millennial-scale ecological analyses  
 - Fully open-source and reproducible infrastructure
 
 ---
 
-## 7. Key Innovations *(6:00–6:30)*
+## 🗃️ The Source Code *(6:00–6:30)*
 
-- Paleo and contemporary data integrated across time
-- Plot-based vegetation data (not just species occurrences)
-- Sample-specific abiotic data (climate and soil)
+- Data sources: Neotoma, BIEN, sPlotOpen, TRY, CHELSA, WoSIS  
+- Taxonomic harmonisation via GBIF and `{taxospace}`  
+- Abiotic data mapped to spatio-temporal grids  
+- Modular, version-controlled pipelines with metadata
+
+---
+
+## 💎 Key Innovations *(6:30–7:00)*
+
+- Temporal integration of paleo and contemporary data  
+- Plot-based vegetation records (not just species occurrences)  
+- Sample-specific climate and soil context  
 - Standardised taxonomy and harmonised trait domains
 
 ---
 
-## 8. Data & Technical Backbone *(6:30–7:00)*
+## 🛠️ Controls *(7:00–7:30)*
 
-- Data sources: Neotoma, BIEN, sPlotOpen, TRY, CHELSA, WoSIS
-- Taxonomic harmonisation via GBIF backbone using `{taxospace}`
-- Spatio-temporal linkage to abiotic grid points
-- Structured, versioned pipelines and metadata
-
----
-
-## 9. Access & Usability *(7:00–7:30)*
-
-- R package `{vaultkeepr}` provides a user-friendly interface
-- No SQL knowledge required; tidyverse-compatible workflows
-- All code and data are public via GitHub and Zenodo
-- Fully reproducible using version-controlled workflows
+- Access via `{vaultkeepr}` R package  
+- SQL-free, tidyverse-compatible interface  
+- Fully reproducible workflows via GitHub and Zenodo
 
 ---
 
-## 10. Other Potential Applications *(7:30–8:30)
+## 💡 Side Quests *(7:30–8:30)*
 
-Some examples to highlight VegVault’s flexibility for vegetation science, palaeoecology, and macroecology
-
-- Identifying trait–environment mismatches under past and future climate change
-- Analyzing biome transitions through functional and taxonomic dissimilarity
-- Reconstructing long-term community assembly based using JSDM
-- Quantifying ecological novelty of vegetation through space–time comparisons
-
----
-
-## 11. Summary & Invitation *(8:30–9:00)*
-
-- VegVault bridges temporal and disciplinary gaps in vegetation science
-- Enables robust ecological synthesis and forecasting
-- Scalable, transparent, and open by design
-- We welcome collaborations and encourage the community to contribute and explore
+- Additional use cases:
+  - Explore biome transitions and trait shifts  
+  - Test trait–environment relationships across time  
+  - Quantify ecological novelty and functional turnover  
+  - Reconstruct long-term diversity patterns  
+  - Investigate trait-based community assembly
 
 ---
 
-## 12. Final Slide: Contact & Resources *(9:00–9:30)*
+## 🏆 Summary *(8:30–9:00)*
 
-- Website, ORCID, GitHub, Lab page
-- Include QR codes and short URLs for quick access
-- Acknowledge collaborators, funders, and data providers
+- VegVault = open, robust, time-spanning vegetation research platform  
+- Designed for reproducible, interdisciplinary ecological synthesis  
+- *Join the quest – the tools are ready, and the map is open!*
 
 ---
 
-## Buffer Time & Optional Slides *(~3 minutes for Q&A)*
+## 📜 Credits *(9:00–9:30)*
 
-- Optionally include one or more backup slides:
-  - Full VegVault schema overview
-  - SPROuT and SSoQE overview
+- Website, ORCID, GitHub, and Lab links  
+- QR codes and short URLs for quick access  
+- Acknowledgements to collaborators, funders, and data providers
+
+---
+
+## 🎯 Bonus Stage *(~3 minutes Q&A)*
+
+- Optional backup slides:
+  - VegVault database schema
 
