@@ -27,10 +27,9 @@ $headingLetterSpacing: normal;
 $headingFontWeight: normal;
 $headingColor: $white;
 
-$heading1Size: 3.77em;
-$heading1TextShadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-$heading2Size: 2.11em;
-$heading3Size: 1.55em;
+$heading1Size: 2.1em;
+$heading2Size: 1.55em;
+$heading3Size: 1.25em;
 $heading4Size: 1em;
 
 // Layout
@@ -48,7 +47,6 @@ $mermaid-label-bg-color: $white !important;
 $mermaid-label-fg-color: $black !important;
 $mermaid-node-bg-color: $white !important;
 
-
 /*-- scss:rules --*/
 
 /* General text styling */
@@ -59,7 +57,6 @@ body {
   color: $body-color;
   background-color: $backgroundColor !important;
 }
-
 
 /* Code */
 
@@ -109,13 +106,34 @@ code a,
 a,
 .reveal a,
 .reveal .footer a {
-  color: $greenDark;
+  color: $greenDark !important;
   text-decoration: underline !important;
 
   &:hover {
     color: $black !important;
     background-color: $greenDark !important;
   }
+}
+
+/* Specific styling for links in title slides and slides with background colors */
+.reveal .slides section a,
+.reveal .title-slide a,
+.reveal .bg-black a,
+.reveal .slide-background a {
+  color: $greenDark !important;
+  text-decoration: underline !important;
+
+  &:hover {
+    color: $black !important;
+    background-color: $greenDark !important;
+  }
+}
+
+/* Force green color for all links, overriding any reveal.js defaults */
+.reveal a:link,
+.reveal a:visited,
+.reveal a:active {
+  color: $greenDark !important;
 }
 
 /* Fix for code blocks in HTML output */
@@ -128,37 +146,35 @@ a,
 h1,
 .reveal h1 {
   font-family: $headingFont !important;
-  font-size: $heading1Size;
+  font-size: $heading1Size !important;
   line-height: $headingLineHeight;
   letter-spacing: $headingLetterSpacing;
   font-weight: $headingFontWeight;
-  margin-top: $headingMargin;
+  margin-top: $largeMargin;
   color: $headingColor;
   text-shadow: 3px 4px 5px $black;
-  text-align: center;
 }
 
 h2,
 .reveal h2 {
   font-family: $headingFont !important;
-  font-size: $heading2Size;
+  font-size: $heading2Size !important;
   line-height: $headingLineHeight;
   letter-spacing: $headingLetterSpacing;
   font-weight: $headingFontWeight;
-  margin-top: $headingMargin;
+  margin-top: $blockMargin;
   color: $headingColor;
   text-shadow: 3px 4px 5px $black;
-  text-align: center;
 }
 
 h3,
 .reveal h3 {
   font-family: $headingFont !important;
-  font-size: $heading3Size;
+  font-size: $heading3Size !important;
   line-height: $headingLineHeight;
   letter-spacing: $headingLetterSpacing;
   font-weight: $headingFontWeight;
-  margin-top: $headingMargin;
+  margin-top: $smallMargin;
   text-shadow: none;
   color: $body-color;
 }
@@ -166,11 +182,11 @@ h3,
 h4,
 .reveal h4 {
   font-family: $headingFont !important;
-  font-size: $heading4Size;
+  font-size: $heading4Size !important;
   line-height: $headingLineHeight;
   letter-spacing: $headingLetterSpacing;
   font-weight: $headingFontWeight;
-  margin-top: $headingMargin;
+  margin-top: $smallMargin;
   text-shadow: none;
   color: $body-color;
 }
@@ -291,8 +307,12 @@ ul ul {
   transform: translateY(-25%);
 }
 
-.text-cast-shadow {
-  text-shadow: 3px 4px 5px $black;
+.text-shadow-light {
+  text-shadow: 3px 4px 5px $blueLight !important;
+}
+
+.text-shadow-dark {
+  text-shadow: 3px 4px 5px $black !important;
 }
 
 /* Slide content layout */
@@ -328,11 +348,12 @@ ul ul {
   padding: $smallMargin;
   border-radius: 25px;
   // set the background color as semi-transparent white
-  background-color: rgba($white, 0.8);
-  border-left: 6px solid $black;
-  border-top: 3px solid $black;
-  border-bottom: 3px solid $black;
-  border-right: 3px solid $black;
+  background-color: $blueLight;
+  border-left: 6px solid $white;
+  border-top: 3px solid $blueLight;
+  border-bottom: 3px solid $blueLight;
+  border-right: 3px solid $blueLight;
+  box-shadow: 3px 4px 5px $black;
   transition:
     background-color 0.3s ease,
     border-color 0.3s ease;
