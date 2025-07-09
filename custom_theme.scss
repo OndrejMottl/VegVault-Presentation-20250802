@@ -65,7 +65,7 @@ pre,
 .reveal pre,
 code,
 .reveal code {
-  background-color: darken($backgroundColor, 10%) !important;
+  background-color: lighten($backgroundColor, 20%) !important;
   color: $black;
   border-radius: 5px;
   line-height: 1;
