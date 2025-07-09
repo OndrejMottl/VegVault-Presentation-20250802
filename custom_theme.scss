@@ -143,52 +143,46 @@ a,
 }
 
 /* Headings */
+
 h1,
-.reveal h1 {
+h2,
+h3,
+h4,
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4 {
   font-family: $headingFont !important;
-  font-size: $heading1Size !important;
   line-height: $headingLineHeight;
   letter-spacing: $headingLetterSpacing;
   font-weight: $headingFontWeight;
-  margin-top: $largeMargin;
+  margin: $headingMargin;
   color: $headingColor;
   text-shadow: 3px 4px 5px $black;
+}
+
+h1,
+.reveal h1 {
+  font-size: $heading1Size !important;
+  margin-top: $largeMargin;
 }
 
 h2,
 .reveal h2 {
-  font-family: $headingFont !important;
   font-size: $heading2Size !important;
-  line-height: $headingLineHeight;
-  letter-spacing: $headingLetterSpacing;
-  font-weight: $headingFontWeight;
   margin-top: $blockMargin;
-  color: $headingColor;
-  text-shadow: 3px 4px 5px $black;
 }
 
 h3,
 .reveal h3 {
-  font-family: $headingFont !important;
   font-size: $heading3Size !important;
-  line-height: $headingLineHeight;
-  letter-spacing: $headingLetterSpacing;
-  font-weight: $headingFontWeight;
   margin-top: $smallMargin;
-  text-shadow: none;
-  color: $body-color;
 }
 
 h4,
 .reveal h4 {
-  font-family: $headingFont !important;
   font-size: $heading4Size !important;
-  line-height: $headingLineHeight;
-  letter-spacing: $headingLetterSpacing;
-  font-weight: $headingFontWeight;
   margin-top: $smallMargin;
-  text-shadow: none;
-  color: $body-color;
 }
 
 /* Additional Reveal.js specific heading font rules */
