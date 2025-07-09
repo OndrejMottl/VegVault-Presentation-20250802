@@ -281,15 +281,379 @@ Did vegetation in the Rocky Mountains maintain **functional stability** from the
 :::
 ::::
 
+<!-- Slide 0 -->
 
-## 🔓The Shortcut {`r gb_bg_light`}
+## 🔓The Shortcut {`r gb_bg_light` auto-animate=true} 
 
-- Imagine answering this question with just a few lines of code  
-- Use `{vaultkeepr}` to:
-  - Access vegetation, trait, and climate data simultaneously  
-  - Filter by time range, spatial boundaries, and taxa  
-  - Harmonise taxonomy and calculate community-weighted traits
-- Minimal code, maximum reproducibility
+<br>
+
+::: {.fragment .text-center}
+
+[VegVault]{.bold .text-color-white .text-font-heading .text-shadow-dark} + [{vaultkeepr}]{.text-background-white} 
+
+::: 
+
+::::: {.fragment}
+
+<br>
+
+:::: {.columns}
+
+::: {.column width="50%" }
+:::
+
+::: {.column width="5%" }
+:::
+
+::: {.column width="45%"}
+```{r}
+#| label: vegvault_example_0
+#| eval: false
+#| echo: true
+#| include: true
+#| code-line-numbers: "1"
+data_rockies
+```  
+
+:::
+
+::::
+
+:::::
+
+<!-- Slide 1 -->
+
+## 🔓The Shortcut {`r gb_bg_light` auto-animate=true} 
+
+<br>
+
+::: {.text-center}
+
+[VegVault]{.bold .text-color-white .text-font-heading .text-shadow-dark} + [{vaultkeepr}]{.text-background-white} 
+
+::: 
+
+With few lines of code, you can:
+
+:::: {.columns}
+
+::: {.column width="50%" }
+  - Connect to the [VegVault]{.bold .text-color-white .text-font-heading .text-shadow-dark} database  
+:::
+
+::: {.column width="5%" }
+:::
+
+::: {.column width="45%"}
+```{r}
+#| label: vegvault_example_1
+#| eval: false
+#| echo: true
+#| include: true
+#| code-line-numbers: "2-4"
+data_rockies <-
+  vaultkeepr::open_vault(
+    path = "<path_to_VegVault>"
+  )
+```  
+
+:::
+
+::::
+
+<!-- Slide 2 -->
+
+## 🔓The Shortcut {`r gb_bg_light` auto-animate=true} 
+
+<br>
+
+::: {.text-center}
+
+[VegVault]{.bold .text-color-white .text-font-heading .text-shadow-dark} + [{vaultkeepr}]{.text-background-white} 
+
+::: 
+
+With few lines of code, you can:
+
+:::: {.columns}
+
+::: {.column width="50%" }
+  - [Connect to the [VegVault]{.bold .text-font-heading .text-shadow-dark} database]{.text-color-grey}
+  - Access vegetation, trait, and climate data simultaneously 
+:::
+
+::: {.column width="5%" }
+:::
+
+::: {.column width="45%"}
+```{r}
+#| label: vegvault_example_2
+#| eval: false
+#| echo: true
+#| include: true
+#| code-line-numbers: "5-9"
+data_rockies <-
+  vaultkeepr::open_vault(
+    path = "<path_to_VegVault>"
+  ) %>%
+  vaultkeepr::get_datasets() %>%
+  vaultkeepr::get_samples() %>%
+  vaultkeepr::get_taxa() %>%
+  vaultkeepr::get_abiotic_data() %>%
+  vaultkeepr::get_traits()
+```  
+
+:::
+
+::::
+
+<!-- Slide 3 -->
+
+## 🔓The Shortcut {`r gb_bg_light` auto-animate=true} 
+
+<br>
+
+::: {.text-center}
+
+[VegVault]{.bold .text-color-white .text-font-heading .text-shadow-dark} + [{vaultkeepr}]{.text-background-white} 
+
+::: 
+
+With few lines of code, you can:
+
+:::: {.columns}
+
+::: {.column width="50%"}
+  - [Connect to the [VegVault]{.bold .text-font-heading .text-shadow-dark} database]{.text-color-grey}
+  - [Access vegetation, trait, and climate data simultaneously]{.text-color-grey}
+  - Filter by spatial-temporal boundaries
+:::
+
+::: {.column width="5%" }
+:::
+
+::: {.column width="45%"}
+```{r}
+#| label: vegvault_example_3
+#| eval: false
+#| echo: true
+#| include: true
+#| code-line-numbers: "6-9,11-13"
+data_rockies <-
+  vaultkeepr::open_vault(
+    path = "<path_to_VegVault>"
+  ) %>%
+  vaultkeepr::get_datasets() %>%
+  vaultkeepr::select_dataset_by_geo(
+    lat_lim = c(30, 50),
+    long_lim = c(-120, -100)
+  ) %>%
+  vaultkeepr::get_samples() %>%
+  vaultkeepr::select_samples_by_age(
+    age_lim = c(0, 20000) # 20,000 BP
+  ) %>%
+  vaultkeepr::get_taxa() %>%
+  vaultkeepr::get_abiotic_data() %>%
+  vaultkeepr::get_traits()
+```  
+
+:::
+
+::::
+
+<!-- Slide 4 -->
+
+## 🔓The Shortcut {`r gb_bg_light` auto-animate=true} 
+
+<br>
+
+::: {.text-center}
+
+[VegVault]{.bold .text-color-white .text-font-heading .text-shadow-dark} + [{vaultkeepr}]{.text-background-white} 
+
+::: 
+
+With few lines of code, you can:
+
+:::: {.columns}
+
+::: {.column width="50%"}
+  - [Connect to the [VegVault]{.bold .text-font-heading .text-shadow-dark} database]{.text-color-grey}
+  - [Access vegetation, trait, and climate data simultaneously]{.text-color-grey}
+  - [Filter by spatial-temporal boundaries]{.text-color-grey}
+  - Harmonise taxonomy
+:::
+
+::: {.column width="5%" }
+:::
+
+::: {.column width="45%"}
+```{r}
+#| label: vegvault_example_4
+#| eval: false
+#| echo: true
+#| include: true
+#| code-line-numbers: "14-16,18-20"
+data_rockies <-
+  vaultkeepr::open_vault(
+    path = "<path_to_VegVault>"
+  ) %>%
+  vaultkeepr::get_datasets() %>%
+  vaultkeepr::select_dataset_by_geo(
+    lat_lim = c(30, 50),
+    long_lim = c(-120, -100)
+  ) %>%
+  vaultkeepr::get_samples() %>%
+  vaultkeepr::select_samples_by_age(
+    age_lim = c(0, 20000) # 20,000 BP
+  ) %>%
+  vaultkeepr::get_taxa(
+    classify_to = "genus"
+  ) %>%
+  vaultkeepr::get_abiotic_data() %>%
+  vaultkeepr::get_traits(
+    classify_to = "genus"
+  )
+```  
+
+:::
+
+::::
+
+<!-- Slide 5 -->
+
+## 🔓The Shortcut {`r gb_bg_light` auto-animate=true} 
+
+<br>
+
+::: {.text-center}
+
+[VegVault]{.bold .text-color-white .text-font-heading .text-shadow-dark} + [{vaultkeepr}]{.text-background-white} 
+
+::: 
+
+With few lines of code, you can:
+
+:::: {.columns}
+
+::: {.column width="50%" }
+  - [Connect to the [VegVault]{.bold .text-font-heading .text-shadow-dark} database]{.text-color-grey}
+  - [Access vegetation, trait, and climate data simultaneously]{.text-color-grey}
+  - [Filter by spatial-temporal boundaries]{.text-color-grey}
+  - [Harmonise taxonomy]{.text-color-grey}
+  - Get data in tidy format
+:::
+
+::: {.column width="5%" }
+:::
+
+::: {.column width="45%"}
+```{r}
+#| label: vegvault_example_5
+#| eval: false
+#| echo: true
+#| include: true
+#| code-line-numbers: "21"
+data_rockies <-
+  vaultkeepr::open_vault(
+    path = "<path_to_VegVault>"
+  ) %>%
+  vaultkeepr::get_datasets() %>%
+  vaultkeepr::select_dataset_by_geo(
+    lat_lim = c(30, 50),
+    long_lim = c(-120, -100)
+  ) %>%
+  vaultkeepr::get_samples() %>%
+  vaultkeepr::select_samples_by_age(
+    age_lim = c(0, 20000) # 20,000 BP
+  ) %>%
+  vaultkeepr::get_taxa(
+    classify_to = "genus"
+  ) %>%
+  vaultkeepr::get_abiotic_data() %>%
+  vaultkeepr::get_traits(
+    classify_to = "genus"
+  ) %>%
+  vaultkeepr::extract_data()
+  
+```  
+
+:::
+
+::::
+
+
+<!-- Slide 6 -->
+
+## 🔓The Shortcut {`r gb_bg_light` auto-animate=true} 
+
+<br>
+
+::: {.text-center}
+
+[VegVault]{.bold .text-color-white .text-font-heading .text-shadow-dark} + [{vaultkeepr}]{.text-background-white} 
+
+::: 
+
+<br>
+
+:::: {.columns}
+
+::: {.column width="50%" }
+
+::: {.blockquote .text-center .text-italic}
+
+Did vegetation in the Rocky Mountains maintain **functional stability** from the **LGM to the present**?
+
+:::
+
+:::
+
+::: {.column width="5%" }
+:::
+
+::: {.column width="45%"}
+```{r}
+#| label: vegvault_example_6
+#| eval: false
+#| echo: true
+#| include: true
+#| code-line-numbers: "1-21"
+data_rockies <-
+  vaultkeepr::open_vault(
+    path = "<path_to_VegVault>"
+  ) %>%
+  vaultkeepr::get_datasets() %>%
+  vaultkeepr::select_dataset_by_geo(
+    lat_lim = c(30, 50),
+    long_lim = c(-120, -100)
+  ) %>%
+  vaultkeepr::get_samples() %>%
+  vaultkeepr::select_samples_by_age(
+    age_lim = c(0, 20000) # 20,000 BP
+  ) %>%
+  vaultkeepr::get_taxa(
+    classify_to = "genus"
+  ) %>%
+  vaultkeepr::get_abiotic_data() %>%
+  vaultkeepr::get_traits(
+    classify_to = "genus"
+  ) %>%
+  vaultkeepr::extract_data()
+  
+```  
+
+:::
+
+::::
+
+<!-- Slide 7 -->
+
+## 🔓The Shortcut {`r gb_bg_light`} 
+
+```{r}
+#| label: vegvault_example_figure
+```
 
 ## 🆙LevelUp: VegVault {`r gb_bg_light`}
 
@@ -314,7 +678,7 @@ Did vegetation in the Rocky Mountains maintain **functional stability** from the
 
 ## 🛠️Controls {`r gb_bg_light`}
 
-- Access via `{vaultkeepr}` R package  
+- Access via [{vaultkeepr}]{.text-background-white} R package  
 - SQL-free, tidyverse-compatible interface  
 - Fully reproducible workflows via GitHub and Zenodo
 
