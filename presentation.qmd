@@ -8,7 +8,7 @@ format:
     output-ext: "html"
     logo: "Materials/About/personal_sticker.png"
     code-line-numbers: false
-    code-overflow: wrap
+    code-overflow: scroll
     code-link: false
     embed-resources: true
     center-title-slide: false
@@ -246,13 +246,13 @@ include_local_figure("QR/qr_linktree.png")
 
 ::::
 
-## 🕹️Level0: The Quest {`r gb_bg_light`}
+## 🕹️Level: The Rockies {`r gb_bg_light`}
 
 <br>
 
-::: {.blockquote .text-center .text-italic}
+::: {.blockquote .text-center .text-italic .text-color-white}
 
-Did vegetation in the Rocky Mountains maintain **functional stability** from the **LGM to the present**?
+Did vegetation in the Rocky Mountains remain **functionally stable** under **climate** change from the **LGM to the present**?
 
 :::
 
@@ -276,7 +276,7 @@ Did vegetation in the Rocky Mountains maintain **functional stability** from the
 
   - ❌Several data sources (formats, tools),
   - ❌Taxonomies mismatch across datasets
-  - ❌Limited reproducibility
+  - ❌Technically challenging (with limited reproducibility)
 
 :::
 ::::
@@ -302,10 +302,10 @@ Did vegetation in the Rocky Mountains maintain **functional stability** from the
 ::: {.column width="50%" }
 :::
 
-::: {.column width="5%" }
+::: {.column width="1%" }
 :::
 
-::: {.column width="45%"}
+::: {.column width="49%"}
 ```{r}
 #| label: vegvault_example_0
 #| eval: false
@@ -341,10 +341,10 @@ With few lines of code, you can:
   - Connect to the [VegVault]{.bold .text-color-white .text-font-heading .text-shadow-dark} database  
 :::
 
-::: {.column width="5%" }
+::: {.column width="1%" }
 :::
 
-::: {.column width="45%"}
+::: {.column width="49%"}
 ```{r}
 #| label: vegvault_example_1
 #| eval: false
@@ -382,10 +382,10 @@ With few lines of code, you can:
   - Access vegetation, trait, and climate data simultaneously 
 :::
 
-::: {.column width="5%" }
+::: {.column width="1%" }
 :::
 
-::: {.column width="45%"}
+::: {.column width="49%"}
 ```{r}
 #| label: vegvault_example_2
 #| eval: false
@@ -429,10 +429,10 @@ With few lines of code, you can:
   - Filter by spatial-temporal boundaries
 :::
 
-::: {.column width="5%" }
+::: {.column width="1%" }
 :::
 
-::: {.column width="45%"}
+::: {.column width="49%"}
 ```{r}
 #| label: vegvault_example_3
 #| eval: false
@@ -484,10 +484,10 @@ With few lines of code, you can:
   - Harmonise taxonomy
 :::
 
-::: {.column width="5%" }
+::: {.column width="1%" }
 :::
 
-::: {.column width="45%"}
+::: {.column width="49%"}
 ```{r}
 #| label: vegvault_example_4
 #| eval: false
@@ -544,10 +544,10 @@ With few lines of code, you can:
   - Get data in tidy format
 :::
 
-::: {.column width="5%" }
+::: {.column width="1%" }
 :::
 
-::: {.column width="45%"}
+::: {.column width="49%"}
 ```{r}
 #| label: vegvault_example_5
 #| eval: false
@@ -601,18 +601,18 @@ data_rockies <-
 
 ::: {.column width="50%" }
 
-::: {.blockquote .text-center .text-italic}
+::: {.blockquote .text-center .text-italic .text-color-white}
 
-Did vegetation in the Rocky Mountains maintain **functional stability** from the **LGM to the present**?
-
-:::
+Did vegetation in the Rocky Mountains remain **functionally stable** under **climate** change from the **LGM to the present**?
 
 :::
 
-::: {.column width="5%" }
 :::
 
-::: {.column width="45%"}
+::: {.column width="1%" }
+:::
+
+::: {.column width="49%"}
 ```{r}
 #| label: vegvault_example_6
 #| eval: false

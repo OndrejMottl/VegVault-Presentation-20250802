@@ -73,7 +73,6 @@ code,
 
 pre,
 .reveal pre {
-  overflow: auto;
   padding: $smallMargin;
 }
 
@@ -88,6 +87,39 @@ pre code,
   padding: $smallMargin;
   position: relative; /* Ensure line highlighting works */
   z-index: 0; /* Prevent conflicts with overlays */
+}
+
+
+/* Hide scrollbars for WebKit browsers */
+pre::-webkit-scrollbar,
+.reveal pre::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* Hide scrollbars and ensure proper text wrapping */
+.reveal pre,
+.reveal .slides pre,
+.reveal .slides section pre,
+div.sourceCode,
+div.sourceCode pre,
+.cell-code pre,
+.hljs {
+  overflow: visible !important;
+  max-width: 100% !important;
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+}
+
+.reveal pre::-webkit-scrollbar,
+.reveal .slides pre::-webkit-scrollbar,
+.reveal .slides section pre::-webkit-scrollbar,
+div.sourceCode::-webkit-scrollbar,
+div.sourceCode pre::-webkit-scrollbar,
+.cell-code pre::-webkit-scrollbar,
+.hljs::-webkit-scrollbar {
+  display: none !important;
+  width: 0px !important;
+  height: 0px !important;
 }
 
 pre a,
@@ -141,6 +173,8 @@ a,
   margin-left: 0 !important;
   margin-right: 0 !important;
 }
+
+
 
 /* Headings */
 
