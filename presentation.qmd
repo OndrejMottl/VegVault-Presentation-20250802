@@ -682,11 +682,11 @@ include_local_figure("Logos/VegVault_logo.png")
 
 ## 🗃️The Source Code {`r gb_bg_light`}
 
-Modular, version-controlled pipelines with metadata
-
-#### Data sources 
+~110 GB | 32 tables & 87 variables | 480,000+ Datasets | 13M+ Samples  | 110,000+ Taxa | 11M+ Trait values | 8 Abiotic variables
 
 :::: {.columns .fragment}
+
+#### Data sources 
 
 ::: {.column width="40%" .incremental}
 
@@ -720,7 +720,7 @@ include_local_figure("VegVault/assembly_viz_04.png")
 
 - Access via [{vaultkeepr}]{.text-background-white} R package  
 - SQL-free, tidyverse-compatible interface  
-- Fully reproducible workflows via GitHub and Zenodo
+- Fully reproducible workflows via GitHub and Zenodo (Modular, version-controlled pipelines with metadata)
 
 ## 💡Side Quests {`r gb_bg_light`}
 
