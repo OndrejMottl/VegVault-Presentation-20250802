@@ -1,7 +1,7 @@
 {
   "black": "#242531ff",
   "white": "#ffffffff",
-  "grey": "#808080ff",
+  "grey": "#999999ff",
   "brownDark": "#8a554eff",
   "brownNeutral": "#8B6965ff",
   "brownLight": "#bc7052ff",
@@ -9,8 +9,8 @@
   "beigeLight": "#e6b482ff",
   "blueDark": "#156064ff",
   "blueLight": "#52758fff",
-  "greenDark": "#5d7841ff",
-  "greenLight": "#3DDC97ff",
+  "greenDark": "#5f634fff",
+  "greenLight": "#3ddc47ff",
   "purpleDark": "#4b2f5aff",
-  "purpleLight": "#9b59b6ff"
+  "purpleLight": "#aa6da3ff"
 }
