@@ -264,9 +264,9 @@ Did vegetation in the Rocky Mountains remain **functionally stable** under **cli
 
 ### 🎯Data Needs
 
-  - Fossil pollen and contemporary [vegetation plots]{.text-background-black .text-color-beigeLight .text-bold}  
-  - Functional [traits]{.text-background-blueLight .text-color-beigeLight .text-bold} (e.g. height, SLA, wood density)  
-  - [Climate]{.text-background-brownLight .text-color-beigeLight .text-bold} data (past and contemporary)
+  - Fossil pollen and contemporary [vegetation plots]{.text-background-greenLight .text-color-black .text-bold}  
+  - Functional [traits]{.text-background-blueDark .text-color-white .text-bold} (e.g. height, SLA, wood density)  
+  - [Climate]{.text-background-greenDark .text-color-white .text-bold} data (past and contemporary)
 
 :::
 
@@ -595,7 +595,7 @@ data_rockies <-
 
 ::: 
 
-<br>
+With few lines of code, you can get the data you need to answer:
 
 :::: {.columns}
 
@@ -655,26 +655,66 @@ data_rockies <-
 #| label: vegvault_example_figure
 ```
 
-## 🆙LevelUp: VegVault {`r gb_bg_light`}
+# 🆙LevelUp {`r gb_bg_light`}
 
-- A global SQLite database integrating plot-based paleo- and neo-vegetation data  
-- Links to functional traits, soil properties, and climate variables  
-- Built for millennial-scale ecological analyses  
-- Fully open-source and reproducible infrastructure
+<br>
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r}
+#| label: VegVault logo
+include_local_figure("Logos/VegVault_logo.png")
+```
+:::
+
+::: {.column width="50%" .incremental}
+
+* A global SQLite database linking [interdisciplinary]{.text-background-black .text-color-white .text-bold} **plot-based** vegetation data! 
+* Links to functional [traits]{.text-background-blueDark .text-color-white .text-bold}, [climate]{.text-background-greenDark .text-color-white .text-bold} variables, and soil properties 
+* Built for exploring **biodiversity** dynamics across [time & space]{.text-background-brownDark .text-color-white .text-bold}
+* Open Source & [Reproducible]{.text-background-brownLight .text-color-white .text-bold}
+
+:::
+
+::::
 
 ## 🗃️The Source Code {`r gb_bg_light`}
 
-- Data sources: Neotoma, BIEN, sPlotOpen, TRY, CHELSA, WoSIS  
-- Taxonomic harmonisation via GBIF and `{taxospace}`  
-- Abiotic data mapped to spatio-temporal grids  
-- Modular, version-controlled pipelines with metadata
+Modular, version-controlled pipelines with metadata
+
+#### Data sources 
+
+:::: {.columns .fragment}
+
+::: {.column width="40%" .incremental}
+
+- 🌿 [Paleoecological records]{.text-background-purpleLight .text-color-white .text-bold} ([Neotoma]{.text-italic}, [FOSSILPOL]{.text-italic})
+- 🌱 [Contemporary vegetation]{.text-background-greenLight .text-color-black .text-bold} ([sPlotOpen]{.text-italic}, [BIEN]{.text-italic})
+- 🌾 [Functional traits]{.text-background-blueDark .text-color-white .text-bold} ([BIEN]{.text-italic}, [TRY]{.text-italic})
+- 🌍 [Climate & soil data]{.text-background-greenDark .text-color-white .text-bold} ([CHELSA]{.text-italic}, [WoSIS]{.text-italic})  
+:::
+
+::: {.column width="60%"}
+
+```{r}
+#| label: Scheme
+include_local_figure("VegVault/assembly_viz_04.png")
+```
+:::
+
+::::
+
 
 ## 💎Key Innovations {`r gb_bg_light`}
 
 - Temporal integration of paleo and contemporary data  
 - Plot-based vegetation records (not just species occurrences)  
-- Sample-specific climate and soil context  
+- Taxonomic harmonisation via GBIF and `{taxospace}`  
+- Sample-specific climate and soil context (Abiotic data mapped to spatio-temporal grids)
 - Standardised taxonomy and harmonised trait domains
+
 
 ## 🛠️Controls {`r gb_bg_light`}
 
