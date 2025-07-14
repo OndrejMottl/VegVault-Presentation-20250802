@@ -201,10 +201,12 @@ What if we could integrate vegetation, climate, traits, and time into one cohere
 :::: {.columns}
 
 ::: {.column width="25%"}
+
 ```{r}
 #| label: personal sticker
 include_local_figure("poster_export/c1.png")
 ```
+
 
 :::
 
@@ -285,13 +287,47 @@ Did vegetation in the Rocky Mountains remain **functionally stable** under **cli
 
 ## 🔓The Shortcut {`r gb_bg_light` auto-animate=true} 
 
-<br>
+::::: {.fragment}
 
-::: {.fragment .text-center}
+:::: {.columns}
+
+::: {.column width="10%" }
+
+:::
+
+::: {.column width="10%" }
+
+```{r}
+#| label: vegvault_logo_mini_0
+#| out-width: 30px
+include_local_figure("Logos/VegVault_logo.png")
+``` 
+
+:::
+
+::: {.column width="60%" .text-center}
 
 [VegVault]{.bold .text-color-white .text-font-heading .text-shadow-dark} + [{vaultkeepr}]{.text-background-white} 
 
 ::: 
+
+::: {.column width="10%" }
+
+```{r}
+#| label: vaultkeepr_logo_mini_0
+#| out-width: 30px
+include_local_figure("Logos/vaultkeepr_logo.png")
+``` 
+
+:::
+
+::: {.column width="10%" }
+
+:::
+
+::::
+
+:::::
 
 ::::: {.fragment}
 
@@ -325,13 +361,43 @@ data_rockies
 
 ## 🔓The Shortcut {`r gb_bg_light` auto-animate=true} 
 
-<br>
+:::: {.columns}
 
-::: {.text-center}
+::: {.column width="10%" }
+
+:::
+
+::: {.column width="10%" }
+
+```{r}
+#| label: vegvault_logo_mini_1
+#| out-width: 30px
+include_local_figure("Logos/VegVault_logo.png")
+``` 
+
+:::
+
+::: {.column width="60%" .text-center}
 
 [VegVault]{.bold .text-color-white .text-font-heading .text-shadow-dark} + [{vaultkeepr}]{.text-background-white} 
 
 ::: 
+
+::: {.column width="10%" }
+
+```{r}
+#| label: vaultkeepr_logo_mini_1
+#| out-width: 30px
+include_local_figure("Logos/vaultkeepr_logo.png")
+``` 
+
+:::
+
+::: {.column width="10%" }
+
+:::
+
+::::
 
 With few lines of code, you can:
 
@@ -365,13 +431,43 @@ data_rockies <-
 
 ## 🔓The Shortcut {`r gb_bg_light` auto-animate=true} 
 
-<br>
+:::: {.columns}
 
-::: {.text-center}
+::: {.column width="10%" }
+
+:::
+
+::: {.column width="10%" }
+
+```{r}
+#| label: vegvault_logo_mini_2
+#| out-width: 30px
+include_local_figure("Logos/VegVault_logo.png")
+``` 
+
+:::
+
+::: {.column width="60%" .text-center}
 
 [VegVault]{.bold .text-color-white .text-font-heading .text-shadow-dark} + [{vaultkeepr}]{.text-background-white} 
 
 ::: 
+
+::: {.column width="10%" }
+
+```{r}
+#| label: vaultkeepr_logo_mini_2
+#| out-width: 30px
+include_local_figure("Logos/vaultkeepr_logo.png")
+``` 
+
+:::
+
+::: {.column width="10%" }
+
+:::
+
+::::
 
 With few lines of code, you can:
 
@@ -411,13 +507,43 @@ data_rockies <-
 
 ## 🔓The Shortcut {`r gb_bg_light` auto-animate=true} 
 
-<br>
+:::: {.columns}
 
-::: {.text-center}
+::: {.column width="10%" }
+
+:::
+
+::: {.column width="10%" }
+
+```{r}
+#| label: vegvault_logo_mini_3
+#| out-width: 30px
+include_local_figure("Logos/VegVault_logo.png")
+``` 
+
+:::
+
+::: {.column width="60%" .text-center}
 
 [VegVault]{.bold .text-color-white .text-font-heading .text-shadow-dark} + [{vaultkeepr}]{.text-background-white} 
 
 ::: 
+
+::: {.column width="10%" }
+
+```{r}
+#| label: vaultkeepr_logo_mini_3
+#| out-width: 30px
+include_local_figure("Logos/vaultkeepr_logo.png")
+``` 
+
+:::
+
+::: {.column width="10%" }
+
+:::
+
+::::
 
 With few lines of code, you can:
 
@@ -465,13 +591,43 @@ data_rockies <-
 
 ## 🔓The Shortcut {`r gb_bg_light` auto-animate=true} 
 
-<br>
+:::: {.columns}
 
-::: {.text-center}
+::: {.column width="10%" }
+
+:::
+
+::: {.column width="10%" }
+
+```{r}
+#| label: vegvault_logo_mini_4
+#| out-width: 30px
+include_local_figure("Logos/VegVault_logo.png")
+``` 
+
+:::
+
+::: {.column width="60%" .text-center}
 
 [VegVault]{.bold .text-color-white .text-font-heading .text-shadow-dark} + [{vaultkeepr}]{.text-background-white} 
 
 ::: 
+
+::: {.column width="10%" }
+
+```{r}
+#| label: vaultkeepr_logo_mini_4
+#| out-width: 30px
+include_local_figure("Logos/vaultkeepr_logo.png")
+``` 
+
+:::
+
+::: {.column width="10%" }
+
+:::
+
+::::
 
 With few lines of code, you can:
 
@@ -524,13 +680,43 @@ data_rockies <-
 
 ## 🔓The Shortcut {`r gb_bg_light` auto-animate=true} 
 
-<br>
+:::: {.columns}
 
-::: {.text-center}
+::: {.column width="10%" }
+
+:::
+
+::: {.column width="10%" }
+
+```{r}
+#| label: vegvault_logo_mini_5
+#| out-width: 30px
+include_local_figure("Logos/VegVault_logo.png")
+``` 
+
+:::
+
+::: {.column width="60%" .text-center}
 
 [VegVault]{.bold .text-color-white .text-font-heading .text-shadow-dark} + [{vaultkeepr}]{.text-background-white} 
 
 ::: 
+
+::: {.column width="10%" }
+
+```{r}
+#| label: vaultkeepr_logo_mini_5
+#| out-width: 30px
+include_local_figure("Logos/vaultkeepr_logo.png")
+``` 
+
+:::
+
+::: {.column width="10%" }
+
+:::
+
+::::
 
 With few lines of code, you can:
 
@@ -587,13 +773,43 @@ data_rockies <-
 
 ## 🔓The Shortcut {`r gb_bg_light` auto-animate=true} 
 
-<br>
+:::: {.columns}
 
-::: {.text-center}
+::: {.column width="10%" }
+
+:::
+
+::: {.column width="10%" }
+
+```{r}
+#| label: vegvault_logo_mini_6
+#| out-width: 30px
+include_local_figure("Logos/VegVault_logo.png")
+``` 
+
+:::
+
+::: {.column width="60%" .text-center}
 
 [VegVault]{.bold .text-color-white .text-font-heading .text-shadow-dark} + [{vaultkeepr}]{.text-background-white} 
 
 ::: 
+
+::: {.column width="10%" }
+
+```{r}
+#| label: vaultkeepr_logo_mini_6
+#| out-width: 30px
+include_local_figure("Logos/vaultkeepr_logo.png")
+``` 
+
+:::
+
+::: {.column width="10%" }
+
+:::
+
+::::
 
 With few lines of code, you can get the data you need to answer:
 
