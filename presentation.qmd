@@ -311,7 +311,7 @@ include_local_figure("Logos/VegVault_logo.png")
 
 ::: 
 
-::: {.column width="10%" }
+::: {.column width="8%" }
 
 ```{r}
 #| label: vaultkeepr_logo_mini_0
@@ -321,7 +321,7 @@ include_local_figure("Logos/vaultkeepr_logo.png")
 
 :::
 
-::: {.column width="10%" }
+::: {.column width="12%" }
 
 :::
 
@@ -383,7 +383,7 @@ include_local_figure("Logos/VegVault_logo.png")
 
 ::: 
 
-::: {.column width="10%" }
+::: {.column width="8%" }
 
 ```{r}
 #| label: vaultkeepr_logo_mini_1
@@ -393,7 +393,7 @@ include_local_figure("Logos/vaultkeepr_logo.png")
 
 :::
 
-::: {.column width="10%" }
+::: {.column width="12%" }
 
 :::
 
@@ -453,7 +453,7 @@ include_local_figure("Logos/VegVault_logo.png")
 
 ::: 
 
-::: {.column width="10%" }
+::: {.column width="8%" }
 
 ```{r}
 #| label: vaultkeepr_logo_mini_2
@@ -463,7 +463,7 @@ include_local_figure("Logos/vaultkeepr_logo.png")
 
 :::
 
-::: {.column width="10%" }
+::: {.column width="12%" }
 
 :::
 
@@ -529,7 +529,7 @@ include_local_figure("Logos/VegVault_logo.png")
 
 ::: 
 
-::: {.column width="10%" }
+::: {.column width="8%" }
 
 ```{r}
 #| label: vaultkeepr_logo_mini_3
@@ -539,7 +539,7 @@ include_local_figure("Logos/vaultkeepr_logo.png")
 
 :::
 
-::: {.column width="10%" }
+::: {.column width="12%" }
 
 :::
 
@@ -613,7 +613,7 @@ include_local_figure("Logos/VegVault_logo.png")
 
 ::: 
 
-::: {.column width="10%" }
+::: {.column width="8%" }
 
 ```{r}
 #| label: vaultkeepr_logo_mini_4
@@ -623,7 +623,7 @@ include_local_figure("Logos/vaultkeepr_logo.png")
 
 :::
 
-::: {.column width="10%" }
+::: {.column width="12%" }
 
 :::
 
@@ -702,7 +702,7 @@ include_local_figure("Logos/VegVault_logo.png")
 
 ::: 
 
-::: {.column width="10%" }
+::: {.column width="8%" }
 
 ```{r}
 #| label: vaultkeepr_logo_mini_5
@@ -712,7 +712,7 @@ include_local_figure("Logos/vaultkeepr_logo.png")
 
 :::
 
-::: {.column width="10%" }
+::: {.column width="12%" }
 
 :::
 
@@ -795,7 +795,7 @@ include_local_figure("Logos/VegVault_logo.png")
 
 ::: 
 
-::: {.column width="10%" }
+::: {.column width="8%" }
 
 ```{r}
 #| label: vaultkeepr_logo_mini_6
@@ -805,7 +805,7 @@ include_local_figure("Logos/vaultkeepr_logo.png")
 
 :::
 
-::: {.column width="10%" }
+::: {.column width="12%" }
 
 :::
 
