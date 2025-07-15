@@ -922,15 +922,86 @@ include_local_figure("VegVault/assembly_viz_04.png")
 
 ::::
 
+<!-- Slide 1 -->
 
 ## 💎Key Innovations {`r gb_bg_light`}
 
-- Temporal integration of paleo and contemporary data  
-- Plot-based vegetation records (not just species occurrences)  
-- Taxonomic harmonisation via GBIF and `{taxospace}`  
-- Sample-specific climate and soil context (Abiotic data mapped to spatio-temporal grids)
-- Standardised taxonomy and harmonised trait domains
+<br>
 
+::: {.text-size-heading3 .text-bold}
+1. [Vegetation]{.text-background-greenLight .text-color-black .text-bold} data
+:::
+
+
+:::: {.columns}
+
+::: {.incremental .column width="50%"}
+
+- Plot-based vegetation records 
+   + not just species occurrences
+   + true negatives!
+- Integration of paleo and contemporary data 
+
+:::
+
+::: {.column width="50%"}
+:::
+
+::::
+
+<!-- Slide 2 -->
+
+## 💎Key Innovations {`r gb_bg_light`}
+
+<br>
+
+::: {.text-size-heading3 .text-bold}
+2. [Abiotic]{.text-background-greenDark .text-color-white .text-bold} context
+:::
+
+:::: {.columns}
+
+::: {.incremental .column width="50%"}
+
+- Sample-specific climate and soil data
+   + paleo and contemporary 
+   + mapped to spatio-temporal grids
+- Selected variables for vegetation studies
+   + e.g. temperature, precipitation, soil type, etc. 
+
+:::
+
+::: {.column width="50%"}
+:::
+
+::::
+
+<!-- Slide 3 -->
+
+## 💎Key Innovations {`r gb_bg_light`}
+
+<br>
+
+::: {.text-size-heading3 .text-bold}
+3. [Standardisation]{.text-background-brownLight .text-color-white .text-bold} 
+:::
+
+:::: {.columns}
+
+::: {.incremental .column width="50%"}
+
+- Taxonomic harmonisation via GBIF backbone and `{taxospace}`  
+   + unified taxonomy across dataset vegetation, fossil pollen and traits
+- Trait domains 
+    + pooling of traits across sources
+    + Following Diaz et al. (2016)  
+
+:::
+
+::: {.column width="50%"}
+:::
+
+::::
 
 ## 🛠️Controls {`r gb_bg_light`}
 
