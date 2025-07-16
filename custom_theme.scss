@@ -27,7 +27,7 @@ $headingLetterSpacing: normal;
 $headingFontWeight: normal;
 $headingColor: $white;
 
-$heading1Size: 2.1em;
+$heading1Size: 1.55em;
 $heading2Size: 1.55em;
 $heading3Size: 1.25em;
 $heading4Size: 1em;
@@ -327,7 +327,15 @@ ul ul {
   font-size: $mainFontSize * 1.3 !important;
 }
 
-.text-margin-top {
+.text-margin-top-15 {
+  margin: 0;
+  position: absolute;
+  top: 15%;
+  -ms-transform: translateY(-15%);
+  transform: translateY(-15%);
+}
+
+.text-margin-top-25 {
   margin: 0;
   position: absolute;
   top: 25%;
@@ -385,4 +393,107 @@ ul ul {
   transition:
     background-color 0.3s ease,
     border-color 0.3s ease;
+}
+
+/* Table styling */
+.reveal table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: $blockMargin 0;
+  font-size: $mainFontSize * 0.9;
+  border: 2px solid $black; /* Add outer border to table */
+}
+
+.reveal table th,
+.reveal table td {
+  border: 2px solid $black;
+  padding: $smallMargin $blockMargin;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.reveal table thead th {
+  background-color: $blueLight;
+  color: $black;
+  font-weight: bold;
+  border: 2px solid $black; /* Make border consistent and visible */
+}
+
+.reveal table tbody td {
+  background-color: $beigeLight;
+  color: $black;
+}
+
+.reveal table tbody tr:nth-child(even) td {
+  background-color: lighten($beigeLight, 5%);
+}
+
+.reveal table tbody tr:hover td {
+  background-color: $white;
+  transition: background-color 0.2s ease;
+}
+
+/* Ensure bottom border is visible */
+.reveal table tbody tr:last-child td {
+  border-bottom: 2px solid $black;
+}
+
+/* Table border width variations */
+.table-thin-border th,
+.table-thin-border td {
+  border: 1px solid $black;
+}
+
+.table-thick-border th,
+.table-thick-border td {
+  border: 4px solid $black;
+}
+
+.table-no-border th,
+.table-no-border td {
+  border: none;
+}
+
+/* Table cell background color classes */
+.table-cell-green {
+  background-color: $greenLight !important;
+  color: $black !important;
+}
+
+.table-cell-blue {
+  background-color: $blueLight !important;
+  color: $black !important;
+}
+
+.table-cell-beige {
+  background-color: $beigeLight !important;
+  color: $black !important;
+}
+
+.table-cell-dark {
+  background-color: $black !important;
+  color: $white !important;
+}
+
+.table-cell-white {
+  background-color: $white !important;
+  color: $black !important;
+  border: 2px solid $black !important;
+}
+
+/* Table header background var
+iations */
+.table-header-blue thead th {
+  background-color: $blueDark !important;
+  color: $white !important;
+}
+
+.table-header-green thead th {
+  background-color: $greenDark !important;
+  color: $white !important;
+}
+
+.table-header-brown thead th {
+  background-color: $brownDark !important;
+  color: $white !important;
 }
