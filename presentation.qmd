@@ -8,7 +8,7 @@ format:
     output-ext: "html"
     logo: "Materials/About/personal_sticker.png"
     code-line-numbers: false
-    code-overflow: wrap
+    code-overflow: scroll
     code-link: false
     embed-resources: true
     center-title-slide: false
@@ -80,7 +80,7 @@ colors_definition <-
       paste0(
         "$", .y, ": ", unname(.x), ";", "\n",
         ".reveal .bg-", .y, " { background-color: ", unname(.x), "; }\n",
-        ".text-color-", .y, " { color: ", unname(.x), "; }\n",
+        ".text-color-", .y, " { color: ", unname(.x), " !important ; }\n",
         ".text-background-", .y, " {\n",
         "background-color: ", unname(.x), ";\n",
         "padding: $smallMargin;\n",
@@ -140,470 +140,1152 @@ writeLines(
   ),
   con = here::here("_fonts.scss")
 )
-
 ```
 
+```{r}
+#| label: Background images for slides
+#| include: false
 
-# [Presentation title]{.bold .r-fit-text} {.bg-byzantium .text-center .text-color-white}
+gb_bg_light <-
+  'background-image="Materials/poster_export/gb_ds.png" background-opacity="0.10"'
 
-Author name
+gb_bg_medium <-
+  'background-image="Materials/poster_export/gb_ds.png" background-opacity="0.50"'
+```
 
-## Hello, There
+# [VegVault]{.bold .r-fit-text .text-shadow-light} {.bg-black .text-center .text-color-beigeLight .text-margin-top-15}
 
-This presentation will show you examples of what you can do with Quarto and [Reveal.js](https://revealjs.com), including:
+<br>
 
--   Presenting text and code 
--   Including figures
--   Including computations in slide output
--   Fancy transitions and animations
+[< ---   press START to begin   --- >]{.text-center .r-fit-text .text-font-heading} 
 
-...and much more
+<br>
 
-# [Section Slide]{.bold .r-fit-text} {.bg-harvest-gold .text-center}
+:::: {.columns}
 
-This slide is using the `.bg-[insert color]` class change the background color (here `.bg-harvest-gold`). You can also use the `.text-color-[insert color]` class to change the text color (for example [.text-color-white]{.text-color-white}).
+::: {.column width="45%" .text-left}
 
-## Incremental Lists
+👤P1: [Ondřej Mottl](https://ondrejmottl.github.io/)
 
-Lists can optionally be displayed incrementally:
+📍IAVS, Colorado, USA
 
-::: incremental
--   First item
--   Second item
--   Third item
+📅2025-08-02
+
 :::
 
-. . .
-
-<br/> Insert pauses to make other types of content display incrementally.
-
-::: footer
-Learn more: [Incremental Lists](https://quarto.org/docs/presentations/revealjs/#incremental-lists)
-:::
-
-## Fragments
-
-Incremental text display and animation with fragments:
-
-<br/>
-
-::: {.fragment .fade-in}
-Fade in
-:::
-
-::: {.fragment .fade-up}
-Slide up while fading in
-:::
-
-::: {.fragment .fade-left}
-Slide left while fading in
-:::
-
-::: {.fragment .fade-in-then-semi-out}
-Fade in then semi out
-:::
-
-. . .
-
-::: {.fragment}
-[Strike]{.text-strike}
-:::
-
-::: {.fragment}
-[Highlight by color]{.text-background-byzantium .text-color-white}
-:::
-
-::: footer
-Learn more: [Fragments](https://quarto.org/docs/presentations/revealjs/advanced.html#fragments)
-:::
-
-## Column Layout
-
-Arrange content into columns of varying widths:
-
-:::: columns
 ::: {.column width="35%"}
-#### Motor Trend Car Road Tests
-
-The data was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles.
 :::
 
-::: {.column width="3%"}
-:::
+::: {.column width="20%"}
 
-::: {.column width="62%"}
 ```{r}
-knitr::kable(head(mtcars)[,c("mpg",	"cyl", "disp", "hp", "wt")])
+#| label: qr_slides_0
+qr_slides <-
+  qrcode::qr_code(
+    "https://ondrejmottl.github.io/VegVault-Presentation-20250802/",
+    ecl = "H"
+  )
+
+qrcode::generate_svg(
+  qrcode = qr_slides,
+  filename = here::here("Materials/QR/qr_slides_dark.svg"),
+  foreground = colors$beigeLight,
+  background = colors$black
+)
+
+include_local_figure("QR/qr_slides_dark.svg")
 ```
+
 :::
 ::::
 
-::: footer
-Learn more: [Multiple Columns](https://quarto.org/docs/presentations/revealjs/#multiple-columns)
+# 🎥Intro {.text-center `r gb_bg_medium`}
+
+<br>
+
+:::{.blockquote .fragment}
+Most biodiversity models rely exclusively on **contemporary** data
+
+::: {.fragment}
+❌ yet ecosystems evolve over millennia!
+::: 
+
 :::
 
-# [Code]{.bold .r-fit-text} {.bg-byzantium .text-center}
+<br>
 
-## Pretty Code {auto-animate="true"}
+:::{.blockquote .fragment .text-center}
+There are **many** biodiversity databases
 
--   Over 20 syntax highlighting themes available
--   Default theme optimized for accessibility
-
-``` r
-# Define a server for the Shiny app
-function(input, output) {
-  
-  # Fill in the spot we created for a plot
-  output$phonePlot <- renderPlot({
-    # Render a barplot
-  })
-}
-```
-
-::: footer
-Learn more: [Syntax Highlighting](https://quarto.org/docs/output-formats/html-code.html#highlighting)
+::: {.fragment}
+❌ but fragmented across disciplines and repositories!
 :::
 
-## Code Animations {auto-animate="true"}
-
--   Over 20 syntax highlighting themes available
--   Default theme optimized for accessibility
-
-``` r
-# Define a server for the Shiny app
-function(input, output) {
-  
-  # Fill in the spot we created for a plot
-  output$phonePlot <- renderPlot({
-    # Render a barplot
-    barplot(WorldPhones[,input$region]*1000, 
-            main=input$region,
-            ylab="Number of Telephones",
-            xlab="Year")
-  })
-}
-```
-
-::: footer
-Learn more: [Code Animations](https://quarto.org/docs/presentations/revealjs/advanced.html#code-animations)
 :::
 
-## Line Highlighting
+<br>
 
--   Highlight specific lines for emphasis
--   Incrementally highlight additional lines
-
-``` {.python code-line-numbers="1-10|4-5|7|10"}
-import numpy as np
-import matplotlib.pyplot as plt
-
-r = np.arange(0, 2, 0.01)
-theta = 2 * np.pi * r
-fig, ax = plt.subplots(subplot_kw={'projection': 'polar'})
-ax.plot(theta, r)
-ax.set_rticks([0.5, 1, 1.5, 2])
-ax.grid(True)
-plt.show()
-```
-
-::: footer
-Learn more: [Line Highlighting](https://quarto.org/docs/presentations/revealjs/#line-highlighting)
+:::{.blockquote .fragment .text-center}
+What if we could integrate vegetation, climate, traits, and time into one coherent system? 🤔
 :::
 
-## Executable Code
+## 🧙Player 1 {`r gb_bg_light`}
+
+:::: {.columns}
+
+::: {.column width="25%"}
 
 ```{r}
+#| label: personal sticker
+include_local_figure("poster_export/c1.png")
+```
+
+
+:::
+
+
+::: {.column width="75%"}
+
+<br>
+
+### [Ondrej Mottl]{.bold .r-fit-text .text-color-white .text-font-heading .text-shadow-dark}
+Assistant Professor at [Charles University](https://cuni.cz/UK-1.html)
+
+Head of the 🧑‍💻 [Laboratory of Quantitative Ecology](https://ondrejmottl.github.io/lab/about_the_lab.html)
+
+:::
+
+::::
+
+:::: {.columns}
+
+::: {.column width="30%"}
+
+```{r}
+#| label: QR code https://bit.ly/ondrej_mottl 
+qr_personal_web <-
+  qrcode::qr_code(
+    "https://bit.ly/ondrej_mottl",
+    ecl = "H"
+  )
+
+qrcode::generate_svg(
+  qrcode = qr_personal_web,
+  filename = here::here("Materials/QR/qr_personal_web.svg"),
+  foreground = colors$black,
+  background = colors$beigeLight
+)
+
+include_local_figure("QR/qr_personal_web.svg")
+```
+:::
+
+::: {.column width="10%"}
+:::
+
+::: {.column width="60%"}
+
+* 📧 ondrej.mottl(at)gmail.com
+* 🦋 [ondrejmottl.bsky.social](https://bsky.app/profile/ondrejmottl.bsky.social)
+* 🐱 [Github](https://github.com/OndrejMottl)
+* 🆔 [ORCID](https://orcid.org/0000-0002-9796-5081)
+* 🌐 [Personal webpage](https://ondrejmottl.github.io/)
+:::
+
+::::
+
+## 🕹️Level: The Rockies {`r gb_bg_light`}
+
+<br>
+
+::: {.blockquote .text-center .text-italic .text-color-white}
+
+Did vegetation in the Rocky Mountains remain **functionally stable** under **climate** change from the **LGM to the present**?
+
+:::
+
+<br>
+
+:::: {.columns}
+
+::: {.column width="55%" .fragment .incremental}
+
+### 🎯Data Needs
+
+  - Fossil pollen and contemporary [vegetation plots]{.text-background-greenLight .text-color-black .text-bold}  
+  - Functional [traits]{.text-background-blueDark .text-color-white .text-bold} (e.g. height, SLA, wood density)  
+  - [Climate]{.text-background-greenDark .text-color-white .text-bold} data (past and contemporary)
+
+:::
+
+::: {.column width="45%" .fragment .incremental}
+
+### 🚧Obstacles
+
+  - ❌Several data sources (formats, tools),
+  - ❌Taxonomies mismatch across datasets
+  - ❌Technically challenging (with limited reproducibility)
+
+:::
+::::
+
+<!-- Slide 0 -->
+
+## 🔓The Shortcut {`r gb_bg_light` auto-animate=true} 
+
+::::: {.fragment}
+
+:::: {.columns}
+
+::: {.column width="10%" }
+
+:::
+
+::: {.column width="10%" }
+
+```{r}
+#| label: vegvault_logo_mini_0
+#| out-width: 30px
+include_local_figure("Logos/VegVault_logo.png")
+``` 
+
+:::
+
+::: {.column width="60%" .text-center}
+
+[VegVault]{.bold .text-color-white .text-font-heading .text-shadow-dark} + [{vaultkeepr}]{.text-background-white} 
+
+::: 
+
+::: {.column width="8%" }
+
+```{r}
+#| label: vaultkeepr_logo_mini_0
+#| out-width: 30px
+include_local_figure("Logos/vaultkeepr_logo.png")
+``` 
+
+:::
+
+::: {.column width="12%" }
+
+:::
+
+::::
+
+:::::
+
+::::: {.fragment}
+
+<br>
+
+:::: {.columns}
+
+::: {.column width="50%" }
+:::
+
+::: {.column width="1%" }
+:::
+
+::: {.column width="49%"}
+```{r}
+#| label: vegvault_example_0
+#| eval: false
 #| echo: true
-#| fig-width: 10
-#| fig-height: 4.5
-library(ggplot2)
-ggplot(
-  data = mtcars,
-  mapping = aes(hp, mpg)) +
-  geom_point(
-    mapping = aes(color = am),
-  ) +
-  geom_smooth(formula = y ~ x, method = "loess", color = colors$beigeLight) +
-  ggplot2::scale_color_gradient(low = colors$purpleDark, high = colors$greenLight) 
-```
-
-::: footer
-Learn more: [Executable Code](https://quarto.org/docs/presentations/revealjs/#executable-code)
-:::
-
-# [Images]{.bold .r-fit-text} {.bg-byzantium .text-center}
-
-## Simple image
-
-```{r}
-#| label: knitr-image
-#| width: 700
-#| fig-align: 'center'
-knitr::include_graphics("https://raw.githubusercontent.com/quarto-dev/quarto-web/main/docs/presentations/revealjs/demo/mini/images/kitten-300-200.jpeg")
-```
-
-::: footer
-Images can be included in slides using `knitr::include_graphics()`
-:::
-
-## Media Backgrounds {background-image="https://raw.githubusercontent.com/quarto-dev/quarto-web/main/docs/presentations/revealjs/demo/images/milky-way.jpeg" .text-color-white}
-
-::: {.text-color-secondary}
-
-You can also use the following as a slide background:
-
--   An image: [background-image]{.text-background-byzantium}
-
--   A video: [background-video]{.text-background-harvest-gold}
-
--   An iframe: [background-iframe]{.text-background-persian-green}
+#| include: true
+#| code-line-numbers: "1"
+data_rockies
+```  
 
 :::
 
-::: footer
-Learn more: [Media Backgrounds](https://quarto.org/docs/presentations/revealjs/#image-backgrounds)
-:::
-
-## Absolute Position
-
-Position images or other elements at precise locations
-
-![](https://raw.githubusercontent.com/quarto-dev/quarto-web/main/docs/presentations/revealjs/demo/mini/images/kitten-400-350.jpeg){.absolute top="170" left="30" width="400" height="400"}
-
-![](https://raw.githubusercontent.com/quarto-dev/quarto-web/main/docs/presentations/revealjs/demo/mini/images/kitten-450-250.jpeg){.absolute .fragment top="150" right="80" width="450"}
-
-![](https://raw.githubusercontent.com/quarto-dev/quarto-web/main/docs/presentations/revealjs/demo/mini/images/kitten-300-200.jpeg){.absolute .fragment bottom="110" right="130" width="300"}
-
-::: footer
-Learn more: [Absolute Position](https://quarto.org/docs/presentations/revealjs/advanced.html#absolute-position)
-:::
-
-# [Advanced functions]{.bold .r-fit-text} {.title}
-
-## Auto-Animate {auto-animate="true" auto-animate-easing="ease-in-out"}
-
-Automatically animate matching elements across slides with Auto-Animate.
-
-::: r-hstack
-::: {data-id="box1" auto-animate-delay="0" style="background: `r colors$'harvest-gold'`; width: 200px; height: 150px; margin: 10px;"}
-:::
-
-::: {data-id="box2" auto-animate-delay="0.1" style="background: `r colors$'persian-green'`; width: 200px; height: 150px; margin: 10px;"}
-:::
-
-::: {data-id="box3" auto-animate-delay="0.2" style="background: `r colors$'cerulean'`; width: 200px; height: 150px; margin: 10px;"}
-:::
-:::
-
-::: footer
-Learn more: [Auto-Animate](https://quarto.org/docs/presentations/revealjs/advanced.html#auto-animate)
-:::
-
-## Auto-Animate {auto-animate="true" auto-animate-easing="ease-in-out"}
-
-Automatically animate matching elements across slides with Auto-Animate.
-
-::: r-stack
-::: {data-id="box1" style="background: `r colors$'harvest-gold'`; width: 350px; height: 350px; border-radius: 200px;"}
-:::
-
-::: {data-id="box2" style="background: `r colors$'persian-green'`; width: 250px; height: 250px; border-radius: 200px;"}
-:::
-
-::: {data-id="box3" style="background: `r colors$'cerulean'`; width: 150px; height: 150px; border-radius: 200px;"}
-:::
-:::
-
-::: footer
-Learn more: [Auto-Animate](https://quarto.org/docs/presentations/revealjs/advanced.html#auto-animate)
-:::
-
-## Tabsets {.smaller .scrollable transition="slide"}
-
-::: panel-tabset
-### Plot
-
-```{r}
-library(ggplot2)
-ggplot(
-  data = mtcars,
-  mapping = aes(hp, mpg)) +
-  geom_point(
-    mapping = aes(color = am),
-  ) +
-  geom_smooth(formula = y ~ x, method = "loess", color = colors$beigeLight) +
-  ggplot2::scale_color_gradient(low = colors$purpleDark, high = colors$greenLight) 
-```
-
-### Data
-
-```{r}
-knitr::kable(mtcars)
-```
-:::
-
-::: footer
-Learn more: [Tabsets](https://quarto.org/docs/presentations/revealjs/#tabsets)
-:::
-
-## Interactive Slides {.smaller transition="slide"}
-
-Include Jupyter widgets and htmlwidgets in your presentations
-
-```{r}
-#| echo: false
-#| fig-height: 5
-library(leaflet)
-leaflet() %>%
-  addTiles() %>%  # Add default OpenStreetMap map tiles
-  addMarkers(lng=174.768, lat=-36.852, popup="The birthplace of R")
-```
-
-::: footer
-Learn more: [Jupyter widgets](https://quarto.org/docs/interactive/widgets/jupyter.html), [htmlwidgets](https://quarto.org/docs/interactive/widgets/htmlwidgets.html)
-:::
-
-## Preview Links
-
-Navigate to hyperlinks without disrupting the flow of your presentation.
-
-Use the `preview-links` option to open links in an iframe on top of your slides. Try clicking the link below for a demonstration:
-
-::: {style="text-align: center; margin-top: 1em"}
-[Matplotlib: Visualization with Python](https://matplotlib.org/){preview-link="true" style="text-align: center"}
-:::
-
-::: footer
-Learn more: [Preview Links](https://quarto.org/docs/presentations/revealjs/presenting.html#preview-links)
-:::
-
-# [Themes]{.bold .r-fit-text} {.bg-byzantium .text-center}
-
-Udpate the theme in **`custom_theme.scss`** file to change the look and feel of your presentation.
-
-## Color palette
-
-Fot this presentation, default color palette is:.
-
-```{r}
-#| label: color-palette
-#| width: 700
-#| fig-align: 'center'
-knitr::include_graphics("VegVault_palette.png")
-```
-
-You can change the color palette by updating the `colors.json` file in the root of your project.
-
-## [Slide Backgrounds]{.bold .r-fit-text} {.bg-harvest-gold .text-center}
-
-You can also make/alter different classes and variables in the `custom_theme.scss`.
-
-This slide is using the `.bg-harvest-gold` class to adjust the background color.
-
-Different background transitions are available via the `background-transition` option.
-
-## Slide Transitions {.smaller}
-
-The next few slides will transition using the `slide` transition
-
-| Transition | Description                                                            |
-|------------|------------------------------------------------------------------------|
-| `none`     | No transition (default, switch instantly)                              |
-| `fade`     | Cross fade                                                             |
-| `slide`    | Slide horizontally                                                     |
-| `convex`   | Slide at a convex angle                                                |
-| `concave`  | Slide at a concave angle                                               |
-| `zoom`     | Scale the incoming slide so it grows in from the center of the screen. |
-
-::: footer
-Learn more: [Slide Transitions](https://quarto.org/docs/presentations/revealjs/advanced.html#slide-transitions)
-:::
-
-# [Presentation tools]{.bold .r-fit-text} {.title}
-
-## Easy Navigation
-
-::: {style="margin-bottom: 0.9em;"}
-Quickly jump to other parts of your presentation
-:::
-
-::: {layout="[1, 20]"}
-![](https://raw.githubusercontent.com/quarto-dev/quarto-web/main/docs/presentations/revealjs/demo/images/presentation-menu.png){width="41"}
-
-Toggle the slide menu with the menu button (bottom left of slide) to go to other slides and access presentation tools.
-:::
-
-You can also press `m` to toggle the menu open and closed.
-
-::: footer
-Learn more: [Navigation](https://quarto.org/docs/presentations/revealjs/presenting.html#navigation-menu)
-:::
-
-## Chalkboard {chalkboard-buttons="true"}
-
-::: {style="margin-bottom: 0.9em;"}
-Free form drawing and slide annotations
-:::
-
-::: {layout="[1, 20]"}
-![](https://raw.githubusercontent.com/quarto-dev/quarto-web/main/docs/presentations/revealjs/demo/images/presentation-chalkboard.png){width="41"}
-
-Use the chalkboard button at the bottom left of the slide to toggle the chalkboard.
-:::
-
-::: {layout="[1, 20]"}
-![](https://raw.githubusercontent.com/quarto-dev/quarto-web/main/docs/presentations/revealjs/demo/images/presentation-notes-canvas.png){width="41"}
-
-Use the notes canvas button at the bottom left of the slide to toggle drawing on top of the current slide.
-:::
-
-You can also press `b` to toggle the chalkboard or `c` to toggle the notes canvas.
-
-::: footer
-Learn more: [Chalkboard](https://quarto.org/docs/presentations/revealjs/presenting.html#chalkboard)
-:::
-
-## Point of View
-
-Press `o` to toggle overview mode:
-
-![](https://raw.githubusercontent.com/quarto-dev/quarto-web/main/docs/presentations/revealjs/demo/images/overview-mode.png){.border}
-
-Hold down the `Alt` key (or `Ctrl` in Linux) and click on any element to zoom towards it---try it now on this slide.
-
-::: footer
-Learn more: [Overview Mode](https://quarto.org/docs/presentations/revealjs/presenting.html#overview-mode), [Slide Zoom](https://quarto.org/docs/presentations/revealjs/presenting.html#slide-zoom)
-:::
-
-## Speaker View
-
-Press `s` (or use the presentation menu) to open speaker view
-
-![](https://raw.githubusercontent.com/quarto-dev/quarto-web/main/docs/presentations/revealjs/demo/images/speaker-view.png){fig-align="center" style="border: 3px solid #dee2e6;" width="780"}
-
-::: footer
-Learn more: [Speaker View](https://quarto.org/docs/presentations/revealjs/presenting.html#speaker-view)
-:::
-
-## [Exercise - example]{.r-fit-text} {.text-center .bg-persian-green}
-
-:::{.r-fit-text}
-(you can add countdown timer to the slide)
-:::
-
-`r countdown(minutes = 5)`
-
-
-# [References]{.bold .r-fit-text} {.bg-byzantium .text-center}
-
-:::: columns
-::: {.column width="50%"}
-[😸 Code on GitHub](https://github.com/OndrejMottl/quarto_revealjs_template)
-:::
-
-::: {.column width="50%"}
-[🖥️ Slides](https://ondrejmottl.github.io/quarto_revealjs_template/)
-:::
 ::::
 
-Author: [Ondrej Mottl](https://ondrejmottl.github.io/)
+:::::
+
+<!-- Slide 1 -->
+
+## 🔓The Shortcut {`r gb_bg_light` auto-animate=true} 
+
+:::: {.columns}
+
+::: {.column width="10%" }
+
+:::
+
+::: {.column width="10%" }
+
+```{r}
+#| label: vegvault_logo_mini_1
+#| out-width: 30px
+include_local_figure("Logos/VegVault_logo.png")
+``` 
+
+:::
+
+::: {.column width="60%" .text-center}
+
+[VegVault]{.bold .text-color-white .text-font-heading .text-shadow-dark} + [{vaultkeepr}]{.text-background-white} 
+
+::: 
+
+::: {.column width="8%" }
+
+```{r}
+#| label: vaultkeepr_logo_mini_1
+#| out-width: 30px
+include_local_figure("Logos/vaultkeepr_logo.png")
+``` 
+
+:::
+
+::: {.column width="12%" }
+
+:::
+
+::::
+
+With few lines of code, you can:
+
+:::: {.columns}
+
+::: {.column width="50%" }
+  - Connect to the [VegVault]{.bold .text-color-white .text-font-heading .text-shadow-dark} database  
+:::
+
+::: {.column width="1%" }
+:::
+
+::: {.column width="49%"}
+```{r}
+#| label: vegvault_example_1
+#| eval: false
+#| echo: true
+#| include: true
+#| code-line-numbers: "2-4"
+data_rockies <-
+  vaultkeepr::open_vault(
+    path = "<path_to_VegVault>"
+  )
+```  
+
+:::
+
+::::
+
+<!-- Slide 2 -->
+
+## 🔓The Shortcut {`r gb_bg_light` auto-animate=true} 
+
+:::: {.columns}
+
+::: {.column width="10%" }
+
+:::
+
+::: {.column width="10%" }
+
+```{r}
+#| label: vegvault_logo_mini_2
+#| out-width: 30px
+include_local_figure("Logos/VegVault_logo.png")
+``` 
+
+:::
+
+::: {.column width="60%" .text-center}
+
+[VegVault]{.bold .text-color-white .text-font-heading .text-shadow-dark} + [{vaultkeepr}]{.text-background-white} 
+
+::: 
+
+::: {.column width="8%" }
+
+```{r}
+#| label: vaultkeepr_logo_mini_2
+#| out-width: 30px
+include_local_figure("Logos/vaultkeepr_logo.png")
+``` 
+
+:::
+
+::: {.column width="12%" }
+
+:::
+
+::::
+
+With few lines of code, you can:
+
+:::: {.columns}
+
+::: {.column width="50%" }
+  - [Connect to the [VegVault]{.bold .text-font-heading .text-shadow-dark} database]{.text-color-grey}
+  - Access vegetation, trait, and climate data simultaneously 
+:::
+
+::: {.column width="1%" }
+:::
+
+::: {.column width="49%"}
+```{r}
+#| label: vegvault_example_2
+#| eval: false
+#| echo: true
+#| include: true
+#| code-line-numbers: "5-9"
+data_rockies <-
+  vaultkeepr::open_vault(
+    path = "<path_to_VegVault>"
+  ) %>%
+  vaultkeepr::get_datasets() %>%
+  vaultkeepr::get_samples() %>%
+  vaultkeepr::get_taxa() %>%
+  vaultkeepr::get_abiotic_data() %>%
+  vaultkeepr::get_traits()
+```  
+
+:::
+
+::::
+
+<!-- Slide 3 -->
+
+## 🔓The Shortcut {`r gb_bg_light` auto-animate=true} 
+
+:::: {.columns}
+
+::: {.column width="10%" }
+
+:::
+
+::: {.column width="10%" }
+
+```{r}
+#| label: vegvault_logo_mini_3
+#| out-width: 30px
+include_local_figure("Logos/VegVault_logo.png")
+``` 
+
+:::
+
+::: {.column width="60%" .text-center}
+
+[VegVault]{.bold .text-color-white .text-font-heading .text-shadow-dark} + [{vaultkeepr}]{.text-background-white} 
+
+::: 
+
+::: {.column width="8%" }
+
+```{r}
+#| label: vaultkeepr_logo_mini_3
+#| out-width: 30px
+include_local_figure("Logos/vaultkeepr_logo.png")
+``` 
+
+:::
+
+::: {.column width="12%" }
+
+:::
+
+::::
+
+With few lines of code, you can:
+
+:::: {.columns}
+
+::: {.column width="50%"}
+  - [Connect to the [VegVault]{.bold .text-font-heading .text-shadow-dark} database]{.text-color-grey}
+  - [Access vegetation, trait, and climate data simultaneously]{.text-color-grey}
+  - Filter by spatial-temporal boundaries
+:::
+
+::: {.column width="1%" }
+:::
+
+::: {.column width="49%"}
+```{r}
+#| label: vegvault_example_3
+#| eval: false
+#| echo: true
+#| include: true
+#| code-line-numbers: "6-9,11-13"
+data_rockies <-
+  vaultkeepr::open_vault(
+    path = "<path_to_VegVault>"
+  ) %>%
+  vaultkeepr::get_datasets() %>%
+  vaultkeepr::select_dataset_by_geo(
+    lat_lim = c(30, 50),
+    long_lim = c(-120, -100)
+  ) %>%
+  vaultkeepr::get_samples() %>%
+  vaultkeepr::select_samples_by_age(
+    age_lim = c(0, 20000) # 20,000 BP
+  ) %>%
+  vaultkeepr::get_taxa() %>%
+  vaultkeepr::get_abiotic_data() %>%
+  vaultkeepr::get_traits()
+```  
+
+:::
+
+::::
+
+<!-- Slide 4 -->
+
+## 🔓The Shortcut {`r gb_bg_light` auto-animate=true} 
+
+:::: {.columns}
+
+::: {.column width="10%" }
+
+:::
+
+::: {.column width="10%" }
+
+```{r}
+#| label: vegvault_logo_mini_4
+#| out-width: 30px
+include_local_figure("Logos/VegVault_logo.png")
+``` 
+
+:::
+
+::: {.column width="60%" .text-center}
+
+[VegVault]{.bold .text-color-white .text-font-heading .text-shadow-dark} + [{vaultkeepr}]{.text-background-white} 
+
+::: 
+
+::: {.column width="8%" }
+
+```{r}
+#| label: vaultkeepr_logo_mini_4
+#| out-width: 30px
+include_local_figure("Logos/vaultkeepr_logo.png")
+``` 
+
+:::
+
+::: {.column width="12%" }
+
+:::
+
+::::
+
+With few lines of code, you can:
+
+:::: {.columns}
+
+::: {.column width="50%"}
+  - [Connect to the [VegVault]{.bold .text-font-heading .text-shadow-dark} database]{.text-color-grey}
+  - [Access vegetation, trait, and climate data simultaneously]{.text-color-grey}
+  - [Filter by spatial-temporal boundaries]{.text-color-grey}
+  - Harmonise taxonomy
+:::
+
+::: {.column width="1%" }
+:::
+
+::: {.column width="49%"}
+```{r}
+#| label: vegvault_example_4
+#| eval: false
+#| echo: true
+#| include: true
+#| code-line-numbers: "14-16,18-20"
+data_rockies <-
+  vaultkeepr::open_vault(
+    path = "<path_to_VegVault>"
+  ) %>%
+  vaultkeepr::get_datasets() %>%
+  vaultkeepr::select_dataset_by_geo(
+    lat_lim = c(30, 50),
+    long_lim = c(-120, -100)
+  ) %>%
+  vaultkeepr::get_samples() %>%
+  vaultkeepr::select_samples_by_age(
+    age_lim = c(0, 20000) # 20,000 BP
+  ) %>%
+  vaultkeepr::get_taxa(
+    classify_to = "genus"
+  ) %>%
+  vaultkeepr::get_abiotic_data() %>%
+  vaultkeepr::get_traits(
+    classify_to = "genus"
+  )
+```  
+
+:::
+
+::::
+
+<!-- Slide 5 -->
+
+## 🔓The Shortcut {`r gb_bg_light` auto-animate=true} 
+
+:::: {.columns}
+
+::: {.column width="10%" }
+
+:::
+
+::: {.column width="10%" }
+
+```{r}
+#| label: vegvault_logo_mini_5
+#| out-width: 30px
+include_local_figure("Logos/VegVault_logo.png")
+``` 
+
+:::
+
+::: {.column width="60%" .text-center}
+
+[VegVault]{.bold .text-color-white .text-font-heading .text-shadow-dark} + [{vaultkeepr}]{.text-background-white} 
+
+::: 
+
+::: {.column width="8%" }
+
+```{r}
+#| label: vaultkeepr_logo_mini_5
+#| out-width: 30px
+include_local_figure("Logos/vaultkeepr_logo.png")
+``` 
+
+:::
+
+::: {.column width="12%" }
+
+:::
+
+::::
+
+With few lines of code, you can:
+
+:::: {.columns}
+
+::: {.column width="50%" }
+  - [Connect to the [VegVault]{.bold .text-font-heading .text-shadow-dark} database]{.text-color-grey}
+  - [Access vegetation, trait, and climate data simultaneously]{.text-color-grey}
+  - [Filter by spatial-temporal boundaries]{.text-color-grey}
+  - [Harmonise taxonomy]{.text-color-grey}
+  - Get data in tidy format
+:::
+
+::: {.column width="1%" }
+:::
+
+::: {.column width="49%"}
+```{r}
+#| label: vegvault_example_5
+#| eval: false
+#| echo: true
+#| include: true
+#| code-line-numbers: "21"
+data_rockies <-
+  vaultkeepr::open_vault(
+    path = "<path_to_VegVault>"
+  ) %>%
+  vaultkeepr::get_datasets() %>%
+  vaultkeepr::select_dataset_by_geo(
+    lat_lim = c(30, 50),
+    long_lim = c(-120, -100)
+  ) %>%
+  vaultkeepr::get_samples() %>%
+  vaultkeepr::select_samples_by_age(
+    age_lim = c(0, 20000) # 20,000 BP
+  ) %>%
+  vaultkeepr::get_taxa(
+    classify_to = "genus"
+  ) %>%
+  vaultkeepr::get_abiotic_data() %>%
+  vaultkeepr::get_traits(
+    classify_to = "genus"
+  ) %>%
+  vaultkeepr::extract_data()
+  
+```  
+
+:::
+
+::::
+
+
+<!-- Slide 6 -->
+
+## 🔓The Shortcut {`r gb_bg_light` auto-animate=true} 
+
+:::: {.columns}
+
+::: {.column width="10%" }
+
+:::
+
+::: {.column width="10%" }
+
+```{r}
+#| label: vegvault_logo_mini_6
+#| out-width: 30px
+include_local_figure("Logos/VegVault_logo.png")
+``` 
+
+:::
+
+::: {.column width="60%" .text-center}
+
+[VegVault]{.bold .text-color-white .text-font-heading .text-shadow-dark} + [{vaultkeepr}]{.text-background-white} 
+
+::: 
+
+::: {.column width="8%" }
+
+```{r}
+#| label: vaultkeepr_logo_mini_6
+#| out-width: 30px
+include_local_figure("Logos/vaultkeepr_logo.png")
+``` 
+
+:::
+
+::: {.column width="12%" }
+
+:::
+
+::::
+
+With few lines of code, you can get the data you need to answer:
+
+:::: {.columns}
+
+::: {.column width="50%" }
+
+::: {.blockquote .text-center .text-italic .text-color-white}
+
+Did vegetation in the Rocky Mountains remain **functionally stable** under **climate** change from the **LGM to the present**?
+
+:::
+
+:::
+
+::: {.column width="1%" }
+:::
+
+::: {.column width="49%"}
+```{r}
+#| label: vegvault_example_6
+#| eval: false
+#| echo: true
+#| include: true
+#| code-line-numbers: "1-21"
+data_rockies <-
+  vaultkeepr::open_vault(
+    path = "<path_to_VegVault>"
+  ) %>%
+  vaultkeepr::get_datasets() %>%
+  vaultkeepr::select_dataset_by_geo(
+    lat_lim = c(30, 50),
+    long_lim = c(-120, -100)
+  ) %>%
+  vaultkeepr::get_samples() %>%
+  vaultkeepr::select_samples_by_age(
+    age_lim = c(0, 20000) # 20,000 BP
+  ) %>%
+  vaultkeepr::get_taxa(
+    classify_to = "genus"
+  ) %>%
+  vaultkeepr::get_abiotic_data() %>%
+  vaultkeepr::get_traits(
+    classify_to = "genus"
+  ) %>%
+  vaultkeepr::extract_data()
+  
+```  
+
+:::
+
+::::
+
+<!-- Slide 7 -->
+
+## 🔓The Shortcut {`r gb_bg_light`} 
+
+```{r}
+#| label: vegvault_example_figure
+```
+
+# 🆙LevelUp {`r gb_bg_light`}
+
+<br>
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r}
+#| label: VegVault logo
+include_local_figure("Logos/VegVault_logo.png")
+```
+:::
+
+::: {.column width="50%" .incremental}
+
+* A global SQLite database linking [interdisciplinary]{.text-background-black .text-color-white .text-bold} **plot-based** vegetation data! 
+* Links to functional [traits]{.text-background-blueDark .text-color-white .text-bold}, [climate]{.text-background-greenDark .text-color-white .text-bold} variables, and soil properties 
+* Built for exploring **biodiversity** dynamics across [time & space]{.text-background-brownDark .text-color-white .text-bold}
+* Open Source & [Reproducible]{.text-background-brownLight .text-color-white .text-bold}
+
+:::
+
+::::
+
+## 🗃️The Source Code {`r gb_bg_light`}
+
+~110 GB | 32 tables & 87 variables | 480,000+ Datasets | 13M+ Samples  | 110,000+ Taxa | 11M+ Trait values | 8 Abiotic variables
+
+:::: {.columns .fragment}
+
+#### Data sources 
+
+::: {.column width="40%" .incremental}
+
+- 🌿 [Paleoecological records]{.text-background-purpleLight .text-color-white .text-bold} ([Neotoma]{.text-italic}, [FOSSILPOL]{.text-italic})
+- 🌱 [Contemporary vegetation]{.text-background-greenLight .text-color-black .text-bold} ([sPlotOpen]{.text-italic}, [BIEN]{.text-italic})
+- 🌾 [Functional traits]{.text-background-blueDark .text-color-white .text-bold} ([BIEN]{.text-italic}, [TRY]{.text-italic})
+- 🌍 [Climate & soil data]{.text-background-greenDark .text-color-white .text-bold} ([CHELSA]{.text-italic}, [WoSIS]{.text-italic})  
+:::
+
+::: {.column width="60%"}
+
+```{r}
+#| label: Scheme
+include_local_figure("VegVault/assembly_viz_04.png")
+```
+:::
+
+::::
+
+<!-- Slide 1 -->
+
+## 💎Key Innovations {`r gb_bg_light`}
+
+<br>
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+::: {.text-size-heading3 .text-bold .frament fragment-index=1}
+1. [Vegetation]{.text-background-greenLight .text-color-black .text-bold} data
+:::
+
+::: {.incremental fragment-index=3}
+
+- Plot-based vegetation records 
+   + not just species occurrences
+   + true negatives!
+- Integration of paleo and contemporary data 
+
+:::
+
+:::
+
+::: {.column width="50%" .fragment fragment-index=2}
+
+| Sample ID | Taxa A | Taxa B |
+|---|--------|--------|
+| 1 | 🔬🟡 | 🔬🟡🟡🟡 |
+| 2 | 🟩🌱🌱🌱 | |
+| 3 | 🟩🌱🌱 | 🟩🌱🌱 |
+
+:::
+
+::::
+
+<!-- Slide 2 -->
+
+## 💎Key Innovations {`r gb_bg_light`}
+
+<br>
+
+:::: {.columns}
+
+::: {.incremental .column width="50%"}
+
+::: {.text-size-heading3 .text-bold}
+2. [Abiotic]{.text-background-greenDark .text-color-white .text-bold} context
+:::
+
+- Sample-specific climate and soil data
+   + paleo and contemporary 
+   + mapped to spatio-temporal grids
+- Selected variables for vegetation studies
+   + e.g. temperature, precipitation, soil type, etc. 
+
+:::
+
+::: {.column width="50%"}
+
+```{r}
+#| label: link of abiotic data
+```
+:::
+
+::::
+
+<!-- Slide 3 -->
+
+## 💎Key Innovations {`r gb_bg_light`}
+
+<br>
+
+
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+::: {.text-size-heading3 .text-bold .fragment fragment-index=1}
+3. [Standardisation]{.text-background-brownDark .text-color-white .text-bold} 
+:::
+
+::: {.incremental fragment-index=2}
+
+- Trait domains 
+    + pooling of traits across sources
+    + Following [Diaz et al. (2016)]{.text-italic .text-background-black .text-color-white} 
+
+:::
+
+::: {.incremental fragment-index=4}
+
+- Taxonomic harmonisation via GBIF backbone and `{taxospace}`📦  
+   + unified taxonomy across dataset vegetation, fossil pollen and traits
+
+:::
+
+:::
+
+::: {.column width="50%" .fragment fragment-index=3}
+Trait source |Trait name| Trait Domain|
+|---|---|---|
+| BIEN | [leaf nitrogen content per leaf dry mass]{.text-italic} | [Leaf nitrogen content per unit mass]{.text-italic .text-underline} |
+| TRY | [Leaf nitrogen (N) content per leaf dry mass]{.text-italic} | [Leaf nitrogen content per unit mass]{.text-italic .text-underline} |
+
+:::
+
+::::
+
+# 🛠️Controls {`r gb_bg_light`}
+
+ An Open Source R package📦 - Your key🔑 to [VegVault]{.bold .text-color-white .text-font-heading .text-shadow-dark}
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+```{r}
+#| label: vaultkeepr logo
+include_local_figure("Logos/vaultkeepr_logo.png")
+```
+
+[![CRAN-status](https://www.r-pkg.org/badges/version/vaultkeepr.png)](https://CRAN.R-project.org/package=vaultkeepr) [![R-CMD-check](https://github.com/OndrejMottl/vaultkeepr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/OndrejMottl/vaultkeepr/actions/workflows/R-CMD-check.yaml) [![Codecov-test-coverage](https://codecov.io/gh/OndrejMottl/vaultkeepr/branch/main/graph/badge.svg)](https://app.codecov.io/gh/OndrejMottl/vaultkeepr?branch=main)
+
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="55%" .incremental}
+
+<br>
+<br>
+
+- ✅ No SQL required - just load & go!
+- ✅ Filter by taxa, traits, time & space
+- ✅ Tidyverse-compatible interface  
+- ✅ Directly usable in R for analysis
+- 🔗 Learn more: [bit.ly/vaultkeepr](https://bit.ly/vaultkeepr)
+
+:::
+
+::::
+
+
+# 💾 Save & Share {`r gb_bg_light`}
+
+<br>
+
+[Everything!]{.text-background-black .text-color-white .text-bold} is publically available and [reproducible]{.text-background-brownLight .text-color-white .text-bold}!
+
+:::: {.columns}
+
+::: {.column width="35%" .fragment}
+
+[This presentation]{.bold .text-color-white .text-font-heading .text-shadow-dark}
+
+- 🐱[GitHub repository](https://github.com/OndrejMottl/VegVault-Presentation-20250802)
+- 🖼️[Slides](https://ondrejmottl.github.io/VegVault-Presentation-20250802/)
+
+```{r}
+#| label: QR code slides
+qrcode::generate_svg(
+  qrcode = qr_slides,
+  filename = here::here("Materials/QR/qr_slides.svg"),
+  foreground = colors$black,
+  background = colors$beigeLight
+)
+
+include_local_figure("QR/qr_slides.svg")
+```
+
+:::
+
+::: {.column width="5%" }
+:::
+
+
+::: {.column width="60%" .incremental}
+
+- [VegVault]{.bold .text-color-white .text-font-heading .text-shadow-dark}
+   + Fully [reproducible]{.text-background-brownLight .text-color-white .text-bold} workflows via [GitHub]{.text-background-black .text-color-white .text-bold} and [Zenodo]{.text-background-blueLight .text-color-white .text-bold} (Modular, version-controlled pipelines with metadata)
+- [vaultkeepr]{.bold .text-color-white .text-font-heading .text-shadow-dark}
+   + Open Source [tested]{.text-background-black .text-color-white .text-bold} R package with [documentation]{.text-background-brownDark .text-color-white .text-bold}
+- [Join the quest!]{.bold .text-color-white .text-font-heading .text-shadow-dark}
+
+:::
+
+::::
+
+## 💡Side Quests {`r gb_bg_light`}
+
+<br>
+
+**The world is your oyster!**
+
+:::: {.columns}
+
+::: {.column width="70%" .incremental .text-italic}
+
+ - Reconstruct long-term diversity patterns  
+ - Investigate trait-based community assembly
+ - Explore biome transitions and shifts  
+ - Quantify ecological novelty and functional turnover  
+ - Test trait-environment relationships across time  
+
+:::
+
+::: {.column width="30%" }
+
+<br>
+
+```{r}
+#| label: oyster
+include_local_figure("AI/oyster.png")
+```
+
+:::
+
+::::
+
+<!---
+- Website, ORCID, GitHub, and Lab links  
+- QR codes and short URLs for quick access  
+- Acknowledgements to collaborators, funders, and data providers
+--->
+
+# 📜[Credits]{.text-shadow-light } {.bg-black .text-color-beigeLight}
+
+<br>
+
+:::: {.columns}
+
+::: {.column width="65%"}
+
+::: {.text-color-white .text-size-heading4}
+[VegVault]{.bold .text-color-white .text-font-heading} database: linking global paleo-, and neo-vegetation data with functional traits and abiotic drivers
+:::
+
+::: {.r-hstack}
+::: {data-id="box1" style="background: `r colors$beigeLight`; width: 120px; height: 15px; margin: 0px;"}
+:::
+
+::: {data-id="box2" style="background: `r colors$blueLight`; width: 550px; height: 15px; margin: 0px;"}
+:::
+
+::: {data-id="box3" style="background: `r colors$white`; width: 120px; height: 15px; margin: 0px;"}
+:::
+
+::: {data-id="box3" style="background: `r colors$brownDark`; width: 120px; height: 15px; margin: 0px;"}
+:::
+:::
+
+::: {.text-color-white}
+
+👤P1: Ondřej Mottl
+
+📅2025-08-02
+
+📍IAVS, Colorado, USA
+
+:::
+
+:::
+
+::: {.column width="35%"}
+
+```{r}
+#| label: head_photo2
+include_local_figure("About/head_photo.png")
+```
+:::
+
+::::
+
+:::: {.columns}
+
+::: {.column width="17%"}
+
+```{r}
+#| label: personal_sticker
+include_local_figure("About/personal_sticker.png")
+```
+:::
+
+::: {.column width="50%"}
+* 📧 Ondrej.mottl(at)gmail.com
+* 🦋 [ondrejmottl.bsky.social](https://bsky.app/profile/ondrejmottl.bsky.social)
+* 🌐 [bit.ly/ondrej_mottl](https://bit.ly/ondrej_mottl)
+:::
+
+::: {.column width="6%"}
+:::
+
+::: {.column width="20%"}
+
+```{r}
+#| label: qr slides fin
+include_local_figure("QR/qr_slides_dark.svg")
+```
+
+:::
+
+::: {.column width="7%"}
+:::
+
+::::
+
+::: {.footer}
+Project funded by Czech Science Foundation, by the Charles University Research Centre program, by the Trond Mohn Research Foundation, and by the University of Bergen.
+
+Photo by Vladimír Šigut (CUNI)
+:::
+
+## 🎯Bonus Stage {`r gb_bg_light`}
+
+- Optional backup slides:
+  - VegVault database schema
+
