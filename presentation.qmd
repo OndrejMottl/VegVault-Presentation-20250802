@@ -58,14 +58,6 @@ include_local_figure <- function(data_source) {
     error = TRUE
   )
 }
-
-
-# Background images for slides
-gb_bg_light <- 
-  'background-image="Materials/poster_export/gb_ds.png" background-opacity="0.20"'
-
-gb_bg_medium <- 
-  'background-image="Materials/poster_export/gb_ds.png" background-opacity="0.50"'
 ```
 
 
@@ -148,23 +140,64 @@ writeLines(
   ),
   con = here::here("_fonts.scss")
 )
-
 ```
 
-# [VegVault]{.bold .r-fit-text .text-shadow-light} {.bg-black .text-center .text-color-beigeLight .text-margin-top}
+```{r}
+#| label: Background images for slides
+#| include: false
+
+gb_bg_light <-
+  'background-image="Materials/poster_export/gb_ds.png" background-opacity="0.10"'
+
+gb_bg_medium <-
+  'background-image="Materials/poster_export/gb_ds.png" background-opacity="0.50"'
+```
+
+# [VegVault]{.bold .r-fit-text .text-shadow-light} {.bg-black .text-center .text-color-beigeLight .text-margin-top-15}
 
 <br>
 
-[   --- press START to begin ---   ]{.text-center .r-fit-text .text-font-heading} 
+[< ---   press START to begin   --- >]{.text-center .r-fit-text .text-font-heading} 
 
 <br>
 
-P1: [👤Ondřej Mottl](https://ondrejmottl.github.io/)
+:::: {.columns}
 
-IAVS, Colorado, USA
+::: {.column width="45%" .text-left}
 
-2025-08-02
+👤P1: [Ondřej Mottl](https://ondrejmottl.github.io/)
 
+📍IAVS, Colorado, USA
+
+📅2025-08-02
+
+:::
+
+::: {.column width="35%"}
+:::
+
+::: {.column width="20%"}
+
+```{r}
+#| label: qr_slides_0
+qr_slides <-
+  qrcode::qr_code(
+    "https://ondrejmottl.github.io/VegVault-Presentation-20250802/",
+    ecl = "H"
+  )
+
+qrcode::generate_svg(
+  qrcode = qr_slides,
+  filename = here::here("Materials/QR/qr_slides_dark.svg"),
+  foreground = colors$beigeLight,
+  background = colors$black
+)
+
+include_local_figure("QR/qr_slides_dark.svg")
+```
+
+:::
+::::
 
 # 🎥Intro {.text-center `r gb_bg_medium`}
 
@@ -229,8 +262,21 @@ Head of the 🧑‍💻 [Laboratory of Quantitative Ecology](https://ondrejmottl
 ::: {.column width="30%"}
 
 ```{r}
-#| label: linktree QR
-include_local_figure("QR/qr_linktree.png")
+#| label: QR code https://bit.ly/ondrej_mottl 
+qr_personal_web <-
+  qrcode::qr_code(
+    "https://bit.ly/ondrej_mottl",
+    ecl = "H"
+  )
+
+qrcode::generate_svg(
+  qrcode = qr_personal_web,
+  filename = here::here("Materials/QR/qr_personal_web.svg"),
+  foreground = colors$black,
+  background = colors$beigeLight
+)
+
+include_local_figure("QR/qr_personal_web.svg")
 ```
 :::
 
@@ -928,14 +974,15 @@ include_local_figure("VegVault/assembly_viz_04.png")
 
 <br>
 
-::: {.text-size-heading3 .text-bold}
+:::: {.columns}
+
+::: {.column width="50%"}
+
+::: {.text-size-heading3 .text-bold .frament fragment-index=1}
 1. [Vegetation]{.text-background-greenLight .text-color-black .text-bold} data
 :::
 
-
-:::: {.columns}
-
-::: {.incremental .column width="50%"}
+::: {.incremental fragment-index=3}
 
 - Plot-based vegetation records 
    + not just species occurrences
@@ -944,7 +991,16 @@ include_local_figure("VegVault/assembly_viz_04.png")
 
 :::
 
-::: {.column width="50%"}
+:::
+
+::: {.column width="50%" .fragment fragment-index=2}
+
+| Sample ID | Taxa A | Taxa B |
+|---|--------|--------|
+| 1 | 🔬🟡 | 🔬🟡🟡🟡 |
+| 2 | 🟩🌱🌱🌱 | |
+| 3 | 🟩🌱🌱 | 🟩🌱🌱 |
+
 :::
 
 ::::
@@ -955,13 +1011,13 @@ include_local_figure("VegVault/assembly_viz_04.png")
 
 <br>
 
-::: {.text-size-heading3 .text-bold}
-2. [Abiotic]{.text-background-greenDark .text-color-white .text-bold} context
-:::
-
 :::: {.columns}
 
 ::: {.incremental .column width="50%"}
+
+::: {.text-size-heading3 .text-bold}
+2. [Abiotic]{.text-background-greenDark .text-color-white .text-bold} context
+:::
 
 - Sample-specific climate and soil data
    + paleo and contemporary 
@@ -972,6 +1028,10 @@ include_local_figure("VegVault/assembly_viz_04.png")
 :::
 
 ::: {.column width="50%"}
+
+```{r}
+#| label: link of abiotic data
+```
 :::
 
 ::::
@@ -982,53 +1042,247 @@ include_local_figure("VegVault/assembly_viz_04.png")
 
 <br>
 
-::: {.text-size-heading3 .text-bold}
-3. [Standardisation]{.text-background-brownLight .text-color-white .text-bold} 
-:::
+
 
 :::: {.columns}
 
-::: {.incremental .column width="50%"}
+::: {.column width="50%"}
 
-- Taxonomic harmonisation via GBIF backbone and `{taxospace}`  
-   + unified taxonomy across dataset vegetation, fossil pollen and traits
+::: {.text-size-heading3 .text-bold .fragment fragment-index=1}
+3. [Standardisation]{.text-background-brownDark .text-color-white .text-bold} 
+:::
+
+::: {.incremental fragment-index=2}
+
 - Trait domains 
     + pooling of traits across sources
-    + Following Diaz et al. (2016)  
+    + Following [Diaz et al. (2016)]{.text-italic .text-background-black .text-color-white} 
 
 :::
 
-::: {.column width="50%"}
+::: {.incremental fragment-index=4}
+
+- Taxonomic harmonisation via GBIF backbone and `{taxospace}`📦  
+   + unified taxonomy across dataset vegetation, fossil pollen and traits
+
+:::
+
+:::
+
+::: {.column width="50%" .fragment fragment-index=3}
+Trait source |Trait name| Trait Domain|
+|---|---|---|
+| BIEN | [leaf nitrogen content per leaf dry mass]{.text-italic} | [Leaf nitrogen content per unit mass]{.text-italic .text-underline} |
+| TRY | [Leaf nitrogen (N) content per leaf dry mass]{.text-italic} | [Leaf nitrogen content per unit mass]{.text-italic .text-underline} |
+
 :::
 
 ::::
 
-## 🛠️Controls {`r gb_bg_light`}
+# 🛠️Controls {`r gb_bg_light`}
 
-- Access via [{vaultkeepr}]{.text-background-white} R package  
-- SQL-free, tidyverse-compatible interface  
-- Fully reproducible workflows via GitHub and Zenodo (Modular, version-controlled pipelines with metadata)
+ An Open Source R package📦 - Your key🔑 to [VegVault]{.bold .text-color-white .text-font-heading .text-shadow-dark}
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+```{r}
+#| label: vaultkeepr logo
+include_local_figure("Logos/vaultkeepr_logo.png")
+```
+
+[![CRAN-status](https://www.r-pkg.org/badges/version/vaultkeepr.png)](https://CRAN.R-project.org/package=vaultkeepr) [![R-CMD-check](https://github.com/OndrejMottl/vaultkeepr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/OndrejMottl/vaultkeepr/actions/workflows/R-CMD-check.yaml) [![Codecov-test-coverage](https://codecov.io/gh/OndrejMottl/vaultkeepr/branch/main/graph/badge.svg)](https://app.codecov.io/gh/OndrejMottl/vaultkeepr?branch=main)
+
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="55%" .incremental}
+
+<br>
+<br>
+
+- ✅ No SQL required - just load & go!
+- ✅ Filter by taxa, traits, time & space
+- ✅ Tidyverse-compatible interface  
+- ✅ Directly usable in R for analysis
+- 🔗 Learn more: [bit.ly/vaultkeepr](https://bit.ly/vaultkeepr)
+
+:::
+
+::::
+
+
+# 💾 Save & Share {`r gb_bg_light`}
+
+<br>
+
+[Everything!]{.text-background-black .text-color-white .text-bold} is publically available and [reproducible]{.text-background-brownLight .text-color-white .text-bold}!
+
+:::: {.columns}
+
+::: {.column width="35%" .fragment}
+
+[This presentation]{.bold .text-color-white .text-font-heading .text-shadow-dark}
+
+- 🐱[GitHub repository](https://github.com/OndrejMottl/VegVault-Presentation-20250802)
+- 🖼️[Slides](https://ondrejmottl.github.io/VegVault-Presentation-20250802/)
+
+```{r}
+#| label: QR code slides
+qrcode::generate_svg(
+  qrcode = qr_slides,
+  filename = here::here("Materials/QR/qr_slides.svg"),
+  foreground = colors$black,
+  background = colors$beigeLight
+)
+
+include_local_figure("QR/qr_slides.svg")
+```
+
+:::
+
+::: {.column width="5%" }
+:::
+
+
+::: {.column width="60%" .incremental}
+
+- [VegVault]{.bold .text-color-white .text-font-heading .text-shadow-dark}
+   + Fully [reproducible]{.text-background-brownLight .text-color-white .text-bold} workflows via [GitHub]{.text-background-black .text-color-white .text-bold} and [Zenodo]{.text-background-blueLight .text-color-white .text-bold} (Modular, version-controlled pipelines with metadata)
+- [vaultkeepr]{.bold .text-color-white .text-font-heading .text-shadow-dark}
+   + Open Source [tested]{.text-background-black .text-color-white .text-bold} R package with [documentation]{.text-background-brownDark .text-color-white .text-bold}
+- [Join the quest!]{.bold .text-color-white .text-font-heading .text-shadow-dark}
+
+:::
+
+::::
 
 ## 💡Side Quests {`r gb_bg_light`}
 
-- Additional use cases:
-  - Explore biome transitions and trait shifts  
-  - Test trait–environment relationships across time  
-  - Quantify ecological novelty and functional turnover  
-  - Reconstruct long-term diversity patterns  
-  - Investigate trait-based community assembly
+<br>
 
-## 🏆Summary {`r gb_bg_light`}
+**The world is your oyster!**
 
-- VegVault = open, robust, time-spanning vegetation research platform  
-- Designed for reproducible, interdisciplinary ecological synthesis  
-- *Join the quest – the tools are ready, and the map is open!*
+:::: {.columns}
 
-## 📜Credits {`r gb_bg_light`}
+::: {.column width="70%" .incremental .text-italic}
 
+ - Reconstruct long-term diversity patterns  
+ - Investigate trait-based community assembly
+ - Explore biome transitions and shifts  
+ - Quantify ecological novelty and functional turnover  
+ - Test trait-environment relationships across time  
+
+:::
+
+::: {.column width="30%" }
+
+<br>
+
+```{r}
+#| label: oyster
+include_local_figure("AI/oyster.png")
+```
+
+:::
+
+::::
+
+<!---
 - Website, ORCID, GitHub, and Lab links  
 - QR codes and short URLs for quick access  
 - Acknowledgements to collaborators, funders, and data providers
+--->
+
+# 📜[Credits]{.text-shadow-light } {.bg-black .text-color-beigeLight}
+
+<br>
+
+:::: {.columns}
+
+::: {.column width="65%"}
+
+::: {.text-color-white .text-size-heading4}
+[VegVault]{.bold .text-color-white .text-font-heading} database: linking global paleo-, and neo-vegetation data with functional traits and abiotic drivers
+:::
+
+::: {.r-hstack}
+::: {data-id="box1" style="background: `r colors$beigeLight`; width: 120px; height: 15px; margin: 0px;"}
+:::
+
+::: {data-id="box2" style="background: `r colors$blueLight`; width: 550px; height: 15px; margin: 0px;"}
+:::
+
+::: {data-id="box3" style="background: `r colors$white`; width: 120px; height: 15px; margin: 0px;"}
+:::
+
+::: {data-id="box3" style="background: `r colors$brownDark`; width: 120px; height: 15px; margin: 0px;"}
+:::
+:::
+
+::: {.text-color-white}
+
+👤P1: Ondřej Mottl
+
+📅2025-08-02
+
+📍IAVS, Colorado, USA
+
+:::
+
+:::
+
+::: {.column width="35%"}
+
+```{r}
+#| label: head_photo2
+include_local_figure("About/head_photo.png")
+```
+:::
+
+::::
+
+:::: {.columns}
+
+::: {.column width="17%"}
+
+```{r}
+#| label: personal_sticker
+include_local_figure("About/personal_sticker.png")
+```
+:::
+
+::: {.column width="50%"}
+* 📧 Ondrej.mottl(at)gmail.com
+* 🦋 [ondrejmottl.bsky.social](https://bsky.app/profile/ondrejmottl.bsky.social)
+* 🌐 [bit.ly/ondrej_mottl](https://bit.ly/ondrej_mottl)
+:::
+
+::: {.column width="6%"}
+:::
+
+::: {.column width="20%"}
+
+```{r}
+#| label: qr slides fin
+include_local_figure("QR/qr_slides_dark.svg")
+```
+
+:::
+
+::: {.column width="7%"}
+:::
+
+::::
+
+::: {.footer}
+Project funded by Czech Science Foundation, by the Charles University Research Centre program, by the Trond Mohn Research Foundation, and by the University of Bergen.
+
+Photo by Vladimír Šigut (CUNI)
+:::
 
 ## 🎯Bonus Stage {`r gb_bg_light`}
 
