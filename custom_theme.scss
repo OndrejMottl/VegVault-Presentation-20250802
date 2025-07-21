@@ -33,7 +33,7 @@ $heading3Size: 1.25em;
 $heading4Size: 1em;
 
 // Layout
-$content-max-width: 900px;
+// $content-max-width: 900px;
 
 // Mermaid configuration
 $mermaid-bg-color: $white !important;
@@ -85,8 +85,10 @@ pre code,
 .reveal pre code {
   background-color: transparent;
   padding: $smallMargin;
-  position: relative; /* Ensure line highlighting works */
-  z-index: 0; /* Prevent conflicts with overlays */
+  position: relative;
+  /* Ensure line highlighting works */
+  z-index: 0;
+  /* Prevent conflicts with overlays */
 }
 
 
@@ -353,7 +355,7 @@ ul ul {
 
 /* Slide content layout */
 .reveal .slides {
-  max-width: $content-max-width;
+  //  max-width: $content-max-width;
   margin: auto;
   padding: 0 $smallMargin;
 }
@@ -401,7 +403,8 @@ ul ul {
   width: 100%;
   margin: $blockMargin 0;
   font-size: $mainFontSize * 0.9;
-  border: 2px solid $black; /* Add outer border to table */
+  border: 2px solid $black;
+  /* Add outer border to table */
 }
 
 .reveal table th,
@@ -416,7 +419,8 @@ ul ul {
   background-color: $blueLight;
   color: $black;
   font-weight: bold;
-  border: 2px solid $black; /* Make border consistent and visible */
+  border: 2px solid $black;
+  /* Make border consistent and visible */
 }
 
 .reveal table tbody td {
