@@ -93,6 +93,16 @@ p1_with_with_legend <-
     col = NA,
     alpha = 1
   ) +
+  ggplot2::geom_vline(
+    xintercept = seq(-120, -100, 5),
+    col = colors$beigeLight,
+    linewidth = 0.1
+  ) +
+  ggplot2::geom_hline(
+    yintercept = seq(30, 50, 5),
+    col = colors$beigeLight,
+    linewidth = 0.1
+  ) +
   ggplot2::scale_fill_gradient2(
     low = colors$brownDark,
     high = colors$beigeLight,
@@ -189,13 +199,15 @@ p1_with_with_legend <-
     # legend.title = ggplot2::element_blank()
   )
 
-
-p_1_legend <-
+legend_points <-
   cowplot::get_legend(
-    p1_with_with_legend
+    p1_with_with_legend +
+      ggplot2::guides(
+        fill = "none"
+      )
   )
 
-cowplot::ggdraw(p_1_legend)
+# cowplot::ggdraw(legend_points)
 
 p1_without_legend <-
   p1_with_with_legend +
@@ -223,18 +235,15 @@ p2_with_legend <-
   scale_y_continuous(
     trans = "log1p",
     breaks = c(1, 10, 100, 10e3, 10e4, 10e5, 10e6),
-    labels = scales::comma
+    labels = scales::scientific
   ) +
   ggplot2::scale_x_continuous(
     trans = "reverse",
-    breaks = c(0, 5000, 10000, 15000, 20000),
-    labels = c(
-      "0",
-      "5,000",
-      "10,000",
-      "15,000",
-      "20,000"
-    )
+    breaks = seq(0, 20e3, 5e3),
+    labels = seq(0, 20, 5),
+  ) +
+  ggplot2::coord_cartesian(
+    xlim = c(20e3, 0)
   ) +
   ggplot2::scale_fill_manual(
     values = c(
@@ -251,21 +260,28 @@ p2_with_legend <-
     binwidth = 1000,
   ) +
   ggplot2::labs(
-    x = "Age (cal yr BP)",
+    x = "Age (cal ka yr BP)",
     y = "Number of samples"
   )
 
-p2_legend <-
+legend_type <-
   cowplot::get_legend(
     p2_with_legend
   )
 
-cowplot::ggdraw(p2_legend)
+# cowplot::ggdraw(legend_type)
 
 p2_without_legend <-
   p2_with_legend +
   ggplot2::theme(
     legend.position = "none"
+  ) +
+  ggplot2::annotation_custom(
+    grob = legend_points,
+    xmin = 10e3,
+    xmax = 20e3,
+    ymin = 1e3,
+    ymax = 1e4
   )
 
 
@@ -287,14 +303,11 @@ p3_with_legend <-
   ggplot2::ggplot() +
   ggplot2::scale_x_continuous(
     trans = "reverse",
-    breaks = c(0, 5000, 10000, 15000, 20000),
-    labels = c(
-      "0",
-      "5,000",
-      "10,000",
-      "15,000",
-      "20,000"
-    )
+    breaks = seq(0, 20e3, 5e3),
+    labels = seq(0, 20, 5),
+  ) +
+  ggplot2::coord_cartesian(
+    xlim = c(20e3, 0)
   ) +
   ggplot2::geom_line(
     ggplot2::aes(
@@ -311,7 +324,7 @@ p3_with_legend <-
       y = abiotic_value,
       col = abiotic_value,
     ),
-    size = 5
+    size = 1
   ) +
   ggplot2::scale_color_gradient(
     low = colors$greenDark,
@@ -319,16 +332,20 @@ p3_with_legend <-
     name = "Temperature (°C)"
   ) +
   ggplot2::labs(
-    x = "Age (cal yr BP)",
+    x = "Age (cal ka yr BP)",
     y = "Temperature (°C)"
+  ) +
+  ggplot2::theme(
+    legend.position = "bottom",
+    legend.title.position = "top",
   )
 
-p3_legend <-
+legend_temperature <-
   cowplot::get_legend(
     p3_with_legend
   )
 
-cowplot::ggdraw(p3_legend)
+# cowplot::ggdraw(legend_temperature)
 
 p3_without_legend <-
   p3_with_legend +
@@ -337,67 +354,35 @@ p3_without_legend <-
   )
 
 
+
+#----------------------------------------------------------#
+# 4. traits -----
 # ----------------------------------------------------------#
 
-data_rockies %>%
+vec_taxa_id_traits <-
+  data_rockies %>%
+  dplyr::filter(
+    dataset_type_id == 3
+  ) %>%
+  dplyr::distinct(taxon_id_trait) %>%
+  tidyr::drop_na() %>%
+  dplyr::pull(taxon_id_trait)
+
+vec_taxa_id_vegetation <-
+  data_rockies %>%
   dplyr::filter(
     dataset_type_id %in% c(1, 2)
   ) %>%
-  dplyr::distinct(dataset_id, dataset_type_id, coord_long, coord_lat) %>%
-  ggplot2::ggplot() +
-  ggplot2::borders(
-    fill = colors$brownDark,
-    col = NA
-  ) +
-  ggplot2::geom_tile(
-    data = data_altitude_raw,
-    ggplot2::aes(
-      x = long,
-      y = lat,
-      fill = alt_raw
-    ),
-    col = NA,
-    alpha = 1
-  ) +
-  ggplot2::geom_point(
-    ggplot2::aes(
-      x = coord_long,
-      y = coord_lat,
-      color = as.factor(dataset_type_id)
-    ),
-    size = 3
-  ) +
-  ggplot2::geom_point(
-    ggplot2::aes(
-      x = coord_long,
-      y = coord_lat,
-    ),
-    size = 0.1,
-    col = colors$black,
-  ) +
-  ggplot2::coord_quickmap(
-    xlim = c(-120, -100),
-    ylim = c(30, 50)
-  ) +
-  ggplot2::scale_fill_gradient2(
-    low = colors$brownDark,
-    high = colors$beigeLight,
-    mid = colors$brownLight,
-    midpoint = 2000,
-    name = "Altitude (m)"
-  ) +
-  ggplot2::scale_color_manual(
-    values = c(
-      colors$greenLight,
-      colors$purpleLight
-    ),
-    name = "Dataset type",
-    labels = c(
-      "Vegetation plot",
-      "Fossil pollen archive"
-    )
-  )
+  dplyr::distinct(taxon_id) %>%
+  tidyr::drop_na() %>%
+  dplyr::pull(taxon_id)
 
+vec_taxa_all <-
+  c(
+    vec_taxa_id_traits,
+    vec_taxa_id_vegetation
+  ) %>%
+  unique()
 
 con <-
   DBI::dbConnect(
@@ -405,10 +390,157 @@ con <-
     path_to_vegvault
   )
 
+data_class_table <-
+  dplyr::tbl(con, "TaxonClassification") %>%
+  dplyr::filter(
+    taxon_id %in% vec_taxa_all
+  ) %>%
+  dplyr::select(taxon_id, taxon_genus) %>%
+  dplyr::collect()
 
-data_rockies %>%
+
+data_to_plot_traits <-
+  data_rockies %>%
+  dplyr::filter(
+    dataset_type_id == 3
+  ) %>%
+  tidyr::drop_na(trait_domain_id, trait_name, trait_value) %>%
+  dplyr::distinct(
+    dataset_id,
+    sample_id,
+    taxon_id_trait,
+    .keep_all = TRUE
+  ) %>%
+  dplyr::select(
+    taxon_id_trait,
+    trait_value
+  ) %>%
   dplyr::left_join(
-    dplyr::tbl(con, "DatasetTypeID") %>%
-      dplyr::collect(),
-    by = "dataset_type_id"
+    data_class_table,
+    by = dplyr::join_by("taxon_id_trait" == "taxon_id")
+  ) %>%
+  dplyr::group_by(
+    taxon_genus
+  ) %>%
+  dplyr::summarise(
+    trait_value = mean(trait_value, na.rm = TRUE),
+    .groups = "drop"
   )
+
+vec_outliers <-
+  data_to_plot_traits %>%
+  purrr::chuck("trait_value") %>%
+  boxplot(plot = FALSE) %>%
+  purrr::chuck("out")
+
+data_to_plot_traits_filtered <-
+  data_to_plot_traits %>%
+  dplyr::filter(
+    !trait_value %in% vec_outliers
+  )
+
+
+p4 <-
+  data_to_plot_traits_filtered %>%
+  ggplot2::ggplot() +
+  ggplot2::geom_violin(
+    mapping = ggplot2::aes(
+      y = trait_value,
+      x = 1
+    ),
+    col = NA,
+    fill = colors$blueDark
+  ) +
+  ggplot2::geom_boxplot(
+    mapping = ggplot2::aes(
+      y = trait_value,
+      x = 1,
+    ),
+    col = colors$black,
+    outlier.shape = NA,
+    width = 0.1,
+  ) +
+  ggplot2::labs(
+    y = "Plant height (cm)",
+  ) +
+  ggplot2::scale_y_continuous(
+    breaks = scales::breaks_pretty(n = 5)
+  ) +
+  ggplot2::theme(
+    axis.text.x = ggplot2::element_blank(),
+    axis.ticks.x = ggplot2::element_blank(),
+    axis.title.x = ggplot2::element_blank(),
+    panel.grid.major.x = ggplot2::element_blank(),
+    panel.grid.minor.x = ggplot2::element_blank(),
+    legend.position = "none"
+  )
+
+
+
+#----------------------------------------------------------#
+# 5. Construct the plot -----
+# ----------------------------------------------------------#
+
+p_combined_legends <-
+  cowplot::plot_grid(
+    legend_points,
+    legend_temperature,
+    ncol = 2,
+    nrow = 1
+  )
+
+p_combined_legends_1 <-
+  cowplot::plot_grid(
+    p1_without_legend,
+    p_combined_legends,
+    ncol = 1,
+    nrow = 2,
+    rel_heights = c(1, 0.2),
+    labels = c("A", ""),
+    label_colour = colors$white,
+    label_fontfamily = "Renogare",
+    label_size = text_size * 2
+  )
+
+p_combined_23 <-
+  cowplot::plot_grid(
+    p2_without_legend +
+      theme(
+        axis.title.x = element_blank(),
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        plot.margin = ggplot2::margin(0, 0, 0, 0)
+      ),
+    p3_without_legend,
+    ncol = 1,
+    nrow = 2,
+    align = "v",
+    labels = c("B", "C"),
+    label_colour = colors$white,
+    label_fontfamily = "Renogare",
+    label_size = text_size * 2
+  )
+
+p_combined_all <-
+  cowplot::plot_grid(
+    p_combined_legends_1,
+    p_combined_23,
+    p4,
+    ncol = 3,
+    nrow = 1,
+    rel_widths = c(16, 10, 8),
+    labels = c("", "", "D"),
+    label_colour = colors$white,
+    label_fontfamily = "Renogare",
+    label_size = text_size * 2
+  )
+
+ggplot2::ggsave(
+  filename = here::here("Materials", "R_generated", "plot_overview_rockies.png"),
+  plot = p_combined_all,
+  width = image_width * 1.2,
+  height = image_height * 1,
+  units = image_units,
+  dpi = 150,
+  bg = colors$beigeLight
+)
