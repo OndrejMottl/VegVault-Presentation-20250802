@@ -112,7 +112,37 @@ if (
 
 
 #----------------------------------------------------------#
-# 3. Graphical options -----
+# 3. Get path to VegVault -----
+#----------------------------------------------------------#
+
+# !!!  IMPORTANT  !!!
+
+# This solution was created due to VegVault data being a large file
+
+# Please download the data from the VegVault repository and place the path to it
+#  in the '.secrets/path.yaml' file.
+
+if (
+  file.exists(
+    here::here(".secrets/path.yaml")
+  )
+) {
+  path_to_vegvault <-
+    yaml::read_yaml(
+      here::here(".secrets/path.yaml")
+    ) %>%
+    purrr::chuck(Sys.info()["user"])
+} else {
+  stop(
+    paste(
+      "The path to the VegVault data is not specified.",
+      " Please, create a 'path.yaml' file."
+    )
+  )
+}
+
+#----------------------------------------------------------#
+# 4. Graphical options -----
 #----------------------------------------------------------#
 
 # define font
@@ -128,8 +158,8 @@ line_size <- 0.1
 point_size <- 3
 
 # define output sizes
-image_width <- 2450
-image_height <- 1200
+image_width <- 1050
+image_height <- 700
 image_units <- "px"
 
 # define common color
@@ -189,6 +219,12 @@ ggplot2::theme_set(
         fill = col_brown_light,
         colour = col_brown_light
       ),
+      plot.margin = ggplot2::margin(
+        t = 0,
+        r = 1,
+        b = 1,
+        l = 0,
+        unit = "cm"
+      )
     )
 )
-

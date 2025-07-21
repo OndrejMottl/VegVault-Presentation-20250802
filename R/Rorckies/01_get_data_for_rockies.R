@@ -30,34 +30,8 @@ source(
 rerun <- FALSE
 
 #----------------------------------------------------------#
-# 1. Get path to VegVault -----
+# 1. Get data from VegVault -----
 #----------------------------------------------------------#
-
-# !!!  IMPORTANT  !!!
-
-# This solution was created due to VegVault data being a large file
-
-# Please download the data from the VegVault repository and place the path to it
-#  in the '.secrets/path.yaml' file.
-
-if (
-  file.exists(
-    here::here(".secrets/path.yaml")
-  )
-) {
-  path_to_vegvault <-
-    yaml::read_yaml(
-      here::here(".secrets/path.yaml")
-    ) %>%
-    purrr::chuck(Sys.info()["user"])
-} else {
-  stop(
-    paste(
-      "The path to the VegVault data is not specified.",
-      " Please, create a 'path.yaml' file."
-    )
-  )
-}
 
 is_rockies_data_present <-
   file.exists(
