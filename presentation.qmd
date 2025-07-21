@@ -913,8 +913,11 @@ data_rockies <-
 
 ## 🔓The Shortcut {`r gb_bg_light`} 
 
+<br >
+
 ```{r}
 #| label: vegvault_example_figure
+include_local_figure("R_generated/plot_overview_rockies.png")
 ```
 
 # 🆙LevelUp {`r gb_bg_light`}
