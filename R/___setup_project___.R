@@ -57,6 +57,8 @@ if (
 package_list <-
   c(
     "assertthat",
+    "geodata",
+    "ggnewscale",
     "here",
     "janitor",
     "jsonlite",
@@ -65,6 +67,7 @@ package_list <-
     "renv",
     "pak",
     "rlang",
+    "terra",
     "tidyverse",
     "usethis",
     "utils",
@@ -188,3 +191,4 @@ ggplot2::theme_set(
       ),
     )
 )
+

@@ -15,19 +15,17 @@
 # 0. Setup -----
 #----------------------------------------------------------#
 
-library(tidyverse)
-library(jsonlite)
+library(
+  "here",
+  quietly = TRUE,
+  warn.conflicts = FALSE,
+  character.only = TRUE,
+  verbose = FALSE
+)
 
-# install.packages("pak")
-# pak::pak("OndrejMottl/vaultkeepr")
-library(vaultkeepr)
-
-# Colors
-
-colors <-
-  jsonlite::fromJSON(
-    here::here("colors.json")
-  )
+source(
+  here::here("R", "___setup_project___.R")
+)
 
 rerun <- FALSE
 
@@ -67,13 +65,8 @@ is_rockies_data_present <-
   )
 
 if (
-  isTRUE(is_rockies_data_present)
+  isFALSE(is_rockies_data_present)
 ) {
-  data_rockies <-
-    readr::read_rds(
-      here::here("Data", "data_rockies.rds")
-    )
-} else {
   data_rockies <-
     vaultkeepr::open_vault(
       path = path_to_vegvault

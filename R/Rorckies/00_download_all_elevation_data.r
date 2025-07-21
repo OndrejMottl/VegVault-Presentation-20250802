@@ -17,9 +17,17 @@
 # 1. Set up -----
 #----------------------------------------------------------#
 
-library(here)
-# pak::pak("geodata")
-library(geodata)
+library(
+  "here",
+  quietly = TRUE,
+  warn.conflicts = FALSE,
+  character.only = TRUE,
+  verbose = FALSE
+)
+
+source(
+  here::here("R", "___setup_project___.R")
+)
 
 download_de_novo <- FALSE
 
