@@ -1016,7 +1016,7 @@ include_local_figure("VegVault/assembly_viz_04.png")
 
 :::: {.columns}
 
-::: {.incremental .column width="50%"}
+::: {.incremental .column width="55%"}
 
 ::: {.text-size-heading3 .text-bold}
 2. [Abiotic]{.text-background-greenDark .text-color-white .text-bold} context
@@ -1030,10 +1030,11 @@ include_local_figure("VegVault/assembly_viz_04.png")
 
 :::
 
-::: {.column width="50%"}
+::: {.column width="45%"}
 
 ```{r}
 #| label: link of abiotic data
+include_local_figure("R_generated/plot_abiotic_example.png")
 ```
 :::
 
