@@ -13,6 +13,9 @@ format:
     embed-resources: true
     center-title-slide: false
     include-in-header: "fonts-include.html"
+    pdf-separate-fragments: true
+execute: 
+  cache: true
 ---
 
 ```{r}
@@ -153,7 +156,7 @@ gb_bg_medium <-
   'background-image="Materials/poster_export/gb_ds.png" background-opacity="0.50"'
 ```
 
-# [VegVault]{.bold .r-fit-text .text-shadow-light} {.bg-black .text-center .text-color-beigeLight .text-margin-top-15}
+# [VegVault]{.bold .r-fit-text .text-shadow-light} {.bg-black .text-center .text-color-beigeLight .slide-margin-top-15}
 
 <br>
 
@@ -203,7 +206,13 @@ include_local_figure("QR/qr_slides_dark.svg")
 
 <br>
 
-:::{.blockquote .fragment}
+:::: {.columns}
+
+::: {.column width="10%"}
+:::
+
+::: {.column width="80%"}
+:::{.blockquote}
 Most biodiversity models rely exclusively on **contemporary** data
 
 ::: {.fragment}
@@ -229,11 +238,20 @@ There are **many** biodiversity databases
 What if we could integrate vegetation, climate, traits, and time into one coherent system? 🤔
 :::
 
+:::
+
+::: {.column width="10%"}
+:::
+
+::::
+
 ## 🧙Player 1 {`r gb_bg_light`}
+
+<br>
 
 :::: {.columns}
 
-::: {.column width="25%"}
+::: {.column width="20%"}
 
 ```{r}
 #| label: personal sticker
@@ -244,7 +262,7 @@ include_local_figure("poster_export/c1.png")
 :::
 
 
-::: {.column width="75%"}
+::: {.column width="70%"}
 
 <br>
 
@@ -255,11 +273,28 @@ Head of the 🧑‍💻 [Laboratory of Quantitative Ecology](https://ondrejmottl
 
 :::
 
+::: {.column width="10%"}
+:::
+
 ::::
+
+<br>
 
 :::: {.columns}
 
-::: {.column width="30%"}
+::: {.column width=55%"}
+
+* 📧 ondrej.mottl(at)gmail.com
+* 🦋 [ondrejmottl.bsky.social](https://bsky.app/profile/ondrejmottl.bsky.social)
+* 🐱 [Github](https://github.com/OndrejMottl)
+* 🆔 [ORCID](https://orcid.org/0000-0002-9796-5081)
+* 🌐 [Personal webpage](https://ondrejmottl.github.io/)
+:::
+
+::: {.column width="20%"}
+:::
+
+::: {.column width="25%"}
 
 ```{r}
 #| label: QR code https://bit.ly/ondrej_mottl 
@@ -280,18 +315,6 @@ include_local_figure("QR/qr_personal_web.svg")
 ```
 :::
 
-::: {.column width="10%"}
-:::
-
-::: {.column width="60%"}
-
-* 📧 ondrej.mottl(at)gmail.com
-* 🦋 [ondrejmottl.bsky.social](https://bsky.app/profile/ondrejmottl.bsky.social)
-* 🐱 [Github](https://github.com/OndrejMottl)
-* 🆔 [ORCID](https://orcid.org/0000-0002-9796-5081)
-* 🌐 [Personal webpage](https://ondrejmottl.github.io/)
-:::
-
 ::::
 
 ## 🕹️Level: The Rockies {`r gb_bg_light`}
@@ -308,7 +331,7 @@ Did vegetation in the Rocky Mountains remain **functionally stable** under **cli
 
 :::: {.columns}
 
-::: {.column width="55%" .fragment .incremental}
+::: {.column width="50%" .fragment .incremental}
 
 ### 🎯Data Needs
 
@@ -318,7 +341,7 @@ Did vegetation in the Rocky Mountains remain **functionally stable** under **cli
 
 :::
 
-::: {.column width="45%" .fragment .incremental}
+::: {.column width="50%" .fragment .incremental}
 
 ### 🚧Obstacles
 
@@ -332,6 +355,8 @@ Did vegetation in the Rocky Mountains remain **functionally stable** under **cli
 <!-- Slide 0 -->
 
 ## 🔓The Shortcut {`r gb_bg_light` auto-animate=true} 
+
+<br>
 
 ::::: {.fragment}
 
@@ -407,6 +432,8 @@ data_rockies
 
 ## 🔓The Shortcut {`r gb_bg_light` auto-animate=true} 
 
+<br>
+
 :::: {.columns}
 
 ::: {.column width="10%" }
@@ -476,6 +503,8 @@ data_rockies <-
 <!-- Slide 2 -->
 
 ## 🔓The Shortcut {`r gb_bg_light` auto-animate=true} 
+
+<br>
 
 :::: {.columns}
 
@@ -552,6 +581,8 @@ data_rockies <-
 <!-- Slide 3 -->
 
 ## 🔓The Shortcut {`r gb_bg_light` auto-animate=true} 
+
+<br>
 
 :::: {.columns}
 
@@ -636,6 +667,8 @@ data_rockies <-
 <!-- Slide 4 -->
 
 ## 🔓The Shortcut {`r gb_bg_light` auto-animate=true} 
+
+<br>
 
 :::: {.columns}
 
@@ -725,6 +758,8 @@ data_rockies <-
 <!-- Slide 5 -->
 
 ## 🔓The Shortcut {`r gb_bg_light` auto-animate=true} 
+
+<br>
 
 :::: {.columns}
 
@@ -818,6 +853,8 @@ data_rockies <-
 <!-- Slide 6 -->
 
 ## 🔓The Shortcut {`r gb_bg_light` auto-animate=true} 
+
+<br>
 
 :::: {.columns}
 
@@ -922,28 +959,61 @@ include_local_figure("R_generated/plot_overview_rockies.png")
 
 # 🆙LevelUp {`r gb_bg_light`}
 
-<br>
+:::::: {.columns}
 
-:::: {.columns}
-
-::: {.column width="50%"}
+::::: {.column width="50%"}
 
 ```{r}
 #| label: VegVault logo
 include_local_figure("Logos/VegVault_logo.png")
 ```
-:::
 
-::: {.column width="50%" .incremental}
+:::::
+
+::::: {.column width="50%" .incremental}
 
 * A global SQLite database linking [interdisciplinary]{.text-background-black .text-color-white .text-bold} **plot-based** vegetation data! 
 * Links to functional [traits]{.text-background-blueDark .text-color-white .text-bold}, [climate]{.text-background-greenDark .text-color-white .text-bold} variables, and soil properties 
 * Built for exploring **biodiversity** dynamics across [time & space]{.text-background-brownDark .text-color-white .text-bold}
 * Open Source & [Reproducible]{.text-background-brownLight .text-color-white .text-bold}
+* 🔗Learn more: [bit.ly/VegVault](https://bit.ly/VegVault)
+
+:::: {.columns}
+
+::: {.column width="30%"}
+:::
+
+::: {.column width="40%"}
+
+```{r}
+#| label: vegvault_qr_code
+qr_vegvault <-
+  qrcode::qr_code(
+    "https://bit.ly/VegVault",
+    ecl = "H"
+  )
+
+qrcode::generate_svg(
+  qrcode = qr_vegvault,
+  file = here::here("Materials/QR/qr_vegvault.svg"),
+  foreground = colors$black,
+  background = colors$beigeLight
+)
+
+include_local_figure("QR/qr_vegvault.svg")
+```
 
 :::
 
+::: {.column width="30%"}
+:::
+
 ::::
+
+:::::
+
+::::::
+
 
 ## 🗃️The Source Code {`r gb_bg_light`}
 
@@ -987,10 +1057,10 @@ include_local_figure("VegVault/assembly_viz_04.png")
 
 ::: {.incremental fragment-index=3}
 
+- Integration of paleo and contemporary data
 - Plot-based vegetation records 
    + not just species occurrences
    + true negatives!
-- Integration of paleo and contemporary data 
 
 :::
 
@@ -1016,21 +1086,25 @@ include_local_figure("VegVault/assembly_viz_04.png")
 
 :::: {.columns}
 
-::: {.incremental .column width="55%"}
+::: {.column width="55%"}
 
 ::: {.text-size-heading3 .text-bold}
 2. [Abiotic]{.text-background-greenDark .text-color-white .text-bold} context
 :::
 
-- Sample-specific climate and soil data
-   + paleo and contemporary 
+::: {.incremental fragment-index=1}
+
+- Sample-specific abiotic data
    + mapped to spatio-temporal grids
+   + paleo and contemporary 
 - Selected variables for vegetation studies
    + e.g. temperature, precipitation, soil type, etc. 
 
 :::
 
-::: {.column width="45%"}
+:::
+
+::: {.column width="45%" .fragment fragment-index=2}
 
 ```{r}
 #| label: link of abiotic data
@@ -1087,9 +1161,9 @@ Trait source |Trait name| Trait Domain|
 
  An Open Source R package📦 - Your key🔑 to [VegVault]{.bold .text-color-white .text-font-heading .text-shadow-dark}
 
-:::: {.columns}
+:::::: {.columns}
 
-::: {.column width="40%"}
+::::: {.column width="40%"}
 
 ```{r}
 #| label: vaultkeepr logo
@@ -1098,14 +1172,13 @@ include_local_figure("Logos/vaultkeepr_logo.png")
 
 [![CRAN-status](https://www.r-pkg.org/badges/version/vaultkeepr.png)](https://CRAN.R-project.org/package=vaultkeepr) [![R-CMD-check](https://github.com/OndrejMottl/vaultkeepr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/OndrejMottl/vaultkeepr/actions/workflows/R-CMD-check.yaml) [![Codecov-test-coverage](https://codecov.io/gh/OndrejMottl/vaultkeepr/branch/main/graph/badge.svg)](https://app.codecov.io/gh/OndrejMottl/vaultkeepr?branch=main)
 
-:::
+:::::
 
-::: {.column width="5%"}
-:::
+::::: {.column width="5%"}
+:::::
 
-::: {.column width="55%" .incremental}
+::::: {.column width="55%" .incremental}
 
-<br>
 <br>
 
 - ✅ No SQL required - just load & go!
@@ -1114,10 +1187,39 @@ include_local_figure("Logos/vaultkeepr_logo.png")
 - ✅ Directly usable in R for analysis
 - 🔗 Learn more: [bit.ly/vaultkeepr](https://bit.ly/vaultkeepr)
 
+:::: {.columns}
+
+::: {.column width="30%"}
+:::
+
+::: {.column width="40%"}
+```{r}
+#| label: vaultkeepr_qr_code
+qr_vaultkeepr <-
+  qrcode::qr_code(
+    "https://bit.ly/vaultkeepr",
+    ecl = "H"
+  )
+
+qrcode::generate_svg(
+  qrcode = qr_vaultkeepr,
+  file = here::here("Materials/QR/qr_vaultkeepr.svg"),
+  foreground = colors$black,
+  background = colors$beigeLight
+)
+
+include_local_figure("QR/qr_vaultkeepr.svg")
+```
+:::
+
+::: {.column width="30%"}
 :::
 
 ::::
 
+:::::
+
+::::::
 
 # 💾 Save & Share {`r gb_bg_light`}
 
