@@ -260,6 +260,62 @@ p1 <-
     guide = "none"
   ) +
   ggnewscale::new_scale_fill() +
+  ggplot2::geom_point(
+    data = tibble(
+      dataset_type = c(
+        "Vegetation plot",
+        "Fossil pollen archive",
+        "Gridpoint"
+      )
+    ),
+    mapping = ggplot2::aes(
+      col = dataset_type,
+      shape = dataset_type,
+      fill = dataset_type,
+      y = 1,
+      x = 1
+    )
+  ) +
+  ggplot2::scale_color_manual(
+    name = "Dataset type",
+    values = c(
+      colors$greenLight,
+      colors$purpleLight,
+      colors$greenDark
+    ),
+    labels = c(
+      "Vegetation plot",
+      "Fossil pollen archive",
+      "Gridpoint"
+    )
+  ) +
+  ggplot2::scale_fill_manual(
+    name = "Dataset type",
+    values = c(
+      colors$greenLight,
+      colors$purpleLight,
+      colors$greenDark
+    ),
+    labels = c(
+      "Vegetation plot",
+      "Fossil pollen archive",
+      "Gridpoint"
+    )
+  ) +
+  ggplot2::scale_shape_manual(
+    name = "Dataset type",
+    values = c(
+      21, # vegetation plot
+      22, # fossil pollen archive
+      24 # gridpoint
+    ),
+    labels = c(
+      "Vegetation plot",
+      "Fossil pollen archive",
+      "Gridpoint"
+    )
+  ) +
+  ggnewscale::new_scale_fill() +
   # links
   ggplot2::geom_segment(
     data = data_modern_links,
@@ -279,7 +335,7 @@ p1 <-
     mapping = ggplot2::aes(
       fill = abiotic_value
     ),
-    size = 1,
+    size = 2,
     color = colors$greenLight,
     shape = 21,
   ) +
@@ -302,7 +358,7 @@ p1 <-
   ggplot2::scale_fill_gradient(
     high = colors$white,
     low = colors$blueLight,
-    name = "Temperature (°C)",
+    name = "MAT (°C)",
     breaks = scales::pretty_breaks(n = 5),
     limits = c(-4, 9)
   ) +
@@ -334,6 +390,16 @@ p1_without_legend <-
   ggplot2::theme(
     legend.position = "none"
   )
+
+ggplot2::ggsave(
+  filename = here::here("Materials", "R_generated", "plot_abiotic_example_spatial.png"),
+  plot = p1,
+  width = image_width,
+  height = image_height * 1.4,
+  units = image_units,
+  dpi = 300,
+  bg = colors$beigeLight
+)
 
 # temporal figure
 p2 <-
@@ -378,7 +444,7 @@ p2 <-
       y = as.numeric(dataset_id_factor),
       fill = abiotic_value
     ),
-    size = 1,
+    size = 2,
     color = colors$purpleLight,
     shape = 22
   ) +
@@ -408,14 +474,14 @@ p2 <-
   ggplot2::scale_color_gradient(
     high = colors$white,
     low = colors$blueLight,
-    name = "Temperature (°C)",
+    name = "MAT (°C)",
     breaks = scales::pretty_breaks(n = 5),
     limits = c(-4, 9)
   ) +
   ggplot2::scale_fill_gradient(
     high = colors$white,
     low = colors$blueLight,
-    name = "Temperature (°C)",
+    name = "MAT (°C)",
     breaks = scales::pretty_breaks(n = 5),
     limits = c(-4, 9)
   ) +
@@ -426,7 +492,7 @@ p2 <-
     axis.text.y = ggplot2::element_blank(),
     axis.ticks.y = ggplot2::element_blank(),
     axis.title.y = ggplot2::element_blank(),
-    plot.margin = ggplot2::margin(t = 0, r = 0, b = 0, l = 0)
+    plot.margin = ggplot2::margin(t = 5, r = 0, b = 0, l = 5)
   )
 
 p2_legend <-
@@ -447,6 +513,19 @@ p2_without_legend <-
     legend.position = "none"
   )
 
+ggplot2::ggsave(
+  filename = here::here("Materials", "R_generated", "plot_abiotic_example_temporal.png"),
+  plot = p2_without_legend,
+  width = image_width,
+  height = image_height /2,
+  units = image_units,
+  dpi = 300,
+  bg = colors$beigeLight
+)
+
+#-----------------------------------------------------------#
+# This is currently not used,
+#-----------------------------------------------------------#
 
 p3 <-
   tibble(
@@ -557,15 +636,3 @@ p_merged_without_legend <-
     label_size = text_size * 2,
     rel_heights = c(8, 4)
   )
-
-ggplot2::ggsave(
-  filename = here::here("Materials", "R_generated", "plot_abiotic_example.png"),
-  plot = p_merged_with_legend,
-  width = image_width * 1.1,
-  height = image_height * 2.1,
-  units = image_units,
-  dpi = 300,
-  bg = colors$beigeLight
-)
-
-

@@ -1108,9 +1108,28 @@ include_local_figure("VegVault/assembly_viz_04.png")
 ::: {.column width="45%" .fragment fragment-index=2}
 
 ```{r}
-#| label: link of abiotic data
-include_local_figure("R_generated/plot_abiotic_example.png")
+#| label: link of abiotic data spatial example
+include_local_figure("R_generated/plot_abiotic_example_spatial.png")
 ```
+:::
+
+::::
+
+:::: {.columns}
+
+::: {.column width="20%"}
+:::
+
+
+::: {.column width="50%" .fragment fragment-index=2}
+```{r}
+#| label: link of abiotic data temporal example
+include_local_figure("R_generated/plot_abiotic_example_temporal.png")
+```
+
+:::
+
+::: {.column width="30%"}
 :::
 
 ::::
