@@ -200,7 +200,7 @@ h4,
 h1,
 .reveal h1 {
   font-size: $heading1Size !important;
-  margin-top: $largeMargin;
+  margin-top: $blockMargin;
 }
 
 h2,
@@ -329,22 +329,6 @@ ul ul {
   font-size: $mainFontSize * 1.3 !important;
 }
 
-.text-margin-top-15 {
-  margin: 0;
-  position: absolute;
-  top: 15%;
-  -ms-transform: translateY(-15%);
-  transform: translateY(-15%);
-}
-
-.text-margin-top-25 {
-  margin: 0;
-  position: absolute;
-  top: 25%;
-  -ms-transform: translateY(-25%);
-  transform: translateY(-25%);
-}
-
 .text-shadow-light {
   text-shadow: 3px 4px 5px $blueLight !important;
 }
@@ -353,11 +337,35 @@ ul ul {
   text-shadow: 3px 4px 5px $black !important;
 }
 
+.text-margin-bottom-15 {
+  margin-bottom: 15px !important;
+}
+
+.text-margin-top-15 {
+  margin-top: 15px;
+}
+
 /* Slide content layout */
 .reveal .slides {
   //  max-width: $content-max-width;
   margin: auto;
   padding: 0 $smallMargin;
+}
+
+.slide-margin-top-15 {
+  margin: 0;
+  position: absolute;
+  top: 15%;
+  -ms-transform: translateY(-15%);
+  transform: translateY(-15%);
+}
+
+.slide-margin-top-25 {
+  margin: 0;
+  position: absolute;
+  top: 25%;
+  -ms-transform: translateY(-25%);
+  transform: translateY(-25%);
 }
 
 .center-vertical {
@@ -485,8 +493,7 @@ ul ul {
   border: 2px solid $black !important;
 }
 
-/* Table header background var
-iations */
+/* Table header background variations */
 .table-header-blue thead th {
   background-color: $blueDark !important;
   color: $white !important;
