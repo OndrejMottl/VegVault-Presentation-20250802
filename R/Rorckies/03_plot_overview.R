@@ -122,12 +122,12 @@ p1_with_with_legend <-
       shape = as.factor(dataset_type_id),
       size = as.factor(dataset_type_id)
     ),
-    alpha = 1
+    alpha = 0.8
   ) +
   ggplot2::geom_point(
     data = data_rockies %>%
       dplyr::filter(
-        dataset_type_id %in% c(1, 2)
+        dataset_type_id %in% c(1, 2) & age <= 200
       ) %>%
       dplyr::distinct(dataset_id, dataset_type_id, coord_long, coord_lat),
     ggplot2::aes(
@@ -136,15 +136,19 @@ p1_with_with_legend <-
     ),
     size = 0.1,
     col = colors$black,
+    alpha = 0.5
   ) +
   ggplot2::coord_quickmap(
     xlim = c(-120, -100),
     ylim = c(30, 50)
   ) +
   ggplot2::scale_fill_gradient(
-    low = colors$greenDark,
+    low = colors$blueLight,
     high = colors$white,
-    name = "Temperature (°C)"
+    # midpoint = 10,
+    breaks = scales::pretty_breaks(n = 5),
+    limits = c(-10, 25),
+    name = "MAT (°C)"
   ) +
   ggplot2::scale_color_manual(
     values = c(
@@ -258,6 +262,8 @@ p2_with_legend <-
   ) +
   geom_histogram(
     binwidth = 1000,
+    col = colors$black,
+    linewidth = 0.1
   ) +
   ggplot2::labs(
     x = "Age (cal ka yr BP)",
@@ -286,7 +292,7 @@ p2_without_legend <-
 
 
 #----------------------------------------------------------#
-# 3. Temperature per time -----
+# 3. MAT per time -----
 # ----------------------------------------------------------#
 
 p3_with_legend <-
@@ -294,11 +300,29 @@ p3_with_legend <-
   dplyr::filter(
     dataset_type_id == 4,
   ) %>%
-  dplyr::distinct(dataset_id, sample_id, .keep_all = TRUE) %>%
+  dplyr::distinct(dataset_id, sample_id, sample_id_link, .keep_all = TRUE) %>%
+  tidyr::drop_na(age, abiotic_value) %>%
   dplyr::select(
     dataset_id,
+    sample_id,
+    sample_id_link,
     age,
     abiotic_value
+  ) %>%
+  dplyr::left_join(
+    data_rockies %>%
+      dplyr::filter(
+        dataset_type_id %in% c(1, 2)
+      ) %>%
+      dplyr::distinct(
+        dataset_id, sample_id, dataset_type_id
+      ),
+    by = c("sample_id_link" = "sample_id"),
+    suffix = c("_gridpoint", "_vegetation")
+  ) %>%
+  tidyr::drop_na(dataset_type_id) %>%
+  dplyr::distinct(
+    dataset_type_id, dataset_id_vegetation, age, abiotic_value
   ) %>%
   ggplot2::ggplot() +
   ggplot2::scale_x_continuous(
@@ -313,27 +337,63 @@ p3_with_legend <-
     ggplot2::aes(
       x = age,
       y = abiotic_value,
-      col = abiotic_value,
-      group = dataset_id
+      # col = abiotic_value,
+      group = dataset_id_vegetation
     ),
     linewidth = 1,
+    col = colors$grey,
+    alpha = 0.5
   ) +
   ggplot2::geom_point(
     ggplot2::aes(
       x = age,
       y = abiotic_value,
-      col = abiotic_value,
+      fill = abiotic_value,
+      col = as.factor(dataset_type_id),
+      shape = as.factor(dataset_type_id),
     ),
-    size = 1
+    size = 2,
+    alpha = 0.8
   ) +
-  ggplot2::scale_color_gradient(
-    low = colors$greenDark,
+  ggplot2::geom_point(
+    ggplot2::aes(
+      x = age,
+      y = abiotic_value
+    ),
+    size = 0.1,
+    col = colors$black,
+    alpha = 0.5
+  ) +
+  ggplot2::scale_fill_gradient(
+    low = colors$blueLight,
     high = colors$white,
-    name = "Temperature (°C)"
+    # midpoint = 10,
+    breaks = scales::pretty_breaks(n = 5),
+    limits = c(-10, 25),
+    name = "MAT (°C)"
+  ) +
+  ggplot2::scale_color_manual(
+    values = c(
+      colors$greenLight,
+      colors$purpleLight
+    ),
+    name = "Dataset type",
+    labels = c(
+      "Vegetation plot",
+      "Fossil pollen archive"
+    )
+  ) +
+  ggplot2::scale_shape_manual(
+    values = c(21, 22),
+    name = "Dataset type",
+    labels = c(
+      "Vegetation plot",
+      "Fossil pollen archive"
+    )
   ) +
   ggplot2::labs(
     x = "Age (cal ka yr BP)",
-    y = "Temperature (°C)"
+    y = "MAT (°C)"
   ) +
   ggplot2::theme(
     legend.position = "bottom",
@@ -342,7 +402,11 @@ p3_with_legend <-
 
 legend_temperature <-
   cowplot::get_legend(
-    p3_with_legend
+    p3_with_legend +
+      ggplot2::guides(
+        shape = "none",
+        col = "none"
+      )
   )
 
 # cowplot::ggdraw(legend_temperature)
@@ -352,7 +416,6 @@ p3_without_legend <-
   ggplot2::theme(
     legend.position = "none"
   )
-
 
 
 #----------------------------------------------------------#
@@ -442,26 +505,29 @@ data_to_plot_traits_filtered <-
 
 p4 <-
   data_to_plot_traits_filtered %>%
-  ggplot2::ggplot() +
-  ggplot2::geom_violin(
+  ggplot2::ggplot(
     mapping = ggplot2::aes(
       y = trait_value,
       x = 1
     ),
+  ) +
+  ggplot2::geom_violin(
     col = NA,
     fill = colors$blueDark
   ) +
+  ggplot2::geom_jitter(
+    col = colors$black,
+    size = 0.5,
+    alpha = 0.5,
+    width = 0.1
+  ) +
   ggplot2::geom_boxplot(
-    mapping = ggplot2::aes(
-      y = trait_value,
-      x = 1,
-    ),
     col = colors$black,
     outlier.shape = NA,
     width = 0.1,
   ) +
   ggplot2::labs(
-    y = "Plant height (cm)",
+    y = "Average plant height of genus (cm)",
   ) +
   ggplot2::scale_y_continuous(
     breaks = scales::breaks_pretty(n = 5)

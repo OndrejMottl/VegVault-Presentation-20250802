@@ -260,6 +260,62 @@ p1 <-
     guide = "none"
   ) +
   ggnewscale::new_scale_fill() +
+  ggplot2::geom_point(
+    data = tibble(
+      dataset_type = c(
+        "Vegetation plot",
+        "Fossil pollen archive",
+        "Gridpoint"
+      )
+    ),
+    mapping = ggplot2::aes(
+      col = dataset_type,
+      shape = dataset_type,
+      fill = dataset_type,
+      y = 1,
+      x = 1
+    )
+  ) +
+  ggplot2::scale_color_manual(
+    name = "Dataset type",
+    values = c(
+      colors$greenLight,
+      colors$purpleLight,
+      colors$greenDark
+    ),
+    labels = c(
+      "Vegetation plot",
+      "Fossil pollen archive",
+      "Gridpoint"
+    )
+  ) +
+  ggplot2::scale_fill_manual(
+    name = "Dataset type",
+    values = c(
+      colors$greenLight,
+      colors$purpleLight,
+      colors$greenDark
+    ),
+    labels = c(
+      "Vegetation plot",
+      "Fossil pollen archive",
+      "Gridpoint"
+    )
+  ) +
+  ggplot2::scale_shape_manual(
+    name = "Dataset type",
+    values = c(
+      21, # vegetation plot
+      22, # fossil pollen archive
+      24 # gridpoint
+    ),
+    labels = c(
+      "Vegetation plot",
+      "Fossil pollen archive",
+      "Gridpoint"
+    )
+  ) +
+  ggnewscale::new_scale_fill() +
   # links
   ggplot2::geom_segment(
     data = data_modern_links,
@@ -271,7 +327,7 @@ p1 <-
     ),
     col = colors$grey,
     alpha = 1,
-    linewidth = 0.5
+    linewidth = 1
   ) +
   # vegetation points
   ggplot2::geom_point(
@@ -279,9 +335,15 @@ p1 <-
     mapping = ggplot2::aes(
       fill = abiotic_value
     ),
-    size = 1,
+    size = 2,
     color = colors$greenLight,
     shape = 21,
+  ) +
+  ggplot2::geom_point(
+    data = data_modern_vegetation_with_temp,
+    size = 0.05,
+    color = colors$black,
+    alpha = 0.5
   ) +
   # grid points
   ggplot2::geom_point(
@@ -289,14 +351,14 @@ p1 <-
     mapping = ggplot2::aes(
       fill = abiotic_value
     ),
-    size = 3,
+    size = 2,
     color = colors$greenDark,
     shape = 24
   ) +
   ggplot2::scale_fill_gradient(
-    low = colors$greenDark,
     high = colors$white,
-    name = "Temperature (°C)",
+    low = colors$blueLight,
+    name = "MAT (°C)",
     breaks = scales::pretty_breaks(n = 5),
     limits = c(-4, 9)
   ) +
@@ -317,7 +379,7 @@ p1 <-
     y = "Latitude"
   ) +
   ggplot2::theme(
-    margin = ggplot2::margin(t = 0, r = 0, b = 0, l = 0)
+    plot.margin = ggplot2::margin(t = 0, r = 0, b = 0, l = 0)
   )
 
 p1_legend <-
@@ -328,6 +390,16 @@ p1_without_legend <-
   ggplot2::theme(
     legend.position = "none"
   )
+
+ggplot2::ggsave(
+  filename = here::here("Materials", "R_generated", "plot_abiotic_example_spatial.png"),
+  plot = p1,
+  width = image_width,
+  height = image_height * 1.4,
+  units = image_units,
+  dpi = 300,
+  bg = colors$beigeLight
+)
 
 # temporal figure
 p2 <-
@@ -341,6 +413,7 @@ p2 <-
     trans = "reverse",
     breaks = seq(0, 20e3, 2.5e3)
   ) +
+  # links
   ggplot2::geom_segment(
     data = data_paleo_links,
     mapping = ggplot2::aes(
@@ -352,6 +425,7 @@ p2 <-
     color = colors$grey,
     linewidth = 0.5
   ) +
+  # vegetation plots
   ggplot2::geom_line(
     data = data_paleo_vegetation_with_temp,
     mapping = ggplot2::aes(
@@ -359,8 +433,9 @@ p2 <-
       y = as.numeric(dataset_id_factor),
       group = dataset_id
     ),
-    color = colors$purpleLight,
-    linewidth = 0.5
+    color = colors$grey,
+    linewidth = 1,
+    alpha = 0.5
   ) +
   ggplot2::geom_point(
     data = data_paleo_vegetation_with_temp,
@@ -373,6 +448,16 @@ p2 <-
     color = colors$purpleLight,
     shape = 22
   ) +
+  ggplot2::geom_point(
+    data = data_paleo_vegetation_with_temp,
+    mapping = ggplot2::aes(
+      x = age,
+      y = as.numeric(dataset_id_factor)
+    ),
+    size = 0.1,
+    color = colors$black,
+    alpha = 0.5
+  ) +
   # grid points
   ggplot2::geom_point(
     data = data_paleo_links %>%
@@ -382,21 +467,21 @@ p2 <-
       y = as.numeric(dataset_id_vegetation_factor) + 0.5,
       fill = abiotic_value
     ),
-    size = 3,
+    size = 2,
     color = colors$greenDark,
     shape = 24
   ) +
   ggplot2::scale_color_gradient(
-    low = colors$greenDark,
     high = colors$white,
-    name = "Temperature (°C)",
+    low = colors$blueLight,
+    name = "MAT (°C)",
     breaks = scales::pretty_breaks(n = 5),
     limits = c(-4, 9)
   ) +
   ggplot2::scale_fill_gradient(
-    low = colors$greenDark,
     high = colors$white,
-    name = "Temperature (°C)",
+    low = colors$blueLight,
+    name = "MAT (°C)",
     breaks = scales::pretty_breaks(n = 5),
     limits = c(-4, 9)
   ) +
@@ -407,7 +492,7 @@ p2 <-
     axis.text.y = ggplot2::element_blank(),
     axis.ticks.y = ggplot2::element_blank(),
     axis.title.y = ggplot2::element_blank(),
-    margin = ggplot2::margin(t = 0, r = 0, b = 0, l = 10),
+    plot.margin = ggplot2::margin(t = 5, r = 0, b = 0, l = 5)
   )
 
 p2_legend <-
@@ -415,9 +500,9 @@ p2_legend <-
     p2 +
       ggplot2::theme(
         legend.position = "bottom",
-        legend.box = "horizontal",
-        legend.box.just = "left",
-        legend.box.margin = ggplot2::margin(t = 0, r = 0, b = 0, l = 0),
+        # legend.box = "horizontal",
+        # legend.box.just = "left",
+        # legend.box.margin = ggplot2::margin(t = 0, r = 0, b = 0, l = 0),
         legend.title.position = "top"
       )
   )
@@ -428,6 +513,19 @@ p2_without_legend <-
     legend.position = "none"
   )
 
+ggplot2::ggsave(
+  filename = here::here("Materials", "R_generated", "plot_abiotic_example_temporal.png"),
+  plot = p2_without_legend,
+  width = image_width,
+  height = image_height /2,
+  units = image_units,
+  dpi = 300,
+  bg = colors$beigeLight
+)
+
+#-----------------------------------------------------------#
+# This is currently not used,
+#-----------------------------------------------------------#
 
 p3 <-
   tibble(
@@ -447,7 +545,7 @@ p3 <-
     )
   ) +
   ggplot2::geom_point(
-    size = 5
+    size = 2
   ) +
   ggplot2::scale_color_manual(
     name = "Dataset type",
@@ -490,8 +588,12 @@ p3 <-
   ) +
   ggplot2::theme(
     legend.position = "right",
-    legend.box.just = "left",
-    legend.box.margin = ggplot2::margin(t = 0, r = 0, b = 0, l = 0),
+    legend.key.spacing = ggplot2::unit(0, "cm"),
+    legend.text = ggplot2::element_text(
+      margin = ggplot2::margin(t = 0, r = 10, b = 0, l = 0)
+    ),
+    # legend.box.just = "left",
+    legend.box.margin = ggplot2::margin(t = 0, r = 10, b = 0, l = 0),
     legend.title.position = "top"
   )
 
@@ -502,41 +604,25 @@ p3_legend <-
 
 p_merged_with_legend <-
   cowplot::plot_grid(
-    cowplot::plot_grid(
-      cowplot::plot_grid(
-        p3_legend,
-        p2_legend,
-        ncol = 1,
-        nrow = 2
-      ),
-      p1_without_legend,
-      ncol = 2,
-      rel_widths = c(1, 3)
-    ),
+    p1_without_legend,
     p2_without_legend,
-    nrow = 2,
-    labels = c("A", "B"),
+    NULL,
+    cowplot::plot_grid(
+      NA,
+      p3_legend,
+      p2_legend,
+      NA,
+      ncol = 4,
+      nrow = 1,
+      rel_widths = c(1, 3, 1, 1)
+    ),
+    NULL,
+    nrow = 5,
+    labels = c("A", "B", ""),
     label_colour = colors$white,
     label_fontfamily = "Renogare",
     label_size = text_size * 2,
-    rel_heights = c(6, 3)
-  )
-
-p_merged_with_legend <-
-  cowplot::plot_grid(
-    cowplot::plot_grid(
-      p1_without_legend,
-      p1_legend,
-      ncol = 2,
-      rel_widths = c(10, 1)
-    ),
-    p2_without_legend,
-    nrow = 2,
-    labels = c("A", "B"),
-    label_colour = colors$white,
-    label_fontfamily = "Renogare",
-    label_size = text_size * 2,
-    rel_heights = c(6, 3)
+    rel_heights = c(8, 4, 1, 1, 1)
   )
 
 p_merged_without_legend <-
@@ -550,13 +636,3 @@ p_merged_without_legend <-
     label_size = text_size * 2,
     rel_heights = c(8, 4)
   )
-
-ggplot2::ggsave(
-  filename = here::here("Materials", "R_generated", "plot_abiotic_example.png"),
-  plot = p_merged_with_legend,
-  width = image_width * 0.8,
-  height = image_height * 1.5,
-  units = image_units,
-  dpi = 150,
-  bg = colors$beigeLight
-)
