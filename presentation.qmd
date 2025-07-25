@@ -38,7 +38,7 @@ library(countdown)
 
 if (!require("here")) install.packages("here")
 library(here)
-
+here::i_am("presentation.qmd")
 
 if (!require("jsonlite")) install.packages("jsonlite")
 library(jsonlite)
@@ -1087,7 +1087,7 @@ include_local_figure("VegVault/assembly_viz_04.png")
 
 :::: {.columns}
 
-::: {.column width="55%"}
+::: {.column width="60%"}
 
 ::: {.text-size-heading3 .text-bold}
 2. [Abiotic]{.text-background-greenDark .text-color-white .text-bold} context
@@ -1105,7 +1105,7 @@ include_local_figure("VegVault/assembly_viz_04.png")
 
 :::
 
-::: {.column width="45%" .fragment fragment-index=2}
+::: {.column width="40%" .fragment fragment-index=2}
 
 ```{r}
 #| label: link of abiotic data spatial example
@@ -1139,8 +1139,6 @@ include_local_figure("R_generated/plot_abiotic_example_temporal.png")
 ## 💎Key Innovations {`r gb_bg_light`}
 
 <br>
-
-
 
 :::: {.columns}
 
@@ -1256,6 +1254,12 @@ include_local_figure("QR/qr_vaultkeepr.svg")
 - 🐱[GitHub repository](https://github.com/OndrejMottl/VegVault-Presentation-20250802)
 - 🖼️[Slides](https://ondrejmottl.github.io/VegVault-Presentation-20250802/)
 
+:::: {.columns}
+
+::: {.column width="10%"}
+:::
+
+::: {.column width="80%"}
 ```{r}
 #| label: QR code slides
 qrcode::generate_svg(
@@ -1267,6 +1271,12 @@ qrcode::generate_svg(
 
 include_local_figure("QR/qr_slides.svg")
 ```
+:::
+
+::: {.column width="10%"}
+:::
+
+::::
 
 :::::
 
@@ -1411,21 +1421,388 @@ Photo by Vladimír Šigut (CUNI)
 
 ## 🎯Bonus Stage {`r gb_bg_light`}
 
-- Optional backup slides:
-  - VegVault database schema
+```{r}
+#| label: DB scheme
+include_local_figure("VegVault/schema_diagram.png")
+```
 
 
 ## 🎯Bonus Stage {`r gb_bg_light`}
 
 <br>
 
-### 💡Side Quests {`r gb_bg_light`}
+```{r}
+#| label: additional_setup
+#| echo: false
+#| include: false
+source(
+  here::here("R/___setup_project___.R")
+  )
+```
+
+```{r}
+#| label: Dataset type - plots
+con <-
+  DBI::dbConnect(
+    RSQLite::SQLite(),
+    path_to_vegvault
+  )
+
+n_datasetes_per_type <-
+  dplyr::inner_join(
+    dplyr::tbl(con, "Datasets"),
+    dplyr::tbl(con, "DatasetTypeID"),
+    by = "dataset_type_id"
+  ) %>%
+  dplyr::group_by(dataset_type) %>%
+  dplyr::count(name = "N") %>%
+  dplyr::collect() %>%
+  dplyr::ungroup()
+
+DBI::dbDisconnect(con)
+
+fig_n_datasetes_per_type <-
+  plot_waffle(
+    n_datasetes_per_type,
+    dataset_type,
+    plot_title = "Dataset Type",
+    one_point_is = 1e3
+  ) +
+  ggplot2::scale_fill_manual(
+    values = c(
+      colors$purpleLight,
+      colors$greenDark,
+      colors$blueDark,
+      colors$greenLight
+    )
+  )
+
+save_figure_to_render(fig_n_datasetes_per_type)
+```
+
+## 🎯Bonus Stage {`r gb_bg_light`}
+
+<br>
+
+```{r}
+#| label: Number of taxa per data source type
+con <-
+  DBI::dbConnect(
+    RSQLite::SQLite(),
+    path_to_vegvault
+  )
+
+n_taxa_per_source_type <-
+  dplyr::inner_join(
+    dplyr::tbl(con, "Datasets"),
+    dplyr::tbl(con, "DatasetTypeID"),
+    by = "dataset_type_id"
+  ) %>%
+  dplyr::filter(
+    dataset_type == "vegetation_plot"
+  ) %>%
+  dplyr::inner_join(
+    dplyr::tbl(con, "DatasetSourceTypeID"),
+    by = "data_source_type_id"
+  ) %>%
+  dplyr::inner_join(
+    dplyr::tbl(con, "DatasetSample"),
+    by = "dataset_id"
+  ) %>%
+  dplyr::inner_join(
+    dplyr::tbl(con, "Samples"),
+    by = "sample_id"
+  ) %>%
+  dplyr::inner_join(
+    dplyr::tbl(con, "SampleTaxa"),
+    by = "sample_id"
+  ) %>%
+  dplyr::distinct(dataset_source_type, taxon_id) %>%
+  dplyr::group_by(dataset_source_type) %>%
+  dplyr::count(name = "N") %>%
+  dplyr::collect() %>%
+  dplyr::ungroup()
+
+DBI::dbDisconnect(con)
+
+fig_n_taxa_per_source_type <-
+  n_taxa_per_source_type %>%
+  dplyr::arrange(-N) %>%
+  dplyr::mutate(
+    dataset_source_type = factor(
+      dataset_source_type,
+      levels = unique(dataset_source_type)
+    )
+  ) %>%
+  ggplot2::ggplot(
+    ggplot2::aes(
+      y = N,
+      x = dataset_source_type
+    )
+  ) +
+  ggplot2::scale_y_continuous(
+    transform = scales::transform_log10(),
+    breaks = scales::trans_breaks("log10", function(x) 10^x),
+    labels = scales::trans_format("log10", scales::math_format(10^.x)),
+  ) +
+  ggplot2::coord_cartesian(
+    ylim = c(10e3, 10e5)
+  ) +
+  ggplot2::labs(
+    title = "Taxa per Source Type",
+    x = "",
+    y = "Number of taxa"
+  ) +
+  ggplot2::guides(
+    fill = "none"
+  ) +
+  ggplot2::geom_segment(
+    mapping = ggplot2::aes(
+      x = dataset_source_type,
+      xend = dataset_source_type,
+      yend = 0
+    ),
+    color = colors$black,
+    position = ggplot2::position_dodge(0.5)
+  ) +
+  ggplot2::geom_point(
+    fill = colors$greenLight,
+    size = point_size,
+    shape = 21,
+    col = colors$black,
+    position = ggplot2::position_dodge(0.5)
+  ) +
+  ggplot2::geom_label(
+    mapping = ggplot2::aes(
+      label = scales::number(N)
+    ),
+    vjust = -0.5,
+    size = point_size * 2,
+    position = ggplot2::position_dodge(0.5)
+  )
+
+save_figure_to_render(fig_n_taxa_per_source_type)
+```
+
+## 🎯Bonus Stage {`r gb_bg_light`}
+
+<br>
+
+
+```{r}
+#| label: taxa classification plot
+get_n_taxa_per_level <- function(sel_level) {
+  dplyr::tbl(con, "TaxonClassification") %>%
+    dplyr::distinct({{ sel_level }}) %>%
+    dplyr::collect() %>%
+    nrow() %>%
+    return()
+}
+
+con <-
+  DBI::dbConnect(
+    RSQLite::SQLite(),
+    path_to_vegvault
+  )
+
+n_taxa_total <-
+  dplyr::tbl(con, "Taxa") %>%
+  dplyr::count(name = "N") %>%
+  dplyr::collect() %>%
+  purrr::chuck("N")
+
+n_taxa_not_classificed <-
+  dplyr::left_join(
+    dplyr::tbl(con, "Taxa"),
+    dplyr::tbl(con, "TaxonClassification"),
+    by = "taxon_id"
+  ) %>%
+  dplyr::filter(
+    is.na(taxon_species) &
+      is.na(taxon_genus) &
+      is.na(taxon_family)
+  ) %>%
+  dplyr::count(name = "N") %>%
+  dplyr::collect() %>%
+  purrr::chuck("N")
+
+n_taxa_per_class <-
+  tibble::tribble(
+    ~class, ~N,
+    "total taxa", n_taxa_total,
+    "species", get_n_taxa_per_level(taxon_species),
+    "genus", get_n_taxa_per_level(taxon_genus),
+    "family", get_n_taxa_per_level(taxon_family),
+    "not classified", n_taxa_not_classificed
+  )
+
+DBI::dbDisconnect(con)
+
+fig_n_taxa_per_class <-
+  n_taxa_per_class %>%
+  dplyr::mutate(
+    class = factor(
+      class,
+      levels = n_taxa_per_class$class
+    )
+  ) %>%
+  ggplot2::ggplot(
+    ggplot2::aes(
+      y = N,
+      x = class
+    )
+  ) +
+  ggplot2::labs(
+    title = "Taxa classification",
+    x = "",
+    y = "Number of Taxa"
+  ) +
+  ggplot2::guides(
+    fill = "none"
+  ) +
+  ggplot2::scale_fill_manual(
+    values = c(
+      "#FCFCFC",
+      "#FFE6F5",
+      "#FFDEC9",
+      "#FFE593",
+      "#D8DBE0"
+    )
+  ) +
+  ggplot2::coord_cartesian(
+    ylim = c(0, 120e3)
+  ) +
+  ggplot2::geom_segment(
+    mapping = ggplot2::aes(
+      x = class,
+      xend = class,
+      yend = 0
+    ),
+    color = colors$black,
+    position = ggplot2::position_dodge(0.5)
+  ) +
+  ggplot2::geom_point(
+    mapping = ggplot2::aes(
+      fill = class
+    ),
+    size = point_size,
+    shape = 21,
+    col = colors$black,
+    position = ggplot2::position_dodge(0.5)
+  ) +
+  ggplot2::geom_label(
+    mapping = ggplot2::aes(
+      label = scales::number(N)
+    ),
+    vjust = -0.5,
+    size = point_size * 2,
+    position = ggplot2::position_dodge(0.5)
+  )
+
+save_figure_to_render(fig_n_taxa_per_class)
+```
+
+## 🎯Bonus Stage {`r gb_bg_light`}
+ 
+::: {.text-tiny}
+
+```{r}
+#| label: show trait domains
+con <-
+  DBI::dbConnect(
+    RSQLite::SQLite(),
+    path_to_vegvault
+  )
+
+dplyr::tbl(con, "TraitsDomain") %>%
+  dplyr::inner_join(
+    dplyr::tbl(con, "Traits"),
+    by = "trait_domain_id"
+  ) %>%
+  dplyr::inner_join(
+    dplyr::tbl(con, "TraitsValue"),
+    by = "trait_id"
+  ) %>%
+  dplyr::inner_join(
+    dplyr::tbl(con, "Datasets") %>%
+      dplyr::filter(dataset_type_id == 3),
+    by = "dataset_id"
+  ) %>%
+  dplyr::distinct(
+    trait_domain_id, trait_domain_name,
+    trait_name,
+    data_source_type_id, dataset_id
+  ) %>%
+  dplyr::inner_join(
+    dplyr::tbl(con, "DatasetSourceTypeID"),
+    by = "data_source_type_id"
+  ) %>%
+  dplyr::distinct(
+    trait_domain_id, trait_domain_name,
+    trait_name,
+    dataset_source_type
+  ) %>%
+  dplyr::collect() %>%
+  dplyr::arrange(trait_domain_id, dataset_source_type) %>%
+  dplyr::select(-trait_domain_id) %>%
+  rlang::set_names(
+    nm = c(
+      "Trait domain",
+      "Trait",
+      "Data Source"
+    )
+  ) %>%
+  tinytable::tt(theme = "revealjs")
+
+DBI::dbDisconnect(con)
+```
+
+:::
+
+## 🎯Bonus Stage {`r gb_bg_light`}
+
+<br>
+
+### Gridpoints example - CZ
+
+```{r}
+#| label: gridpoints_example_1
+include_local_figure("VegVault/gridpoints/fig_data_grid_coord.png")
+```
+
+## 🎯Bonus Stage {`r gb_bg_light`}
+
+<br>
+
+### Gridpoints example - CZ
+
+```{r}
+#| label: gridpoints_example_2
+include_local_figure("VegVault/gridpoints/fig_gridpoint_links_example.png")
+```
+
+## 🎯Bonus Stage {`r gb_bg_light`}
+
+<br>
+
+### Gridpoints example - CZ
+
+```{r}
+#| label: gridpoints_example_3
+include_local_figure("VegVault/gridpoints/fig_cz_jsdm.png")
+```
+
+## 🎯Bonus Stage {`r gb_bg_light`}
+
+<br>
+
+### 💡Side Quests
 
 **The world is your oyster!**
 
 :::: {.columns}
 
-::: {.column width="70%" .incremental .text-italic}
+::: {.column width="70%" .text-italic}
 
  - Reconstruct long-term diversity patterns  
  - Investigate trait-based community assembly
@@ -1445,3 +1822,4 @@ include_local_figure("AI/oyster.png")
 :::
 
 ::::
+

@@ -141,6 +141,7 @@ if (
   )
 }
 
+
 #----------------------------------------------------------#
 # 4. Graphical options -----
 #----------------------------------------------------------#
@@ -168,56 +169,41 @@ colors <-
     here::here("colors.json")
   )
 
-col_brown_light <- colors$brownLight
-col_brown_dark <- colors$brownDark
-
-col_green_light <- colors$greenLight
-col_green_dark <- colors$greenDark
-
-col_blue_light <- colors$blueLight
-col_blue_dark <- colors$blueDark
-
-col_beige_light <- colors$beigeLight
-col_beige_dark <- colors$beigeDark
-
-col_white <- colors$white
-col_grey <- colors$grey
-
 # set ggplot output
 ggplot2::theme_set(
   ggplot2::theme_minimal() +
     ggplot2::theme(
       text = ggplot2::element_text(
         size = text_size,
-        colour = col_blue_dark,
+        colour = colors$black,
         family = "Renogare"
       ),
       line = ggplot2::element_line(
         linewidth = line_size,
-        colour = col_blue_dark
+        colour = colors$black
       ),
       axis.text = ggplot2::element_text(
-        colour = col_blue_dark,
+        colour = colors$black,
         size = text_size,
         family = "Renogare"
       ),
       axis.title = ggplot2::element_text(
-        colour = col_blue_dark,
+        colour = colors$black,
         size = text_size,
         family = "Renogare"
       ),
       panel.grid.major = ggplot2::element_line(
-        colour = col_beige_light,
+        colour = colors$beigeLight,
         linewidth = line_size
       ),
       panel.grid.minor = ggplot2::element_blank(),
       plot.background = ggplot2::element_rect(
-        fill = col_beige_light,
-        colour = col_beige_light
+        fill = colors$beigeLight,
+        colour = colors$beigeLight
       ),
       panel.background = ggplot2::element_rect(
-        fill = col_brown_light,
-        colour = col_brown_light
+        fill = colors$brownLight,
+        colour = colors$brownLight
       ),
       plot.margin = ggplot2::margin(
         t = 0,

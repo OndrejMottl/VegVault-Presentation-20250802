@@ -413,6 +413,10 @@ p2 <-
     trans = "reverse",
     breaks = seq(0, 20e3, 2.5e3)
   ) +
+  ggplot2::scale_y_continuous(
+    limits = c(0.9, 6),
+    breaks = seq(1, 5, 1)
+  ) +
   # links
   ggplot2::geom_segment(
     data = data_paleo_links,
@@ -517,7 +521,7 @@ ggplot2::ggsave(
   filename = here::here("Materials", "R_generated", "plot_abiotic_example_temporal.png"),
   plot = p2_without_legend,
   width = image_width,
-  height = image_height /2,
+  height = image_height / 1.8,
   units = image_units,
   dpi = 300,
   bg = colors$beigeLight
